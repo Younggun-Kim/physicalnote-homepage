@@ -22,7 +22,7 @@ export const MY_PAGE_LINKS: NavItemType[] = [
 
 /** 서비스 약관 */
 export const TERM_LINKS: NavItemType[] = [
-  { href: '/policy/term', label: '서비스 이용약' },
+  { href: '/policy/term', label: '서비스 이용약관' },
   { href: '/policy/privacy', label: '개인정보 처리방침' },
   { href: '/policy/financial', label: '전자금융거래 기본약관' },
 ];
