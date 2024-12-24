@@ -1,25 +1,31 @@
 'use client';
 
-import styled from 'styled-components';
+import React from 'react';
 
-export const LoginSubmitWrapper = styled.div`
-  max-width: 260px;
-  width: 100%;
+interface LoginSubmitWrapperProps {
+  children: React.ReactNode;
+  className?: string;
+}
 
-  @media (min-width: 769px) {
-    max-width: 320px;
-    font-size: 14px;
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-    max-width: 300px;
-    font-size: 14px;
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-    max-width: 300px;
-    font-size: 14px;
-  }
-`;
+const LoginSubmitWrapper: React.FC<LoginSubmitWrapperProps> = ({ children, className = '' }) => {
+  return (
+    <div
+      className={`
+        w-full
+        max-w-[260px]
+        text-base
+        sm:max-w-[300px]
+        sm:text-sm
+        md:max-w-[300px]
+        md:text-sm
+        lg:max-w-[320px]
+        lg:text-sm
+        ${className}
+      `}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default LoginSubmitWrapper;

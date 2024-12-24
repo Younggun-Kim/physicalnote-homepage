@@ -1,19 +1,18 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { LoginBtn } from '@/app/login/components/LoginBtn';
+import LoginBtn from '@/app/login/components/LoginBtn';
+import Link from 'next/link';
 
-/** 로그인 하기 버튼 */
+/** 회원가입 하기 버튼 */
 export function SignUpButton() {
-  const router = useRouter();
-
   return (
-    <LoginBtn
-      text={'회원가입'}
-      className={'bg-white'}
-      containerClassName={'shadow-md'}
-      onClick={() => router.push('/signup')}
-    />
+    <Link href="/signup">
+      <LoginBtn
+        text={'회원가입'}
+        className={'bg-white'}
+        containerClassName={'shadow-md'}
+      />
+    </Link>
   );
 }
 

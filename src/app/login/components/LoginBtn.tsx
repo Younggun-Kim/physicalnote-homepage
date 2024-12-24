@@ -1,34 +1,30 @@
 'use client';
 
-import styled from 'styled-components';
+import React from 'react';
 import Button from '@/app/components/Button';
 
-export const LoginBtn = styled(Button)`
-  width: 100%;
-  max-width: 260px;
-  height: 40px;
-  color: var(--gray1);
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+interface Props {
+  containerClassName?: string;
+  className?: string;
+  text?: string;
+  onClick?: () => void;
+}
 
-  @media (min-width: 769px) {
-    max-width: 320px;
-    font-size: 14px;
-    height: 48px;
-  }
+const LoginButton = ({ containerClassName, className = '', text = '', onClick }: Props) => {
+  return (
+    <Button
+      containerClassName={containerClassName}
+      className={`
+        w-full max-w-[260px] h-10 text-gray-900 font-['Noto_Sans_KR'] text-sm font-bold
+        sm:max-w-[300px] sm:text-base
+        md:max-w-[300px] md:text-base
+        lg:max-w-[320px] lg:h-12
+        ${className}
+      `}
+      onClick={onClick}
+      text={text}
+    />
+  );
+};
 
-  @media (min-width: 426px) and (max-width: 768px) {
-    max-width: 300px;
-    font-size: 1rem;
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-    max-width: 300px;
-    font-size: 1rem;
-  }
-`;
-
-export default LoginBtn;
+export default LoginButton;

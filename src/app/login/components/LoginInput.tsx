@@ -1,41 +1,23 @@
-'use client';
-
+import React from 'react';
 import Input from '@/app/components/input/Input';
-import styled from 'styled-components';
 
-export const LoginInput = styled(Input)`
-  width: 100%;
-  max-width: 260px;
-  height: 40px;
-  font-feature-settings: 'calt' off;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 160%; /* 19.2px */
-  letter-spacing: -0.6px;
-  color: black;
-  padding: 0 20px;
+type PickInputAttribute = Pick<HTMLInputElement, 'name' | 'type' | 'placeholder' | 'value'>;
 
-  &::placeholder {
-    color: var(--gray2);
-  }
+export interface InputProps extends PickInputAttribute {
+  className?: string;
 
-  @media (min-width: 769px) {
-    max-width: 320px;
-    font-size: 14px;
-    height: 48px;
-  }
+  onChange(text: string): void;
+}
 
-  @media (min-width: 426px) and (max-width: 768px) {
-    max-width: 300px;
-    font-size: 14px;
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-    max-width: 300px;
-    font-size: 14px;
-  }
-`;
-
-export default LoginInput;
+export default function LoginInput({ type, name, placeholder, value, onChange }: InputProps) {
+  return (
+    <Input
+      className={`w-full max-w-[300px]`}
+      type={type}
+      name={name}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}

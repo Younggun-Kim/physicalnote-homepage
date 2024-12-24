@@ -1,8 +1,10 @@
 import useLoginValidation from '@/hooks/useLoginValidation';
-import Api from '@/api/login';
 import { useAppStore } from '@/store';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import LoginBtn from '@/app/login/components/LoginBtn';
+import React from 'react';
+import { ApiError, LoginResponse } from '@/app/api/login/route';
 
 /** 로그인 하기 버튼 */
 export function SubmitBtn() {
@@ -10,40 +12,51 @@ export function SubmitBtn() {
   const validResult = useLoginValidation();
   const { onLogin, onLogout } = useAppStore((store) => store.actions);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (): Promise<void> => {
     try {
       const dto = validResult();
       if (!dto) {
         return;
       }
-      await Api.postLogin(dto)
-        .then((result) => {
-          if (result.token) {
-            onLogin(result.token, result.name);
-            router.push('/');
-          } else {
-            onLogout();
-          }
-        })
-        .catch((err) => {
-          if (err.response?.status === 401) {
-            toast('아이디 또는 비밀번호가 일치하지 않습니다.');
-          } else {
-            toast(err.message || '로그인 중 오류가 발생했습니다.');
-          }
-        });
-    } catch (error) {}
+
+      const loginData = {
+        loginId: dto.loginId,
+        password: dto.password,
+        type: 'IDPW',
+      };
+
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      const data = (await response.json()) as LoginResponse | ApiError;
+
+      if (!response.ok) {
+        throw new Error('error' in data ? data.error : '로그인 중 오류가 발생했습니다.');
+      }
+
+      if ('token' in data && 'name' in data) {
+        onLogin(data.token, data.name);
+        router.push('/');
+      } else {
+        onLogout();
+      }
+    } catch (error) {
+      toast(error instanceof Error ? error.message : '로그인 중 오류가 발생했습니다.');
+    } finally {
+    }
   };
 
   return (
-    <div className={`rounded-full overflow-hidden flex justify-center items-center shrink-0 shadow-md bg-secondary`}>
-      <button
-        className={'py-[9.5px] text-gray1 text-lg font-sans font-bold'}
-        onClick={handleSubmit}
-      >
-        로그인
-      </button>
-    </div>
+    <LoginBtn
+      containerClassName={'bg-secondary'}
+      onClick={handleSubmit}
+      text={'로그인'}
+    />
   );
 }
 
