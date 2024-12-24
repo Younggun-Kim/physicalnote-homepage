@@ -3,6 +3,9 @@
 import { useEffect } from 'react';
 import Image from 'next/image';
 import useLoginStore from '@/store/loginStore';
+import LoginTitle from './components/LoginTitle';
+import LoginSubmit from './components/LoginSubmit';
+import LoginForm from './components/LoginForm';
 
 export default function LoginPage() {
   const { resetState } = useLoginStore((state) => state.actions);
@@ -21,9 +24,9 @@ export default function LoginPage() {
         />
       </div>
       <div className="relative w-full flex flex-col items-center z-10">
-        {/*<LoginTitle>로그인</LoginTitle>*/}
-        {/*<LoginForm />*/}
-        {/*<LoginSubmit />*/}
+        <LoginTitle>로그인</LoginTitle>
+        <LoginForm />
+        <LoginSubmit />
       </div>
     </div>
   );

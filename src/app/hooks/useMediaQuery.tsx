@@ -19,5 +19,3 @@ export const useMediaQuery = (width: number) => {
 
   return matches;
 };
-
-// const isMobile = useMediaQuery(768);

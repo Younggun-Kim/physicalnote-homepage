@@ -12,7 +12,7 @@ export default function Header() {
   const isMobile = useMediaQuery(768);
 
   return (
-    <header>
+    <header className="z-50">
       <div className="bg-white sticky z-40 top-0 w-full"></div>
       <HeaderWrapper>
         <HeaderLogo />
