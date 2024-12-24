@@ -1,15 +1,15 @@
 'use client';
 
-import { useMediaQuery } from 'usehooks-ts';
 import HeaderWrapper from '@/app/components/header/HeaderWrapper';
 import HeaderLogo from '@/app/components/header/HeaderLogo';
 import HeaderMenus from '@/app/components/header/HeaderMenus';
 import HeaderLoginLink from '@/app/components/header/HeaderLoginLink';
 import HeaderMyPageLink from './HeaderMyPageLink';
 import HeaderMenuBtn from '@/app/components/header/HeaderMenuBtn';
+import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 
 export default function Header() {
-  const isMobile = useMediaQuery('(max-width: 768px)');
+  const isMobile = useMediaQuery(768);
 
   return (
     <header>

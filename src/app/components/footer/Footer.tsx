@@ -1,4 +1,5 @@
 'use client';
+
 import styled from 'styled-components';
 import { useMediaQuery } from 'usehooks-ts';
 import { usePathname } from 'next/navigation';
@@ -51,6 +52,7 @@ export const Footer = () => {
 };
 
 export default Footer;
+
 export const StyledFooter = styled.footer<{ $isHome: boolean }>`
   background: ${(props) =>
     props.$isHome

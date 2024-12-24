@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { useAppStore } from '@/store';
 import Link from 'next/link';

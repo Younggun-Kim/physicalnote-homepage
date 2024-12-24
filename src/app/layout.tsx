@@ -6,6 +6,7 @@ import LoadingSpinner from '@/app/components/LoadingSpinner';
 import { ToastContainer } from 'react-toastify';
 import Header from '@/app/components/header/Header';
 import Footer from '@/app/components/footer/Footer';
+import MobileSideMenu from '@/app/components/MobileSideMenu';
 
 export const metadata: Metadata = {
   title: 'PhysicalNote',
@@ -27,6 +28,7 @@ export default function RootLayout({
             {children}
             <Footer />
             <ToastContainer autoClose={1000} />
+            <MobileSideMenu />
           </ReactQueryProvider>
         </StyledComponentsRegistry>
       </body>
