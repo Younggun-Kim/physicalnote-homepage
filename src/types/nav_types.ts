@@ -8,7 +8,7 @@ export const HEADER_LINKS: NavItemType[] = [
   { href: '/', label: '홈' },
   { href: '/detail', label: '상세내용' },
   { href: '/pricing', label: '가격안내' },
-  { href: '/notice', label: '공지사항' },
+  // { href: '/notice', label: '공지사항' },
 ];
 
 export default HEADER_LINKS;
