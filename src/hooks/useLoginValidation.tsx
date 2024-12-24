@@ -1,3 +1,5 @@
+'use client';
+
 import { LoginRequestDto } from '@/api/dto';
 import { useLoginStore } from '@/store';
 import { toast } from 'react-toastify';

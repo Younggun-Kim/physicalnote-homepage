@@ -1,3 +1,5 @@
+'use client';
+
 import { instance } from '@/api/base';
 import { LoginRequestDto, LoginResponseDto, TeamValidateRequestDto, TeamValidateResponseDto } from '@/api/dto';
 import SignUpRequestDto from '@/api/dto/login/signUp/signUpRequestDto';

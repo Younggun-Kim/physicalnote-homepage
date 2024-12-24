@@ -54,6 +54,7 @@ export const Footer = () => {
 export default Footer;
 
 export const StyledFooter = styled.footer<{ $isHome: boolean }>`
+  z-index: 100;
   background: ${(props) =>
     props.$isHome
       ? `linear-gradient(
