@@ -4,6 +4,7 @@ import StyledComponentsRegistry from './registry';
 import ReactQueryProvider from '@/app/components/ReactQueryProvider';
 import LoadingSpinner from '@/app/components/LoadingSpinner';
 import { ToastContainer } from 'react-toastify';
+import Header from '@/app/components/header/Header';
 
 export const metadata: Metadata = {
   title: 'PhysicalNote',
@@ -21,6 +22,7 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ReactQueryProvider>
             <LoadingSpinner />
+            <Header />
             {children}
             <ToastContainer autoClose={1000} />
           </ReactQueryProvider>

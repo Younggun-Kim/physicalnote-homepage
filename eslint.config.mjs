@@ -19,6 +19,8 @@ const eslintConfig = [
     rules: {
       'react/jsx-max-props-per-line': [2, { maximum: 2 }],
       'react/jsx-first-prop-new-line': [1, 'multiline'],
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     },
     ignores: ['build/**', 'dist/**', 'public/**'],
   },
