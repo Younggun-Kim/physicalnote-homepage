@@ -46,11 +46,11 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: |
-          npm ci
+          yarn install
 
       - name: Build and Export
         run: |
-          npm run build
+          yarn build
         env:
           NODE_ENV: production
           NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
