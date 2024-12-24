@@ -25,7 +25,7 @@ export default function RootLayout({
           <ReactQueryProvider>
             <LoadingSpinner />
             <Header />
-            {children}
+            <main className="flex-1">{children}</main>
             <Footer />
             <ToastContainer autoClose={1000} />
             <MobileSideMenu />
