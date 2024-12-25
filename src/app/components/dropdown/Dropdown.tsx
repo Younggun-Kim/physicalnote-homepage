@@ -1,7 +1,7 @@
+'use client';
 import Image from 'next/image';
 import Button from '../Button';
 import { DropdownItem } from '@/app/components/dropdown/DropdownItem';
-import styled from 'styled-components';
 import React from 'react';
 
 interface Props<T> {
@@ -52,7 +52,7 @@ export const Dropdown = <T,>({
   const icon = isOpen ? '/icons/chevron-up.svg' : '/icons/chevron-down.svg';
 
   return (
-    <StyledContainer className={`relative rounded-full shadow-md  ${className}`}>
+    <div className={`relative rounded-full shadow-md h-10 py-0 px-5 md:h-12 ${className}`}>
       <div className="h-full flex justify-start items-center">
         <div
           className="flex-1 flex justify-start items-center"
@@ -89,33 +89,7 @@ export const Dropdown = <T,>({
           ))}
         </div>
       )}
-    </StyledContainer>
+    </div>
   );
 };
 export default Dropdown;
-
-const StyledContainer = styled.div`
-  height: 40px;
-  padding: 0 20px;
-
-  & .name {
-    flex: 1;
-    color: black;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%; /* 19.2px */
-    letter-spacing: -0.6px;
-  }
-
-  @media (min-width: 769px) {
-    height: 48px;
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-  }
-`;

@@ -13,7 +13,7 @@ export default function SubscribeContent() {
   }
 
   return (
-    <div className="flex flex-col justify-start items-start">
+    <div className="flex flex-col justify-start items-center">
       {/*<PlanWidget />*/}
       {/*<PriceBtnGroup />*/}
       {isEmptyKey && <NoSubscribe />}

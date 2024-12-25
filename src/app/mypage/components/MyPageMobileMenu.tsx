@@ -1,6 +1,7 @@
+'use client';
+
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { useMediaQuery } from 'usehooks-ts';
 import Dropdown, { DropDownOption } from '@/app/components/dropdown/Dropdown';
 
 export default function MyPageMobileMenu() {
@@ -20,20 +21,19 @@ export default function MyPageMobileMenu() {
   ] as DropDownOption<string>[];
 
   const [selectedOption, setSelectedOption] = React.useState<DropDownOption<string>>(options[0]);
-  const isMobile = useMediaQuery('(max-width: 425px)');
   const router = useRouter();
   const handleSelect = (selected: DropDownOption<string>) => {
     setSelectedOption(selected);
     router.push(selected.value);
   };
 
-  return isMobile ? (
+  return (
     <Dropdown
-      className="shadow-none text-[0.875rem] text-gray1 font-sans font-normal"
+      className={`shadow-none text-[0.875rem] text-gray1 font-sans font-normal sm:hidden`}
       placeholder="메뉴를 선택해주세요."
       options={options}
       selectedOption={selectedOption}
       onSelect={handleSelect}
     />
-  ) : null;
+  );
 }

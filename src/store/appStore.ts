@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
+import { deleteCookie, setCookie } from 'cookies-next';
 
 interface AppState {
   isVisibleMenu: boolean;
@@ -48,6 +49,8 @@ export const useAppStore = create(
           store.state.token = token;
           store.state.username = name;
         });
+
+        setCookie('token', token);
       },
       onLogout: () => {
         set((store) => {
@@ -55,6 +58,7 @@ export const useAppStore = create(
           store.state.token = undefined;
           store.state.username = undefined;
         });
+        deleteCookie('token');
       },
     },
   })),

@@ -6,7 +6,8 @@ export default function NoSubscribeLink() {
     <Link
       href={'/pricing'}
       className={[
-        'rounded-full font-sans font-bold text-gray1 tracking-tighter px-[26px] py-[9px]',
+        'flex justify-center items-center bg-secondary rounded-full gap-1.5',
+        'font-sans font-bold text-gray1 tracking-tighter px-[26px] py-[9px]',
         'text-sm xs:text-base md:text-lg',
       ].join(' ')}
     >
