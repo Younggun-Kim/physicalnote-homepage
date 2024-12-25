@@ -16,6 +16,7 @@ export interface ApiError {
 }
 
 import { NextRequest, NextResponse } from 'next/server';
+import { deleteCookie, setCookie } from 'cookies-next';
 
 export async function POST(request: NextRequest): Promise<NextResponse<LoginResponse | ApiError>> {
   console.log('POST login');
@@ -41,14 +42,14 @@ export async function POST(request: NextRequest): Promise<NextResponse<LoginResp
       throw new Error('로그인 처리 중 오류가 발생했습니다.');
     }
 
-    await TokenManager.setToken(data.token);
-
+    setCookie('token', data.token);
     return NextResponse.json({
       token: data.token,
       name: data.name,
     });
   } catch (error) {
     console.error('Login error:', error);
+    deleteCookie('token');
     return NextResponse.json({ error: '로그인 처리 중 오류가 발생했습니다.' }, { status: 500 });
   }
 }

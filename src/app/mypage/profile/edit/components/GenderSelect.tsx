@@ -16,14 +16,14 @@ export const GenderSelect = () => {
         <SelectableBtn
           text="남성"
           containerClassName="flex-1 shadow-md"
-          className="flex-1 w-full h-12 py-0 leaing-[1.6] !font-normal text-xs  sm:text-sm md:text-md"
+          className="flex-1 w-full h-12 py-0 leaing-[1.6] !font-normal text-xs  sm:text-sm md:text-base"
           isSelected={gender.isMale}
           onClick={() => {}}
         />
         <SelectableBtn
           text="여성"
           containerClassName="flex-1 shadow-md"
-          className="flex-1 w-full h-12 py-0 leaing-[1.6] !font-normal text-xs sm:text-sm md:text-md"
+          className="flex-1 w-full h-12 py-0 leaing-[1.6] !font-normal text-xs sm:text-sm md:text-base"
           onClick={() => {}}
           isSelected={gender.isFemale}
         />
