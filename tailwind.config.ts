@@ -13,7 +13,9 @@ const size = {
   '13': '3.25rem',
   '13.5': '3.375rem',
   '13.75': '3.4375rem',
+  '15': '3.75rem',
   '17.5': '4.375rem',
+  '18': '4.5rem',
   '18.5': '4.625rem',
   '25': '6.25rem',
   '35': '8.75rem',
@@ -72,6 +74,9 @@ export default {
       },
       boxShadow: {
         md: '0px 2px 8px 0px rgba(0, 0, 0, 0.10)',
+      },
+      borderRadius: {
+        ...size,
       },
     },
   },
