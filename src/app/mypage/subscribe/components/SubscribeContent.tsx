@@ -5,6 +5,9 @@ import NoSubscribe from '@/app/mypage/subscribe/components/noSubscribe/NoSubscri
 import useGetBillingKeys from '@/app/utils/query/payment/useGetBillingKeys';
 import Subscribe from '@/app/mypage/subscribe/components/subscribe/Subscribe';
 import { useBillingKeyStore } from '@/store';
+import useGetSubscriptionStatus from '@/app/utils/query/payment/useGetSubscriptionStatus';
+import useSubscriptionStore from '@/store/subscriptionStore';
+import PlanWidget from '@/app/mypage/subscribe/components/plan/PlanWidget';
 
 export default function SubscribeContent() {
   const { data: billingKeysData = [], isLoading } = useGetBillingKeys();
@@ -12,6 +15,8 @@ export default function SubscribeContent() {
   const { billingKey } = useBillingKeyStore((store) => store.state);
 
   const [customerKey, setCustomerKey] = useState('');
+  const { data: subscriptionData } = useGetSubscriptionStatus(customerKey);
+  const { setSubscription } = useSubscriptionStore((store) => store.actions);
 
   useEffect(() => {
     if (billingKeysData == undefined) return;
@@ -22,13 +27,18 @@ export default function SubscribeContent() {
     }
   }, [billingKeysData]);
 
+  useEffect(() => {
+    if (subscriptionData == undefined) return;
+    setSubscription(subscriptionData);
+  }, [subscriptionData, customerKey]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className="flex flex-col justify-start items-center">
-      {/*<PlanWidget />*/}
+      <PlanWidget />
       {/*<PriceBtnGroup />*/}
       {billingKey.length == 0 && <NoSubscribe />}
       {billingKey.length != 0 && <Subscribe />}
