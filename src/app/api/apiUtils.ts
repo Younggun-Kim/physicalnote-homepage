@@ -36,5 +36,5 @@ export const getConfig = (options: RequestConfig): RequestInit => {
 };
 
 export const shouldAddAuth = (endpoint: string): boolean => {
-  return endpoint.includes('/api');
+  return endpoint.includes('/api') || endpoint.includes('/admin/');
 };

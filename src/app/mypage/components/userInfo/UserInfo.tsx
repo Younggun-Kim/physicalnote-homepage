@@ -1,22 +1,46 @@
+'use client';
+
 import Image from 'next/image';
 import styled from 'styled-components';
-import MyPageUserName from '@/app/mypage/components/userInfo/MyPageUserName';
+import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 import LogoutBtn from '@/app/mypage/components/LogoutBtn';
 import WithoutBtn from '@/app/mypage/components/WithoutBtn';
 import MyPageTeamName from '@/app/mypage/components/userInfo/MyPageTeamName';
 import MyEmail from '@/app/mypage/components/userInfo/MyPageEmail';
+import MyPageUserName from '@/app/mypage/components/userInfo/MyPageUserName';
+import CoachInfoResponseDto from '@/api/dto/coach/info/CoachInfoResponseDto';
 
 export const UserInfo = () => {
   const isMobile = useMediaQuery('(max-width: 425px)');
-  const coachData: any = undefined;
-  // const coachData = useCoachInfo();
+  const [coachInfo, setCoachInfo] = useState<CoachInfoResponseDto | undefined>();
+
+  useEffect(() => {
+    const fetchCoachInfo = async () => {
+      try {
+        const response = await fetch('/api/coach');
+
+        if (!response.ok) {
+          throw new Error('코치 정보를 불러오는데 실패했습니다.');
+        }
+
+        const data = await response.json();
+        setCoachInfo(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+      }
+    };
+
+    fetchCoachInfo();
+  }, []);
+
   return (
     <StyledDiv>
-      {coachData?.teamProfile ? (
+      {coachInfo?.teamProfile ? (
         <Image
           className="img contain-size"
-          src={coachData?.teamProfile ?? ''}
+          src={coachInfo?.teamProfile ?? ''}
           alt="logo"
           width={70}
           height={70}
@@ -26,14 +50,14 @@ export const UserInfo = () => {
       )}
       <div className="w-full flex flex-col justify-start items-start">
         <div className="w-full flex justify-start items-center">
-          <MyPageUserName>{coachData?.name ?? ''}</MyPageUserName>
+          <MyPageUserName>{coachInfo?.name ?? ''}</MyPageUserName>
           {isMobile && <LogoutBtn />}
           {isMobile && <WithoutBtn />}
         </div>
         <MyPageTeamName>
-          {coachData?.teamName ?? ''}/{coachData?.teamAgeGroup ?? ''}
+          {coachInfo?.teamName ?? ''}/{coachInfo?.teamAgeGroup ?? ''}
         </MyPageTeamName>
-        {!isMobile && <MyEmail>{coachData?.loginId ?? ''}</MyEmail>}
+        {!isMobile && <MyEmail>{coachInfo?.loginId ?? ''}</MyEmail>}
       </div>
     </StyledDiv>
   );

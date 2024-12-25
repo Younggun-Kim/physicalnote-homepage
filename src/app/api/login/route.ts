@@ -1,3 +1,5 @@
+import { TokenManager } from '@/app/api/tokenManager';
+
 export interface LoginRequest {
   loginId: string;
   password: string;
@@ -38,6 +40,8 @@ export async function POST(request: NextRequest): Promise<NextResponse<LoginResp
       }
       throw new Error('로그인 처리 중 오류가 발생했습니다.');
     }
+
+    await TokenManager.setToken(data.token);
 
     return NextResponse.json({
       token: data.token,
