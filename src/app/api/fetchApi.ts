@@ -35,6 +35,7 @@ export const fetchApi = async <T>(endpoint: string, options: RequestConfig = {})
   logger('API Request Header', `[${options.method}] ${url}`, config.headers);
   try {
     const response = await fetch(url, config);
+    logger('API RESPonse', response);
     const data = await response.json();
     logger('API Response', data);
 
