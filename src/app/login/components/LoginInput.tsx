@@ -5,19 +5,37 @@ type PickInputAttribute = Pick<HTMLInputElement, 'name' | 'type' | 'placeholder'
 
 export interface InputProps extends PickInputAttribute {
   className?: string;
-
+  isOnlyNum?: boolean;
+  enabled?: boolean;
+  maxLength?: number;
   onChange(text: string): void;
+  children?: React.ReactNode;
 }
 
-export default function LoginInput({ type, name, placeholder, value, onChange }: InputProps) {
+export default function LoginInput({
+  type,
+  name,
+  placeholder,
+  value,
+  enabled = true,
+  isOnlyNum = false,
+  maxLength,
+  onChange,
+  children,
+}: InputProps) {
   return (
     <Input
-      className={`w-full max-w-[300px]`}
+      className={`w-full max-w-[300px] !py-0 h-12 sm:max-w-[400px]`}
       type={type}
       name={name}
       placeholder={placeholder}
       value={value}
+      enabled={enabled}
+      isOnlyNum={isOnlyNum}
+      maxLength={maxLength}
       onChange={onChange}
-    />
+    >
+      {children}
+    </Input>
   );
 }

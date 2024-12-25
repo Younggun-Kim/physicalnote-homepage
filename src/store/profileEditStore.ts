@@ -70,10 +70,19 @@ const getPasswordErrorVisible = ({
 };
 
 export const isValidProfileEdit = (state: ProfileEditState): boolean => {
-  const { name, gender, phone, isPasswordErrorVisible } = state;
-  return name.length > 2 && !gender.isNone && phone.isValid() && isPasswordErrorVisible.isInvisible();
+  const { phone, isPhoneAuth, isPasswordErrorVisible } = state;
+  return phone.isValid() && isPhoneAuth && isPasswordErrorVisible.isInvisible();
 };
 
+const getGenderFrom = (key: string): GenderValue => {
+  if (key === 'M') {
+    return GenderValue.male();
+  } else if (key === 'W') {
+    return GenderValue.female();
+  } else {
+    return GenderValue.none();
+  }
+};
 /**
  * 내정보 수정하기 Store
  */
@@ -87,7 +96,16 @@ export const useProfileEditStore = create(
             store.state = initialState;
           });
         },
-        setStateFromDto: () => {},
+        setStateFromDto: (dto: UserDetailResponseDto) => {
+          set((store) => {
+            store.state.name = dto.name;
+            store.state.birthDate = new BirthDateValue(dto.birthDate);
+            store.state.gender = getGenderFrom(dto.gender);
+            store.state.email = new EmailValue(dto.loginId);
+            store.state.phone = new PhoneValue(dto.cellPhone);
+            store.state.isPhoneAuth = true;
+          });
+        },
         onChangeName: (value: string) => {
           set((store) => {
             store.state.name = value;

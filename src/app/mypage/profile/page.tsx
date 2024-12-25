@@ -8,8 +8,10 @@ import { PasswordValue } from '@/data';
 import { EnabledBtn } from '@/app/components/EnabledBtn';
 import { toast } from 'react-toastify';
 import { CoachVerifyPwRequestDto } from '@/app/api/coach/verify/route';
+import { useRouter } from 'next/navigation';
 
 export default function MyPageProfilePage() {
+  const router = useRouter();
   const [password, setPassword] = useState<PasswordValue>(PasswordValue.empty);
 
   const handlePassword = (value: string) => {
@@ -38,7 +40,7 @@ export default function MyPageProfilePage() {
         throw new Error('서버 에러입니다.');
       }
 
-      // TODO: /profile/edit으로 이동
+      router.push('/mypage/profile/edit');
     } catch (error) {
       if (error instanceof Error) {
         toast(error.message);
