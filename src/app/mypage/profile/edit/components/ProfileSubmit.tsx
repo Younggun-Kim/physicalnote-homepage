@@ -3,7 +3,7 @@
 import { isValidProfileEdit, useProfileEditStore } from '@/store/profileEditStore';
 import { EnabledBtn } from '@/app/components/EnabledBtn';
 import { toast } from 'react-toastify';
-import { ApiError, LoginResponse } from '@/app/api/login/route';
+import { ApiError } from '@/app/api/login/route';
 import UserDetailResponseDto from '@/api/dto/user/detail/userDetailResponseDto';
 
 export const ProfileSubmit = () => {
