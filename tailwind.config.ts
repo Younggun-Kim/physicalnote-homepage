@@ -68,6 +68,7 @@ export default {
       },
       fontFamily: {
         sans: ['Noto Sans KR', 'sans-serif'],
+        poetsen: ['Poetsen One', 'sans-serif'],
       },
       boxShadow: {
         md: '0px 2px 8px 0px rgba(0, 0, 0, 0.10)',

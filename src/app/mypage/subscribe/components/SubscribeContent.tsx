@@ -8,6 +8,7 @@ import { useBillingKeyStore } from '@/store';
 import useGetSubscriptionStatus from '@/app/utils/query/payment/useGetSubscriptionStatus';
 import useSubscriptionStore from '@/store/subscriptionStore';
 import PlanWidget from '@/app/mypage/subscribe/components/plan/PlanWidget';
+import PriceBtnGroup from '@/app/mypage/subscribe/components/plan/PriceBtnGroup';
 
 export default function SubscribeContent() {
   const { data: billingKeysData = [], isLoading } = useGetBillingKeys();
@@ -39,7 +40,7 @@ export default function SubscribeContent() {
   return (
     <div className="flex flex-col justify-start items-center">
       <PlanWidget />
-      {/*<PriceBtnGroup />*/}
+      <PriceBtnGroup />
       {billingKey.length == 0 && <NoSubscribe />}
       {billingKey.length != 0 && <Subscribe />}
     </div>
