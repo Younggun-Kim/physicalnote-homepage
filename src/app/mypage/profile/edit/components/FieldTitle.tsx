@@ -1,5 +1,5 @@
 interface Props {
-  text: string;
+  text?: string;
 }
 
 export const FieldTitle = ({ text }: Props) => {
