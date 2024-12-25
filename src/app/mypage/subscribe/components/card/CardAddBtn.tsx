@@ -1,0 +1,55 @@
+'use client';
+
+import { loadTossPayments } from '@tosspayments/tosspayments-sdk';
+import uuid from 'react-uuid';
+import { toast } from 'react-toastify';
+import useCoachInfoStore from '@/store/coachInfoStore';
+
+export default function CardAddBtn() {
+  const { coachInfo } = useCoachInfoStore((store) => store.state); //useCoachInfo
+
+  const handleClick = async () => {
+    const clientKey = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY;
+    console.log(clientKey);
+    if (!clientKey) {
+      toast('토스 클라이언트키가 없습니다.');
+      return;
+    }
+    // ------ 클라이언트 키로 객체 초기화 ------
+    loadTossPayments(clientKey).then((tossPayments) => {
+      // ------ 카드 등록창 호출 ------
+      tossPayments
+        .payment({ customerKey: uuid() })
+        .requestBillingAuth({
+          method: 'CARD',
+          successUrl: 'http://localhost:3000/mypage/subscribe/card/success',
+          failUrl: 'http://localhost:3000/mypage/subscribe/card/failure',
+          customerName: coachInfo?.name,
+          customerEmail: coachInfo?.loginId,
+          windowTarget: 'iframe',
+        })
+        .catch(function (error) {
+          if (error.code === 'USER_CANCEL') {
+            // 결제 고객이 결제창을 닫았을 때 에러 처리
+          }
+        });
+    });
+  };
+  return (
+    <button
+      className={[
+        'rounded-full flex items-center bg-white py-[5px] px-3 gap-2.5',
+        'font-sans font-bold text-gray1 whitespace-nowrap',
+        'text-sm sm:text-base',
+      ].join(' ')}
+      onClick={handleClick}
+    >
+      카드 등록
+      <img
+        className={'w-5 h-5 sm:w-6 sm:h-6'}
+        src={'/icons/arrow-right.svg'}
+        alt=""
+      />
+    </button>
+  );
+}

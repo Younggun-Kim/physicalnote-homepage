@@ -17,6 +17,7 @@ const eslintConfig = [
       prettier: prettier,
     },
     rules: {
+      'react-hooks/exhaustive-deps': 'off',
       'react/jsx-max-props-per-line': [2, { maximum: 2 }],
       'react/jsx-first-prop-new-line': [1, 'multiline'],
       '@typescript-eslint/no-explicit-any': 'off',
