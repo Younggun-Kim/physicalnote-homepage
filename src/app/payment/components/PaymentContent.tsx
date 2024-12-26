@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useBillingKeyStore } from '@/store';
+import { useBillingKeyStore, useProfileEditStore } from '@/store';
 import { useSearchParams } from 'next/dist/client/components/navigation';
 import { isPlanType, PlanType } from '@/types/planType';
 import PaymentTeamInfo from '@/app/payment/components/PaymentTeamInfo';
@@ -11,10 +11,19 @@ import CardView from '@/app/mypage/subscribe/components/card/CardView';
 import PaymentBtnGroup from '@/app/payment/components/PaymentBtnGroup';
 import useGetBillingKeys from '@/app/utils/query/payment/useGetBillingKeys';
 import PaymentDivider from '@/app/payment/components/PaymentDivider';
+import useCoachInfoStore from '@/store/coachInfoStore';
+import useGetCoachInfo from '@/app/utils/query/coach/useGetCoachInfo';
+import useGetUserDetail from '@/app/utils/query/user/useGetUserDetail';
 
 export default function PaymentContent() {
   const searchParams = useSearchParams();
   const [planCategory, setPlanCategory] = useState<PlanType>('MONTHLY');
+
+  const { data: userInfoData } = useGetUserDetail();
+  const { setStateFromDto } = useProfileEditStore((store) => store.actions);
+
+  const { data: coachInfoData } = useGetCoachInfo();
+  const { onSet: setCoachInfo } = useCoachInfoStore((store) => store.actions);
 
   const { data: billingKeysData } = useGetBillingKeys();
   const { setBillingKey } = useBillingKeyStore((store) => store.actions);
@@ -24,6 +33,16 @@ export default function PaymentContent() {
     if (billingKeysData == undefined) return;
     setBillingKey(billingKeysData);
   }, [billingKeysData]);
+
+  useEffect(() => {
+    if (coachInfoData == undefined) return;
+    setCoachInfo(coachInfoData);
+  }, [coachInfoData]);
+
+  useEffect(() => {
+    if (userInfoData == undefined) return;
+    setStateFromDto(userInfoData);
+  }, [coachInfoData]);
 
   useEffect(() => {
     const type = searchParams.get('type');
