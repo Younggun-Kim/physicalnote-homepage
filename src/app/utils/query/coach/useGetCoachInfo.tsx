@@ -1,14 +1,13 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import CoachApi from '@/api/coach';
 import CoachInfoResponseDto from '@/api/dto/coach/info/CoachInfoResponseDto';
-import { instanceWithToken } from '@/api/base';
+import { AxiosInstance } from '@/app/utils/service/axiosInstance';
 
 type ResponseType = UseQueryResult<CoachInfoResponseDto>;
 
 export const getCoachInfo = async () => {
   try {
     const url = `admin/coach/info`;
-    const result = await instanceWithToken.get<CoachInfoResponseDto>(url);
+    const result = await AxiosInstance.get<CoachInfoResponseDto>(url);
     return result.data;
   } catch (err) {
     return Promise.reject(err);

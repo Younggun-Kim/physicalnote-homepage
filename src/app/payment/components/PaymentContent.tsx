@@ -42,7 +42,7 @@ export default function PaymentContent() {
   useEffect(() => {
     if (userInfoData == undefined) return;
     setStateFromDto(userInfoData);
-  }, [coachInfoData]);
+  }, [userInfoData]);
 
   useEffect(() => {
     const type = searchParams.get('type');
