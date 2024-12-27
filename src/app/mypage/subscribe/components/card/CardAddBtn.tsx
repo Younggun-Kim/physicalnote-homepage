@@ -11,7 +11,7 @@ export default function CardAddBtn() {
 
   const handleClick = async () => {
     const clientKey = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY;
-    console.log(clientKey);
+
     if (!clientKey) {
       toast('토스 클라이언트키가 없습니다.');
       return;
@@ -23,8 +23,8 @@ export default function CardAddBtn() {
         .payment({ customerKey: uuid() })
         .requestBillingAuth({
           method: 'CARD',
-          successUrl: 'http://localhost:3000/mypage/subscribe/card/success',
-          failUrl: 'http://localhost:3000/mypage/subscribe/card/failure',
+          successUrl: `${window.location.origin}/mypage/subscribe/card/success`,
+          failUrl: `${window.location.origin}/mypage/subscribe/card/failure`,
           customerName: coachInfo?.name,
           customerEmail: coachInfo?.loginId,
           windowTarget: 'iframe',
