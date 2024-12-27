@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import Header from '@/app/components/header/Header';
 import Footer from '@/app/components/footer/Footer';
 import MobileSideMenu from '@/app/components/MobileSideMenu';
+import UnSubscriptionModal from '@/app/components/modal/UnSubscriptionModal';
 
 export const metadata: Metadata = {
   title: 'PhysicalNote',
@@ -29,6 +30,7 @@ export default function RootLayout({
             <Footer />
             <ToastContainer autoClose={1000} />
             <MobileSideMenu />
+            <UnSubscriptionModal />
           </ReactQueryProvider>
         </StyledComponentsRegistry>
       </body>
