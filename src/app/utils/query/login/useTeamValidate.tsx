@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import LoginApi from '@/api/login';
 import { TeamValidateResponseDto } from '@/api/dto/common/teamValidateResponseDto';
 import { TeamValidateRequestDto } from '@/api/dto/common/teamValidateRequestDto';
 import { instance } from '@/api/base';

@@ -1,11 +1,13 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export function HomeThirdItemFirst() {
   return (
     <StyledDiv className="flex flex-col justify-start items-center">
-      <img
+      <Image
         src="/images/home/home_3_2.png"
         alt=""
+        fill
       />
       <p className="title">
         <span>웰니스 체크를 통해 해당 스포츠에</span>

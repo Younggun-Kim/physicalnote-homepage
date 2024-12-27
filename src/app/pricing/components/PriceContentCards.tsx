@@ -1,18 +1,21 @@
 'use client';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export default function PriceContentCards() {
   return (
     <StyledContainer>
-      <img
+      <Image
         className="month"
         src="/images/price/price_month_h.svg"
         alt="월 구독"
+        fill
       />
-      <img
+      <Image
         className="year"
         src="/images/price/price_year_h.svg"
         alt="연 구독"
+        fill
       />
     </StyledContainer>
   );

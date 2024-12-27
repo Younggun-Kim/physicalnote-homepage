@@ -3,6 +3,7 @@
 import { loadTossPayments } from '@tosspayments/tosspayments-sdk';
 import uuid from 'react-uuid';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
 import useCoachInfoStore from '@/store/coachInfoStore';
 
 export default function CardAddBtn() {
@@ -45,10 +46,12 @@ export default function CardAddBtn() {
       onClick={handleClick}
     >
       카드 등록
-      <img
-        className={'w-5 h-5 sm:w-6 sm:h-6'}
+      <Image
+        className={'sm:w-6 sm:h-6'}
         src={'/icons/arrow-right.svg'}
         alt=""
+        width={20}
+        height={20}
       />
     </button>
   );

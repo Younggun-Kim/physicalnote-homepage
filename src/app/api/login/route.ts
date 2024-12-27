@@ -1,5 +1,3 @@
-import { TokenManager } from '@/app/api/tokenManager';
-
 export interface LoginRequest {
   loginId: string;
   password: string;

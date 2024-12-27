@@ -1,6 +1,6 @@
 'use client';
 
-import { useSignupStore } from '@/store';
+import { useProfileEditStore } from '@/store';
 import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
@@ -8,18 +8,19 @@ import CheckBox from '@/app/components/checkbox/CheckBox';
 
 export const CheckTerm = () => {
   const router = useRouter();
-  const { isTermChecked } = useSignupStore((state) => state.state);
-  const { changeIsTermChecked } = useSignupStore((state) => state.actions);
+  const { term } = useProfileEditStore((state) => state.state);
+  const { onToggleTerm } = useProfileEditStore((state) => state.actions);
 
-  const handleCheck = () => changeIsTermChecked(!isTermChecked);
+  const handleCheck = () => onToggleTerm();
 
   const handleClick = () => {
     router.push('/policy/privacy');
   };
+
   return (
     <div className="flex justify-start items-center mb-3">
       <CheckBox
-        isChecked={isTermChecked}
+        isChecked={term}
         onClick={handleCheck}
       />
       <div
