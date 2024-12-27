@@ -5,7 +5,6 @@ import { useTeamEditStore } from '@/store';
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
 import styled from 'styled-components';
-import { StyledError, StyledSuccess } from './Affiliation';
 import Dropdown from '@/app/components/dropdown/Dropdown';
 
 export default function TeamAgeSelect() {
@@ -52,14 +51,16 @@ export default function TeamAgeSelect() {
       {teamValidateErrorVisible.isVisible() && (
         <FieldWrapper>
           <FieldTitle></FieldTitle>
-          <StyledError>{`${teamValidateErrorMsg}`}</StyledError>
+          <span
+            className={'font-sans font-normal text-[0.625rem] text-red tracking-tighter'}
+          >{`${teamValidateErrorMsg}`}</span>
         </FieldWrapper>
       )}
 
       {isTeamValidate && (
         <FieldWrapper>
           <FieldTitle></FieldTitle>
-          <StyledSuccess>{'등록 가능한 팀입니다.'}</StyledSuccess>
+          <span className={'font-sans font-normal text-[0.625rem] text-primary'}>{'등록 가능한 팀입니다.'}</span>
         </FieldWrapper>
       )}
     </div>

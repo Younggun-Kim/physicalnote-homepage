@@ -29,26 +29,6 @@ const Auth = {
       return Promise.reject(err);
     }
   },
-
-  /**
-   * 이미지 임시 저장 API
-   */
-  async postUploadImage({ dir, file }: UploadImageRequestDto) {
-    try {
-      const formData = new FormData();
-      formData.append('file', file, file.name);
-
-      const url = `upload/${dir}`;
-      const response = await instance.post(url, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      return response.data;
-    } catch (err) {
-      return Promise.reject(err);
-    }
-  },
 };
 
 export default Auth;

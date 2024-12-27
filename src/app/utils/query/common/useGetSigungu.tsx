@@ -14,6 +14,7 @@ export const getSigungu = async (siDoCode?: string) => {
     const url = `sgg?sidoCode=${siDoCode}`;
     const response = await AxiosInstance.get<AddressHierarchyResponseDto[]>(url);
 
+    console.log(response.data);
     return response.data ?? [];
   } catch (err) {
     return Promise.reject(err);
@@ -25,7 +26,7 @@ type ResponseType = UseQueryResult<AddressHierarchyResponseDto[]>;
 export const useGetSigungu = (sidoCode?: string): ResponseType => {
   return useQuery({
     enabled: sidoCode != null,
-    queryKey: ['getSigungu'],
+    queryKey: ['getSigungu', sidoCode],
     queryFn: () => getSigungu(sidoCode),
   });
 };

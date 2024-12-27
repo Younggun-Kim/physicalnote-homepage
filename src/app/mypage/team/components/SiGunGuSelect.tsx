@@ -19,15 +19,17 @@ export default function SiGunGuSelect() {
 
   useEffect(() => {
     if (!siDo?.value) return;
+    if (!sggData || sggData.length == 0) return;
 
     onChangeSiGunGuList(siDoDtoListToOptionList(sggData));
-  }, [siDo]);
+  }, [siDo, sggData]);
 
   useEffect(() => {
     if (!siGunGu?.value) return;
+    if (!emdData || emdData.length == 0) return;
 
     onChangeEmdList(siDoDtoListToOptionList(emdData));
-  }, [siGunGu]);
+  }, [siGunGu, emdData]);
 
   return (
     <FieldWrapper>

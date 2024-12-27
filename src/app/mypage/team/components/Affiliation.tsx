@@ -4,7 +4,6 @@ import React from 'react';
 import { useTeamEditStore } from '@/store';
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
-import styled from 'styled-components';
 import Input from '@/app/components/input/Input';
 import TeamImageUpload from './TeamImageUpload';
 
@@ -21,100 +20,44 @@ export default function Affiliation() {
     onChangeTeamImage('');
     onChangeTeamImageError(true);
   };
+
   return (
     <div className="w-full flex flex-col gap-2.5">
       <FieldWrapper>
         <FieldTitle text={'소속'} />
-        <AffiliationStyledDiv>
+        <div className={'w-full flex items-center gap-4'}>
           <Input
             type="text"
             name="birthDate"
             placeholder="구단 팀을 입력해주세요."
             value={teamName}
-            className="w-full !py-0"
+            className="w-full !py-0 h-10 text-xs xs:text-sm"
             onChange={onChangeTeamName}
           />
           <TeamImageUpload
             onSuccess={handleImageChangedSuccess}
             onFailure={handleImageChangedFailure}
           />
-        </AffiliationStyledDiv>
+        </div>
       </FieldWrapper>
 
       {isTeamImageError && (
         <FieldWrapper>
           <FieldTitle />
-          <StyledError>구단 로고를 첨부해주세요.</StyledError>
+          <span className={'font-sans font-normal text-[0.625rem] text-red tracking-tighter'}>
+            구단 로고를 첨부해주세요.
+          </span>
         </FieldWrapper>
       )}
 
       {!isTeamImageError && teamImage.length > 0 && (
         <FieldWrapper>
           <FieldTitle />
-          <StyledSuccess>{teamImage.split('/').pop() ?? ''} </StyledSuccess>
+          <span className={'font-sans font-normal text-[0.625rem] text-primary'}>
+            {teamImage.split('/').pop() ?? ''}{' '}
+          </span>
         </FieldWrapper>
       )}
     </div>
   );
 }
-
-export const AffiliationStyledDiv = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-
-  & input {
-    height: 40px;
-    font-feature-settings: 'calt' off;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 160%; /* 19.2px */
-    letter-spacing: -0.6px;
-    color: black;
-  }
-
-  &::placeholder {
-    color: var(--gray2);
-  }
-
-  @media (min-width: 769px) {
-    & input {
-      font-size: 14px;
-    }
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-    & input {
-      font-size: 14px;
-    }
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-    & input {
-      font-size: 14px;
-    }
-  }
-`;
-
-export const StyledError = styled.span`
-  color: red;
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -0.5px;
-`;
-
-export const StyledSuccess = styled.span`
-  color: var(--primary);
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: -0.5px;
-`;

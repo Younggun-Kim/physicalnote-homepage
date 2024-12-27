@@ -25,7 +25,7 @@ type ResponseType = UseQueryResult<AddressHierarchyResponseDto[]>;
 export const useGetEmd = (sggCode?: string): ResponseType => {
   return useQuery({
     enabled: sggCode != null,
-    queryKey: ['getEmd'],
+    queryKey: ['getEmd', sggCode],
     queryFn: () => getEmd(sggCode),
   });
 };
