@@ -19,6 +19,7 @@ interface ProfileEditState {
   password: PasswordValue;
   passwordVerify: PasswordValue;
   isPasswordErrorVisible: VisibleValue;
+  term: boolean;
 }
 
 const initialState: ProfileEditState = {
@@ -35,11 +36,13 @@ const initialState: ProfileEditState = {
   password: PasswordValue.empty(),
   passwordVerify: PasswordValue.empty(),
   isPasswordErrorVisible: VisibleValue.none(),
+  term: false,
 };
 
 type ProfileEditStore = {
   state: ProfileEditState;
   actions: {
+    isValidSignUp: (state: ProfileEditState) => boolean;
     resetState: () => void;
     setStateFromDto: (dto: UserDetailResponseDto) => void;
     onChangeName: (value: string) => void;
@@ -54,6 +57,7 @@ type ProfileEditStore = {
     onChangeGender: (gender: GenderValue) => void;
     onChangePassword: (value: string) => void;
     onChangePasswordVerify: (value: string) => void;
+    onToggleTerm: () => void;
   };
 };
 
@@ -91,6 +95,26 @@ export const useProfileEditStore = create(
     return {
       state: initialState,
       actions: {
+        isValidSignUp: (state: ProfileEditState) => {
+          const isValidName = state.name.length > 2;
+          const isValidBirthDate = state.birthDate.isValid();
+          const isValidGender = !state.gender.isNone;
+          const isValidPhone = state.phone.isValid();
+          const isAuth = state.isPhoneAuth;
+          const isValidPw = state.password.isValid();
+          const isEqualPw = state.password.equals(state.passwordVerify);
+
+          return (
+            isValidName &&
+            isValidBirthDate &&
+            isValidGender &&
+            isValidPhone &&
+            isAuth &&
+            isValidPw &&
+            isValidPw &&
+            isEqualPw
+          );
+        },
         resetState: () => {
           set((store) => {
             store.state = initialState;

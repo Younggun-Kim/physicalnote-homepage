@@ -5,10 +5,17 @@ import useProfileEditStore from '@/store/profileEditStore';
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
 import SelectableBtn from '@/app/components/SelectableBtn';
+import { GenderValue } from '@/data';
 
-export const GenderSelect = () => {
+export const GenderSelect = ({ enabled = false }: { enabled?: boolean }) => {
   const { gender } = useProfileEditStore((store) => store.state);
+  const { onChangeGender } = useProfileEditStore((store) => store.actions);
 
+  const handleChange = (gender: GenderValue) => {
+    if (!enabled) return;
+
+    onChangeGender(gender);
+  };
   return (
     <FieldWrapper>
       <FieldTitle text={'성별'} />
@@ -18,14 +25,14 @@ export const GenderSelect = () => {
           containerClassName="flex-1 shadow-md"
           className="flex-1 w-full h-12 py-0 leaing-[1.6] !font-normal text-xs  sm:text-sm md:text-base"
           isSelected={gender.isMale}
-          onClick={() => {}}
+          onClick={() => handleChange(GenderValue.male())}
         />
         <SelectableBtn
           text="여성"
           containerClassName="flex-1 shadow-md"
           className="flex-1 w-full h-12 py-0 leaing-[1.6] !font-normal text-xs sm:text-sm md:text-base"
-          onClick={() => {}}
           isSelected={gender.isFemale}
+          onClick={() => handleChange(GenderValue.female())}
         />
       </div>
     </FieldWrapper>

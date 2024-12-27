@@ -6,7 +6,7 @@ import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
 import LoginInput from '@/app/login/components/LoginInput';
 
-export const NameInput = () => {
+export const NameInput = ({ enabled = false }: { enabled?: boolean }) => {
   const { name } = useProfileEditStore((store) => store.state);
   const { onChangeName } = useProfileEditStore((store) => store.actions);
   return (
@@ -18,7 +18,7 @@ export const NameInput = () => {
         placeholder="이름을 입력해주세요."
         value={name}
         className=""
-        enabled={false}
+        enabled={enabled}
         onChange={onChangeName}
       />
     </FieldWrapper>
