@@ -1,9 +1,9 @@
 interface Props {
   className?: string;
-  isJustifyCenter?: boolean;
   children?: React.ReactNode;
 }
-export const FieldWrapper = ({ className, isJustifyCenter = false, children }: Props) => {
+
+export const FieldWrapper = ({ className, children }: Props) => {
   return (
     <div
       className={

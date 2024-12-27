@@ -1,27 +1,46 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTeamEditStore } from '@/store';
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
-import { StyledDropdown } from '@/app/mypage/team/components/SidoSelect';
-import FieldTitle from '../../profile/edit/components/FieldTitle';
+import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
+import Dropdown from '@/app/components/dropdown/Dropdown';
+import useGetSigungu from '@/app/utils/query/common/useGetSigungu';
+import { siDoDtoListToOptionList } from '@/api/dto';
+import useGetEmd from '@/app/utils/query/common/useGetEmd';
 
 export default function SiGunGuSelect() {
-  const { siGunGu, siGunGuList, emd, emdList } = useTeamEditStore((store) => store.state);
-  const { onChangeSiGunGu, onChangeEmd } = useTeamEditStore((store) => store.actions);
+  const { siDo, siGunGu, siGunGuList, emd, emdList } = useTeamEditStore((store) => store.state);
+  const { onChangeSiGunGu, onChangeEmd, onChangeSiGunGuList, onChangeEmdList } = useTeamEditStore(
+    (store) => store.actions,
+  );
+  const { data: sggData = [] } = useGetSigungu(siDo?.value);
+  const { data: emdData = [] } = useGetEmd(siGunGu?.value);
+
+  useEffect(() => {
+    if (!siDo?.value) return;
+
+    onChangeSiGunGuList(siDoDtoListToOptionList(sggData));
+  }, [siDo]);
+
+  useEffect(() => {
+    if (!siGunGu?.value) return;
+
+    onChangeEmdList(siDoDtoListToOptionList(emdData));
+  }, [siGunGu]);
 
   return (
     <FieldWrapper>
       <FieldTitle text={''} />
-      <div className="w-full max-w-[300px] flex items-center gap-4 sm:max-w-[400px]">
-        <StyledDropdown
+      <div className="w-full flex items-center gap-4">
+        <Dropdown
           className="flex-1"
           placeholder="시군구"
           options={siGunGuList}
           selectedOption={siGunGu}
           onSelect={onChangeSiGunGu}
         />
-        <StyledDropdown
+        <Dropdown
           className="flex-1"
           placeholder="읍면동"
           options={emdList}

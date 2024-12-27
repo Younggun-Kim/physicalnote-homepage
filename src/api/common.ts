@@ -29,41 +29,7 @@ const Auth = {
       return Promise.reject(err);
     }
   },
-  /**
-   * 시/도 목록 조회
-   */
-  async getSiDo() {
-    try {
-      const url = `sido`;
-      return await instance.get<AddressHierarchyResponseDto[]>(url);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-  },
-  /**
-   * 시/군/구 목록 조회
-   * @param siDoCode
-   */
-  async getSiGunGu(siDoCode: string) {
-    try {
-      const url = `sgg?sidoCode=${siDoCode}`;
-      return await instance.get<AddressHierarchyResponseDto[]>(url);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-  },
-  /**
-   * 읍/면/동 목록 조회
-   * @param sggCode
-   */
-  async getEmd(sggCode: string) {
-    try {
-      const url = `emd?sggCode=${sggCode}`;
-      return await instance.get<AddressHierarchyResponseDto[]>(url);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-  },
+
   /**
    * 이미지 임시 저장 API
    */

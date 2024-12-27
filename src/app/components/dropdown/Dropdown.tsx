@@ -52,14 +52,15 @@ export const Dropdown = <T,>({
   const icon = isOpen ? '/icons/chevron-up.svg' : '/icons/chevron-down.svg';
 
   return (
-    <div className={`relative rounded-full shadow-md h-10 py-0 px-5 md:h-12 ${className}`}>
-      <div className="h-full flex justify-start items-center">
+    <div className={`dropdown relative w-full rounded-full shadow-md h-10 py-0 px-5 md:h-12 ${className}`}>
+      <div className="w-full h-full flex justify-start items-center">
         <div
-          className="flex-1 flex justify-start items-center"
+          className="w-full flex justify-start items-center"
           onClick={handleToggle}
         >
-          {!hasSelected() && <div className="name !text-gray1">{placeholder}</div>}
-          {hasSelected() && <div className="name">{selectedOption?.label}</div>}
+          <div className="flex-1 name text-sm text-gray1 font-sans font-normal sm:text-base">
+            {hasSelected() ? selectedOption?.label : placeholder}
+          </div>
           <Image
             src={icon}
             alt=""
