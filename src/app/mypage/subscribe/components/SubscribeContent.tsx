@@ -37,10 +37,13 @@ export default function SubscribeContent() {
     return <div>Loading...</div>;
   }
 
+  /// 구독 여부
+  /// 카드 등록 여부
+
   return (
     <div className="flex flex-col justify-start items-center">
-      <PlanWidget />
-      <PriceBtnGroup />
+      {billingKey.length != 0 && <PlanWidget />}
+      {billingKey.length != 0 && <PriceBtnGroup />}
       {billingKey.length == 0 && <NoSubscribe />}
       {billingKey.length != 0 && <Subscribe />}
     </div>

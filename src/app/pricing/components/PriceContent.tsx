@@ -1,5 +1,5 @@
 'use client';
-import styled from 'styled-components';
+
 import PriceContentTitle from './PriceContentTitle';
 import PriceContentDescription from './PriceContentDescription';
 import PriceContentCards from './PriceContentCards';
@@ -10,67 +10,24 @@ export default function PriceContent() {
   const isMobile = useMediaQuery('(max-width: 425px)');
 
   return (
-    <StyledContainer>
-      <StyledContentWrapper>
+    <div
+      className={[
+        'w-full flex flex-col justify-start items-start gap-5 pb-10',
+        'sm:items-center',
+        'md:items-start md:pt-20 md:pl-[20%]',
+        'lg:flex-row lg:justify-between lg:items-center lg:pt-[200px] lg:px-[50px] lg:pb-[111px]',
+        'xl:justify-center',
+        '2xl:max-w-[2560px] 2xl:pt-[200px] 2xl:gap-[148px]',
+      ].join(' ')}
+    >
+      <div className="flex flex-col gap-7.5">
         <PriceContentTitle />
         <PriceContentDescription />
-      </StyledContentWrapper>
+      </div>
       <div>
         <PriceContentCards />
         {!isMobile && <PriceContentFaq />}
       </div>
-    </StyledContainer>
+    </div>
   );
 }
-
-const StyledContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  gap: 20px;
-  padding: 0 0 40px;
-
-  @media (min-width: 1921px) {
-    max-width: 2560px;
-    padding: 200px 50px 111px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 148px;
-  }
-
-  @media (min-width: 1441px) and (max-width: 1920px) {
-    padding: 200px 50px 111px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    padding: 200px 50px 111px;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    align-items: start;
-    padding-top: 80px;
-    padding-left: 20%;
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-    align-items: center;
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-  }
-`;
-
-const StyledContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-`;

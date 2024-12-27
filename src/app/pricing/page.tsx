@@ -1,46 +1,19 @@
-'use client';
-import styled from 'styled-components';
 import PriceContent from './components/PriceContent';
 import PriceContentRefund from './components/PriceContentRefund';
 
 export default function PricingPage() {
   return (
-    <StyledContainer>
+    <div
+      className={[
+        'flex flex-col justify-start items-center',
+        'pt-[60px] px-[30px] pb-[32px]',
+        'xs:pt-[47px] xs:px-[60px] xs:pb-[20px]',
+        'sm:pt-[80px] sm:px-[75px] sm:pb-[20px]',
+      ].join(' ')}
+    >
       <PriceContent />
       <div className="h-[1px] w-full max-w-[1587px] bg-secondary"></div>
       <PriceContentRefund />
-    </StyledContainer>
+    </div>
   );
 }
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  padding: 60px 30px 32px;
-
-  @media (min-width: 1921px) {
-    padding: 80px 75px 20px;
-  }
-
-  @media (min-width: 1441px) and (max-width: 1920px) {
-    padding: 80px 75px 20px;
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    padding: 80px 75px 20px;
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    padding: 80px 75px 20px;
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-    padding: 80px 80px 20px;
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-    padding: 47px 60px 20px;
-  }
-`;
