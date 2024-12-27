@@ -7,7 +7,8 @@ export function HomeThirdItemFirst() {
       <Image
         src="/images/home/home_3_2.png"
         alt=""
-        fill
+        width={369}
+        height={274}
       />
       <p className="title">
         <span>웰니스 체크를 통해 해당 스포츠에</span>

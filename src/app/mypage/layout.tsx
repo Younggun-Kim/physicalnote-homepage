@@ -34,7 +34,7 @@ export default function MyPageLayout({ children }: Props) {
         {!isMobile && (
           <div className="mt-10">
             <Menus />
-            <div className="mt-12">
+            <div className="mt-12 flex justify-start items-center gap-2.5">
               <LogoutBtn />
               <WithoutBtn />
             </div>

@@ -7,7 +7,8 @@ export function HomeThirdItemFirst() {
       <Image
         src="/images/home/home_3_1.png"
         alt=""
-        fill
+        width={369}
+        height={274}
       />
       <p className="title">
         <span>그 날의 자가 컨디션 진단 설문과</span>

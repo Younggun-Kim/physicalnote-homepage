@@ -9,13 +9,15 @@ export default function PriceContentCards() {
         className="month"
         src="/images/price/price_month_h.svg"
         alt="월 구독"
-        fill
+        width={280}
+        height={360}
       />
       <Image
         className="year"
         src="/images/price/price_year_h.svg"
         alt="연 구독"
-        fill
+        width={280}
+        height={360}
       />
     </StyledContainer>
   );

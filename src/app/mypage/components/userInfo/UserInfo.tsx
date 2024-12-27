@@ -49,7 +49,7 @@ export const UserInfo = () => {
         <div className="img"></div>
       )}
       <div className="w-full flex flex-col justify-start items-start">
-        <div className="w-full flex justify-start items-center">
+        <div className="w-full flex justify-start items-center gap-2.5">
           <MyPageUserName>{coachInfo?.name ?? ''}</MyPageUserName>
           {isMobile && <LogoutBtn />}
           {isMobile && <WithoutBtn />}

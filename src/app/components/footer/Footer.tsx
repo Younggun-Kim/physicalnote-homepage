@@ -11,8 +11,10 @@ export const Footer = () => {
           'xs:px-7.5 sm:px-15 md:px-[112px] xl:px-[130] xl:flex-col',
         ].join(' ')}
       >
-        <div className={'flex-1 flex flex-col items-center'}>
-          <span className="text-black text-[0.875rem] font-sans font-bold mb-2.5">상호명 : 피지컬노트</span>
+        <div className={'flex-1 flex flex-col items-center mr-auto'}>
+          <span className="text-black text-[0.875rem] font-sans font-bold mb-2.5 w-full text-left">
+            상호명 : 피지컬노트
+          </span>
           <div className={`flex flex-col sm:flex-row`}>
             <div className={`flex gap-[5px]`}>
               <div className={`flex flex-col text-gray3 ${textSize} font-bold font-sans mr-1`}>
