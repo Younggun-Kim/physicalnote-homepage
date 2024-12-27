@@ -8,15 +8,69 @@ import Affiliation from '@/app/mypage/team/components/Affiliation';
 import TeamAgeSelect from '@/app/mypage/team/components/TeamAgeSelect';
 import TeamSizeSelect from '@/app/mypage/team/components/TeamSizeSelect';
 import StaffPositionSelect from '@/app/mypage/team/components/StaffPositionSelect';
-import TeamEditSubmit from '@/app/mypage/team/components/TeamEditSubmit';
+import usePostSignUp from '@/app/utils/query/login/useSignUp';
+import { isTeamEditStateValid, useProfileEditStore, useTeamEditStore } from '@/store';
+import { toast } from 'react-toastify';
+import EntrySourceSelect from '@/app/mypage/team/components/EntrySourceSelect';
 
 export const StepTwoForm = ({ onClickNext }: StepProps) => {
+  const { name, email, gender, birthDate, phone: cellphoneNo, password } = useProfileEditStore((store) => store.state);
+  const state = useTeamEditStore((store) => store.state);
+  const {
+    siDo: sido,
+    siGunGu: sgg,
+    emd: dong,
+    teamName,
+    teamAge: teamAgeGroup,
+    staffPosition: position,
+    teamSize,
+    entrySource,
+    teamImage,
+  } = state;
+
+  const signUpMutation = usePostSignUp();
+
   const handleNext = () => {
     onClickNext(2);
   };
 
   const handlePrev = () => {
     onClickNext(0);
+  };
+
+  const handleSignUp = async () => {
+    if (!isTeamEditStateValid(state)) {
+      toast('입력 항목을 모두 올바르게 입력해주세요.');
+    }
+
+    if (!sido || !sgg || !dong || !teamAgeGroup || !position || !teamSize || !entrySource) {
+      alert('입력 항목을 모두 올바르게 입력해주세요.');
+      return;
+    }
+
+    const response = await signUpMutation.mutateAsync({
+      name,
+      birthDate: birthDate.getDashValue(),
+      gender: gender.getValue(),
+      loginId: email.getValue(),
+      cellphoneNo: cellphoneNo.getValue(),
+      password: password.getValue(),
+      sido: sido.label,
+      sgg: sgg.label,
+      dong: dong.label,
+      teamName,
+      teamAgeGroup: teamAgeGroup.value,
+      position: position.value,
+      teamSize: teamSize.value,
+      entrySource: entrySource.value,
+      teamProfile: teamImage,
+    });
+
+    if (response.status) {
+      handleNext();
+    } else {
+      toast(response.message);
+    }
   };
 
   return (
@@ -27,8 +81,8 @@ export const StepTwoForm = ({ onClickNext }: StepProps) => {
       <TeamAgeSelect />
       <TeamSizeSelect />
       <StaffPositionSelect />
-      <TeamEditSubmit />
-      <div className="mb-6 w-full flex gap-x-5">
+      <EntrySourceSelect />
+      <div className="mb-6 w-full flex gap-x-5 mt-8">
         <Button
           text="이전"
           containerClassName={'w-[78px] h-[48px] xs:w-[110px] sm:w-[143px]'}
@@ -40,7 +94,7 @@ export const StepTwoForm = ({ onClickNext }: StepProps) => {
           containerClassName="py-3 flex-1"
           className={'w-full h-full !text-sm xs:!text-base sm:!text-lg'}
           isEnabled={true}
-          onClick={handleNext}
+          onClick={handleSignUp}
         />
       </div>
     </div>

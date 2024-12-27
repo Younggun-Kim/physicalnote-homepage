@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import VisibleValue from '@/data/visible_type';
-import { AgeEnum, StaffPositionEnum, TeamSizeEnum } from '@/types';
+import { AgeEnum, EntrySourceEnum, StaffPositionEnum, TeamSizeEnum } from '@/types';
 import { TeamValidateRequestDto } from '@/api/dto';
 import CoachPutRequestDto from '@/api/dto/coach/put/CoachPutRequestDto';
 import { DropDownOption } from '@/app/components/dropdown/Dropdown';
@@ -22,6 +22,7 @@ interface TeamEditState {
   teamValidateErrorMsg: string;
   teamSize?: DropDownOption<TeamSizeEnum>;
   staffPosition?: DropDownOption<StaffPositionEnum>;
+  entrySource?: DropDownOption<EntrySourceEnum>;
 }
 
 const initialState: TeamEditState = {
@@ -40,6 +41,7 @@ const initialState: TeamEditState = {
   teamValidateErrorMsg: '',
   teamSize: undefined,
   staffPosition: undefined,
+  entrySource: undefined,
 };
 
 type TeamEditStore = {
@@ -60,6 +62,7 @@ type TeamEditStore = {
     onChangeTeamValidateMsg: (value: string) => void;
     onChangeTeamSize: (value: DropDownOption<TeamSizeEnum> | undefined) => void;
     onChangeStaffPosition: (value: DropDownOption<StaffPositionEnum> | undefined) => void;
+    onChangeEntrySource: (value: DropDownOption<EntrySourceEnum>) => void;
   };
 };
 
@@ -213,6 +216,12 @@ export const useTeamEditStore = create(
         onChangeStaffPosition: (value: DropDownOption<StaffPositionEnum> | undefined) => {
           set((store) => {
             store.state.staffPosition = value;
+          });
+        },
+
+        onChangeEntrySource: (value: DropDownOption<EntrySourceEnum> | undefined) => {
+          set((store) => {
+            store.state.entrySource = value;
           });
         },
       },
