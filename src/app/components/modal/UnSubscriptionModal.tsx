@@ -47,7 +47,7 @@ export default function UnSubscriptionModal() {
         className={[
           'flex flex-col justify-start items-start rounded-[20px] bg-white shadow-md p-7.5',
           'fixed left-[30px] right-[30px] top-[50%] translate-y-[-50%]',
-          'md:left-[50%] md:right:unset md:translate-x-[-50%]',
+          'md:left-[50%] md:right-auto md:translate-x-[-50%]',
         ].join(' ')}
       >
         <h6 className="font-sans font-bold text-black text-[16px]">구독을 취소할까요?</h6>

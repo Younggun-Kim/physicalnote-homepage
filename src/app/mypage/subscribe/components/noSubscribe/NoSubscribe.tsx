@@ -5,7 +5,7 @@ import NoSubscribeLink from './NoSubscribeLink';
 
 export default function NoSubscribe() {
   return (
-    <div className={'flex flex-col justify-start items-center mt-[40px] sm:mt-[155px] md:mt-[186px]'}>
+    <div className={'flex flex-col justify-start items-center mt-[40px]'}>
       <NoSubscribeImg />
       <span
         className={[

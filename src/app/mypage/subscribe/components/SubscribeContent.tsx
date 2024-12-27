@@ -11,13 +11,14 @@ import PlanWidget from '@/app/mypage/subscribe/components/plan/PlanWidget';
 import PriceBtnGroup from '@/app/mypage/subscribe/components/plan/PriceBtnGroup';
 
 export default function SubscribeContent() {
-  const { data: billingKeysData = [], isLoading } = useGetBillingKeys();
+  const { data: billingKeysData = [] } = useGetBillingKeys();
   const { setBillingKey } = useBillingKeyStore((store) => store.actions);
   const { billingKey } = useBillingKeyStore((store) => store.state);
 
   const [customerKey, setCustomerKey] = useState('');
   const { data: subscriptionData } = useGetSubscriptionStatus(customerKey);
   const { setSubscription } = useSubscriptionStore((store) => store.actions);
+  const { subscription } = useSubscriptionStore((store) => store.state);
 
   useEffect(() => {
     if (billingKeysData == undefined) return;
@@ -33,17 +34,12 @@ export default function SubscribeContent() {
     setSubscription(subscriptionData);
   }, [subscriptionData, customerKey]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  /// 구독 여부
-  /// 카드 등록 여부
+  const neither = subscription == undefined && billingKey == undefined;
 
   return (
     <div className="flex flex-col justify-start items-center">
-      {billingKey.length != 0 && <PlanWidget />}
-      {billingKey.length != 0 && <PriceBtnGroup />}
+      {!neither && <PlanWidget />}
+      {subscription != undefined && <PriceBtnGroup />}
       {billingKey.length == 0 && <NoSubscribe />}
       {billingKey.length != 0 && <Subscribe />}
     </div>
