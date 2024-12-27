@@ -23,7 +23,6 @@ export interface StepProps {
 export const StepOneForm = ({ onClickNext }: StepProps) => {
   const { isValidSignUp } = useProfileEditStore((store) => store.actions);
   const handleNext = () => {
-    onClickNext(1);
     if (!isValidSignUp(useProfileEditStore.getState().state)) {
       toast('입력 항목을 모두 올바르게 입력해주세요.');
       return;

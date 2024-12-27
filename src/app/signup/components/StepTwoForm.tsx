@@ -41,10 +41,11 @@ export const StepTwoForm = ({ onClickNext }: StepProps) => {
   const handleSignUp = async () => {
     if (!isTeamEditStateValid(state)) {
       toast('입력 항목을 모두 올바르게 입력해주세요.');
+      return;
     }
 
     if (!sido || !sgg || !dong || !teamAgeGroup || !position || !teamSize || !entrySource) {
-      alert('입력 항목을 모두 올바르게 입력해주세요.');
+      toast('입력 항목을 모두 올바르게 입력해주세요.');
       return;
     }
 
