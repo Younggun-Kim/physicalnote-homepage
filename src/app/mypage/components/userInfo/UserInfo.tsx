@@ -10,30 +10,17 @@ import MyPageTeamName from '@/app/mypage/components/userInfo/MyPageTeamName';
 import MyEmail from '@/app/mypage/components/userInfo/MyPageEmail';
 import MyPageUserName from '@/app/mypage/components/userInfo/MyPageUserName';
 import CoachInfoResponseDto from '@/api/dto/coach/info/CoachInfoResponseDto';
+import useGetCoachInfo from '@/app/utils/query/coach/useGetCoachInfo';
 
 export const UserInfo = () => {
   const isMobile = useMediaQuery('(max-width: 425px)');
   const [coachInfo, setCoachInfo] = useState<CoachInfoResponseDto | undefined>();
+  const { data: coachInfoData } = useGetCoachInfo();
 
   useEffect(() => {
-    const fetchCoachInfo = async () => {
-      try {
-        const response = await fetch('/api/coach');
-
-        if (!response.ok) {
-          throw new Error('코치 정보를 불러오는데 실패했습니다.');
-        }
-
-        const data = await response.json();
-        setCoachInfo(data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-      }
-    };
-
-    fetchCoachInfo();
-  }, []);
+    if (coachInfoData == undefined) return;
+    setCoachInfo(coachInfoData);
+  }, [coachInfoData]);
 
   return (
     <StyledDiv>
