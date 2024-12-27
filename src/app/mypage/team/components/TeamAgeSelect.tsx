@@ -43,7 +43,7 @@ export default function TeamAgeSelect() {
           selectedOption={teamAge}
           onSelect={onChangeTeamAge}
           hasRightBtn={true}
-          onRightClick={handleClick}
+          onRightClick={() => handleClick()}
           rightBtnText={'중복확인'}
         />
       </FieldWrapper>

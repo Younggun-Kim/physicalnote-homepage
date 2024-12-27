@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { TeamValidateResponseDto } from '@/api/dto/common/teamValidateResponseDto';
 import { TeamValidateRequestDto } from '@/api/dto/common/teamValidateRequestDto';
-import { instance } from '@/api/base';
+import { AxiosInstance } from '@/app/utils/service/axiosInstance';
 
 /**
  * 팀 중복 확인 API
@@ -16,7 +16,7 @@ export const getTeamValidate = async ({
 }: TeamValidateRequestDto) => {
   try {
     const url = `team/validate?sidoCode=${sidoCode}&sggCode=${sggCode}&dongCode=${dongCode}&teamAgeGroup=${teamAgeGroup.toUpperCase()}&teamName=${teamName}`;
-    const result = await instance.get<TeamValidateResponseDto>(url);
+    const result = await AxiosInstance.get<TeamValidateResponseDto>(url);
     return result.data;
   } catch (err) {
     return Promise.reject(err);
