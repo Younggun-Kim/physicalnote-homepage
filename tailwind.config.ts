@@ -56,6 +56,7 @@ export default {
       },
       fontSize: {
         ...size,
+        '2xs': '0.625rem',
       },
       colors: {
         black: 'var(--black)',
@@ -77,6 +78,14 @@ export default {
       },
       borderRadius: {
         ...size,
+      },
+      backgroundImage: {
+        gradient: `linear-gradient(
+          180deg,
+          var(--gradient-color-start, rgba(222, 235, 200, 0)) 0%,
+          var(--gradient-color-middle, rgba(222, 235, 200, 0.3)) 31.5%,
+          var(--gradient-color-end, rgba(222, 235, 200, 0.7)) 100%
+        )`,
       },
     },
   },

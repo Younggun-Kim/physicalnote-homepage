@@ -1,24 +1,19 @@
-'use client';
-
-import styled from 'styled-components';
-import { useMediaQuery } from 'usehooks-ts';
-import { usePathname } from 'next/navigation';
-import FooterContainer from '@/app/components/footer/FooterContainer';
-import FooterWrapper from '@/app/components/footer/FooterWrapper';
 import { FooterLinks } from './FooterLinks';
 
 export const Footer = () => {
-  const pathname = usePathname();
-  const isHome = pathname === '/';
-  const isMobile = useMediaQuery('(max-width: 425px)');
-  const direction = isMobile ? 'flex-col' : '';
-  const textSize = isMobile ? 'text-[10px]' : 'text-[12px]';
+  const textSize = 'text-2xs sm:text-sm';
+
   return (
-    <StyledFooter $isHome={isHome}>
-      <FooterContainer>
-        <FooterWrapper>
+    <div className={'z-[100] bg-gradient'}>
+      <div
+        className={[
+          'flex flex-col-reverse py-10 px-3 gap-4',
+          'xs:px-7.5 sm:px-15 md:px-[112px] xl:px-[130] xl:flex-col',
+        ].join(' ')}
+      >
+        <div className={'flex-1 flex flex-col items-center'}>
           <span className="text-black text-[0.875rem] font-sans font-bold mb-2.5">상호명 : 피지컬노트</span>
-          <div className={`flex ${direction}`}>
+          <div className={`flex flex-col sm:flex-row`}>
             <div className={`flex gap-[5px]`}>
               <div className={`flex flex-col text-gray3 ${textSize} font-bold font-sans mr-1`}>
                 <span>대표자명</span>
@@ -44,24 +39,11 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-        </FooterWrapper>
+        </div>
         <FooterLinks />
-      </FooterContainer>
-    </StyledFooter>
+      </div>
+    </div>
   );
 };
 
 export default Footer;
-
-export const StyledFooter = styled.footer<{ $isHome: boolean }>`
-  z-index: 100;
-  background: ${(props) =>
-    props.$isHome
-      ? `linear-gradient(
-          180deg,
-          rgba(222, 235, 200, 0) 0%,
-          rgba(222, 235, 200, 0.3) 31.5%,
-          rgba(222, 235, 200, 0.7) 100%
-        )`
-      : 'none'};
-`;
