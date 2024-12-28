@@ -3,8 +3,8 @@
 import { toast } from 'react-toastify';
 import { useBillingKeyStore } from '@/store';
 import { PlanType } from '@/types/planType';
-import { router } from 'next/client';
 import usePostSubscription from '@/app/utils/query/usePostSubscription';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   planId?: number;
@@ -12,6 +12,7 @@ interface Props {
 }
 
 export default function PaymentNextBtn({ planId, billingCycle }: Props) {
+  const router = useRouter();
   const { defaultBillingKey } = useBillingKeyStore((store) => store.state);
   const postMutation = usePostSubscription();
 
