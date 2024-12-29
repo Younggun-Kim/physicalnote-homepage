@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import CoachInfoResponseDto from '@/api/dto/coach/info/CoachInfoResponseDto';
+import { CoachInfoResponseDto } from '@/app/api/coach/route';
 
 interface State {
   coachInfo?: CoachInfoResponseDto;

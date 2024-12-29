@@ -4,7 +4,7 @@ import PlanItem from '@/app/mypage/subscribe/plans/components/PlanItem';
 import { useEffect } from 'react';
 import usePlanStore from '@/store/plansStore';
 import { useRouter } from 'next/navigation';
-import useGetSubscriptionPlans from '@/app/networks/query/payment/useGetSubscriptionPlans';
+import useGetSubscriptionPlans from '@/networks/query/payment/useGetSubscriptionPlans';
 
 export default function PlansContent() {
   const { data: planData } = useGetSubscriptionPlans();

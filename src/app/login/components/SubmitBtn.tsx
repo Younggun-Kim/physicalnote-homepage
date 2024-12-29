@@ -1,4 +1,4 @@
-import useLoginValidation from '@/hooks/useLoginValidation';
+import useLoginValidation from '@/app/hooks/useLoginValidation';
 import { useAppStore } from '@/store';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';

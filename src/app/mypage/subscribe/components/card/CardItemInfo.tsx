@@ -1,4 +1,4 @@
-import GetBillingKeysResponseDto from '@/api/dto/payment/GetBillingKeysResponseDto';
+import GetBillingKeysResponseDto from '@/networks/dto/payment/GetBillingKeysResponseDto';
 
 interface Props {
   billingKey: GetBillingKeysResponseDto;

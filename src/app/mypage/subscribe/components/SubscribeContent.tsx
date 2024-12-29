@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import NoSubscribe from '@/app/mypage/subscribe/components/noSubscribe/NoSubscribe';
-import useGetBillingKeys from '@/app/networks/query/payment/useGetBillingKeys';
+import useGetBillingKeys from '@/networks/query/payment/useGetBillingKeys';
 import Subscribe from '@/app/mypage/subscribe/components/subscribe/Subscribe';
 import { useBillingKeyStore } from '@/store';
-import useGetSubscriptionStatus from '@/app/networks/query/payment/useGetSubscriptionStatus';
+import useGetSubscriptionStatus from '@/networks/query/payment/useGetSubscriptionStatus';
 import useSubscriptionStore from '@/store/subscriptionStore';
 import PlanWidget from '@/app/mypage/subscribe/components/plan/PlanWidget';
 import PriceBtnGroup from '@/app/mypage/subscribe/components/plan/PriceBtnGroup';

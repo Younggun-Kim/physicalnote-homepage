@@ -1,44 +1,50 @@
-'use client';
-import styled from 'styled-components';
-
 export default function DetailSecond() {
-  return <StyledContainer></StyledContainer>;
+  return (
+    <div className="flex max-w-[2560px] justify-center">
+      <picture className="w-full mx-auto block">
+        {/* 1921px 이상 - 2560px */}
+        <source
+          media="(min-width: 1921px)"
+          srcSet="/images/detail/detail_2_2560.svg"
+        />
+
+        {/* 1441px - 1920px */}
+        <source
+          media="(min-width: 1441px)"
+          srcSet="/images/detail/detail_2_1920.svg"
+        />
+
+        {/* 1025px - 1440px */}
+        <source
+          media="(min-width: 1025px)"
+          srcSet="/images/detail/detail_2_1440.svg"
+        />
+
+        {/* 769px - 1024px */}
+        <source
+          media="(min-width: 769px)"
+          srcSet="/images/detail/detail_2_1024.svg"
+        />
+
+        {/* 426px - 768px */}
+        <source
+          media="(min-width: 426px)"
+          srcSet="/images/detail/detail_2_768.svg"
+        />
+
+        {/* 321px - 425px */}
+        <source
+          media="(min-width: 321px)"
+          srcSet="/images/detail/detail_2_425.svg"
+        />
+
+        {/* Fallback image (320px and below) */}
+        <img
+          src="/images/detail/detail_2_320.svg"
+          alt="Detail image"
+          className="w-full mx-auto"
+        />
+      </picture>
+    </div>
+  );
 }
-
-const StyledContainer = styled.img`
-  width: 100%;
-  height: 680px;
-  margin: 0 auto;
-  content: url('/images/detail/detail_2_320.png');
-
-  @media (min-width: 1921px) {
-    max-width: 2560px;
-    height: 1080px;
-    content: url('/images/detail/detail_2_2560.png');
-  }
-
-  @media (min-width: 1441px) and (max-width: 1920px) {
-    height: 1080px;
-    content: url('/images/detail/detail_2_1920.png');
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    height: 860px;
-    content: url('/images/detail/detail_2_1440.png');
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    height: 860px;
-    content: url('/images/detail/detail_2_1024.png');
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-    height: 690px;
-    content: url('/images/detail/detail_2_768.png');
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-    height: 680px;
-    content: url('/images/detail/detail_2_425.png');
-  }
-`;

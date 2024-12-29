@@ -8,6 +8,8 @@ import Header from '@/app/components/header/Header';
 import Footer from '@/app/components/footer/Footer';
 import MobileSideMenu from '@/app/components/MobileSideMenu';
 import UnSubscriptionModal from '@/app/components/modal/UnSubscriptionModal';
+import notoSansKr from '@/styles/font/notoSans';
+import poetsenOne from '@/styles/font/poetsenOne';
 
 export const metadata: Metadata = {
   title: 'PhysicalNote',
@@ -22,7 +24,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      suppressHydrationWarning={true}
+      className={`${notoSansKr.variable} ${poetsenOne.variable}`}
     >
       <body className="flex flex-col h-svh antialiased">
         <StyledComponentsRegistry>

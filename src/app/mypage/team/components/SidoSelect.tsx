@@ -5,8 +5,8 @@ import { useTeamEditStore } from '@/store';
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
 import Dropdown from '@/app/components/dropdown/Dropdown';
-import useGetSido from '@/app/networks/query/common/useGetSido';
-import { siDoDtoListToOptionList } from '@/app/networks/dto/common';
+import useGetSido from '@/networks/query/common/useGetSido';
+import { siDoDtoListToOptionList } from '@/networks/dto/common';
 
 export default function SidoSelect() {
   const { siDo, siDoList } = useTeamEditStore((store) => store.state);

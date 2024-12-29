@@ -1,49 +1,25 @@
+'use client';
+
 import Link from 'next/link';
-import styled from 'styled-components';
 import { useAppStore } from '@/store';
 
 export function HomeThirdBtn() {
   const { isLoggedIn } = useAppStore((store) => store.state);
   return (
     <Link href={isLoggedIn ? '/mypage' : '/login'}>
-      <StyledDiv className="rounded-full">시작하기</StyledDiv>
+      <span
+        className={[
+          'rounded-full hover:cursor-pointer',
+          'font-sans text-white font-bold text-[1.625rem] bg-primary py-5 px-9',
+          'sm:text-[1.875rem]',
+          'md:text-[2.1875rem]',
+          'lg:text-[3rem] lg:py-7 lg:px-12',
+        ].join(' ')}
+      >
+        시작하기
+      </span>
     </Link>
   );
 }
 
 export default HomeThirdBtn;
-
-const StyledDiv = styled.button`
-  font-size: 1.625rem;
-  color: white;
-  font-weight: bold;
-  font-family: 'Noto Sans', sans-serif;
-  padding: 20px 38px;
-  background-color: var(--primary);
-
-  @media (min-width: 1921px) {
-    padding: 27px 48px;
-    font-size: 3rem;
-  }
-
-  @media (min-width: 1441px) and (max-width: 1920px) {
-    padding: 27px 48px;
-    font-size: 3rem;
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    padding: 27px 48px;
-    font-size: 3rem;
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    font-size: 2.1875rem;
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-    font-size: 1.875rem;
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-  }
-`;

@@ -4,7 +4,7 @@ import { isValidProfileEdit, useProfileEditStore } from '@/store/profileEditStor
 import { EnabledBtn } from '@/app/components/EnabledBtn';
 import { toast } from 'react-toastify';
 import { ApiError } from '@/app/api/login/route';
-import UserDetailResponseDto from '@/api/dto/user/detail/userDetailResponseDto';
+import UserDetailResponseDto from '@/networks/dto/user/detail/userDetailResponseDto';
 
 export const ProfileSubmit = () => {
   const state = useProfileEditStore((store) => store.state);

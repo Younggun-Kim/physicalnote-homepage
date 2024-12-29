@@ -1,43 +1,49 @@
-'use client';
-import styled from 'styled-components';
-import DetailFirstTitle from './DetailFirstTitle';
-import DetailFirstContent from './DetailFirstContent';
-
 export default function DetailFirst() {
   return (
-    <StyledContainer>
-      <DetailFirstTitle />
-      <DetailFirstContent />
-    </StyledContainer>
+    <div className="flex max-w-[2560px] justify-center">
+      <picture className="w-full mx-auto block">
+        {/* 1921px 이상 - 2560px */}
+        <source
+          media="(min-width: 1921px)"
+          srcSet="/images/detail/detail_1_2560.svg"
+        />
+        {/* 1441px - 1920px */}
+        <source
+          media="(min-width: 1441px)"
+          srcSet="/images/detail/detail_1_1920.svg"
+        />
+
+        {/* 1025px - 1440px */}
+        <source
+          media="(min-width: 1025px)"
+          srcSet="/images/detail/detail_1_1440.svg"
+        />
+
+        {/* 769px - 1024px */}
+        <source
+          media="(min-width: 769px)"
+          srcSet="/images/detail/detail_1_1024.svg"
+        />
+
+        {/* 426px - 768px */}
+        <source
+          media="(min-width: 426px)"
+          srcSet="/images/detail/detail_1_768.svg"
+        />
+
+        {/* 321px - 425px */}
+        <source
+          media="(min-width: 321px)"
+          srcSet="/images/detail/detail_1_425.svg"
+        />
+
+        {/* Fallback image (320px and below) */}
+        <img
+          src="/images/detail/detail_1_320.svg"
+          alt="Detail image"
+          className="w-full mx-auto"
+        />
+      </picture>
+    </div>
   );
 }
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 48px 20px 35px;
-
-  @media (min-width: 1921px) {
-    padding: 113px 20px 151px;
-  }
-
-  @media (min-width: 1441px) and (max-width: 1920px) {
-    padding: 113px 20px 151px;
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-    padding: 113px 20px 151px;
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    padding: 113px 20px 67px;
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-    padding: 113px 20px 67px;
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-    padding: 65px 20px 35px;
-  }
-`;

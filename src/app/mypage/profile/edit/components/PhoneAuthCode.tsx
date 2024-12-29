@@ -6,7 +6,7 @@ import FieldTitle from './FieldTitle';
 import VisibleValue from '@/data/visible_type';
 import styled from 'styled-components';
 import AuthNumberInput from './AuthNumberInput';
-import PhoneVerifyResponseDto from '@/api/dto/common/phoneVerify/phoneVerifyResponseDto';
+import { PhoneVerifyResponseDto } from '@/networks/dto/common';
 
 export const PhoneAuthCode = () => {
   const { phone, authNum, isPhoneAuth, isRequestAuth } = useProfileEditStore((store) => store.state);

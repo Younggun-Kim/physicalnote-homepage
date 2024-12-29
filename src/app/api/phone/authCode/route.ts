@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { apiClient } from '@/app/api/apiClient';
 import { ApiError } from '@/app/api/login/route';
-import PhoneVerifyResponseDto from '@/api/dto/common/phoneVerify/phoneVerifyResponseDto';
+import { PhoneVerifyResponseDto } from '@/networks/dto/common';
 
 export async function POST(req: NextRequest): Promise<NextResponse<PhoneVerifyResponseDto | ApiError>> {
   try {

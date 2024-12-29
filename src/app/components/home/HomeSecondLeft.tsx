@@ -5,7 +5,7 @@ const HomeSecondLeft = () => {
     <div>
       <h1
         className="
-        font-bold font-['Noto_Sans'] text-black mb-3.5
+        font-bold font-sans text-black mb-3.5
         text-2xl
         2xl:text-4xl 2xl:mb-5
         xl:text-4xl xl:mb-5
@@ -15,7 +15,8 @@ const HomeSecondLeft = () => {
         xs:text-2xl
       "
       >
-        더이상 부상으로 인<br />
+        더이상 부상으로 인한
+        <br />
         좌절은 하지마세요.
       </h1>
 

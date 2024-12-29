@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import PlanResponseDto from '@/api/dto/payment/PlanResponseDto';
+import PlanResponseDto from '@/networks/dto/payment/PlanResponseDto';
 
 interface State {
   plan: PlanResponseDto | undefined;

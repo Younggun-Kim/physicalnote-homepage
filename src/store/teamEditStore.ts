@@ -2,9 +2,9 @@ import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import VisibleValue from '@/data/visible_type';
 import { AgeEnum, EntrySourceEnum, StaffPositionEnum, TeamSizeEnum } from '@/types';
-import { TeamValidateRequestDto } from '@/api/dto';
-import CoachPutRequestDto from '@/api/dto/coach/put/CoachPutRequestDto';
 import { DropDownOption } from '@/app/components/dropdown/Dropdown';
+import { TeamValidateRequestDto } from '@/networks/dto/common';
+import CoachPutRequestDto from '@/networks/dto/coach/put/CoachPutRequestDto';
 
 interface TeamEditState {
   siDoList: DropDownOption<string>[];

@@ -9,8 +9,8 @@ import WithoutBtn from '@/app/mypage/components/WithoutBtn';
 import MyPageTeamName from '@/app/mypage/components/userInfo/MyPageTeamName';
 import MyEmail from '@/app/mypage/components/userInfo/MyPageEmail';
 import MyPageUserName from '@/app/mypage/components/userInfo/MyPageUserName';
-import CoachInfoResponseDto from '@/api/dto/coach/info/CoachInfoResponseDto';
-import useGetCoachInfo from '@/app/networks/query/coach/useGetCoachInfo';
+import useGetCoachInfo from '@/networks/query/coach/useGetCoachInfo';
+import { CoachInfoResponseDto } from '@/app/api/coach/route';
 
 export const UserInfo = () => {
   const isMobile = useMediaQuery('(max-width: 425px)');

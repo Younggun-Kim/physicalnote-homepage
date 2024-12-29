@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { apiClient } from '@/app/api/apiClient';
 import { ApiError } from '@/app/api/login/route';
-import GetBillingKeysResponseDto from '@/api/dto/payment/GetBillingKeysResponseDto';
+import GetBillingKeysResponseDto from '@/networks/dto/payment/GetBillingKeysResponseDto';
 
 export async function GET(): Promise<NextResponse<GetBillingKeysResponseDto[] | ApiError>> {
   try {

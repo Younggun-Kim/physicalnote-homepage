@@ -1,8 +1,7 @@
 'use client';
 
-// import useDeleteBillingKey from '@/api/query/payment/useDeleteBillingKeys';
-import GetBillingKeysResponseDto from '@/api/dto/payment/GetBillingKeysResponseDto';
-import useDeleteBillingKey from '@/app/networks/query/payment/useDeleteBillingKey';
+import useDeleteBillingKey from '@/networks/query/payment/useDeleteBillingKey';
+import GetBillingKeysResponseDto from '@/networks/dto/payment/GetBillingKeysResponseDto';
 
 interface Props {
   billingKey: GetBillingKeysResponseDto;

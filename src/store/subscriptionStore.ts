@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import GetStatusResponseDto from '@/api/dto/payment/status/GetStatusResponseDto';
+import GetStatusResponseDto from '@/networks/dto/status/GetStatusResponseDto';
 
 interface State {
   subscription: GetStatusResponseDto | undefined;

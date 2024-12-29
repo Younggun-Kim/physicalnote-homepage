@@ -70,8 +70,8 @@ export default {
         red: 'var(--red)',
       },
       fontFamily: {
-        sans: ['Noto Sans KR', 'sans-serif'],
-        poetsen: ['Poetsen One', 'sans-serif'],
+        sans: ['var(--font-noto-sans-kr)'],
+        poetsen: ['var(--font-poetsen-one),'],
       },
       boxShadow: {
         md: '0px 2px 8px 0px rgba(0, 0, 0, 0.10)',

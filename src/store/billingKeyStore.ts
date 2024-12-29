@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import GetBillingKeysResponseDto from '@/api/dto/payment/GetBillingKeysResponseDto';
+import GetBillingKeysResponseDto from '@/networks/dto/payment/GetBillingKeysResponseDto';
 
 interface State {
   billingKey: GetBillingKeysResponseDto[];

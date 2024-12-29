@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { apiClient } from '@/app/api/apiClient';
 import { ApiError } from '@/app/api/login/route';
-import UserDetailResponseDto from '@/api/dto/user/detail/userDetailResponseDto';
+import UserDetailResponseDto from '@/networks/dto/user/detail/userDetailResponseDto';
 
 export async function GET(): Promise<NextResponse<UserDetailResponseDto | ApiError>> {
   try {

@@ -5,9 +5,9 @@ import { useTeamEditStore } from '@/store';
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
 import Dropdown from '@/app/components/dropdown/Dropdown';
-import useGetSigungu from '@/app/networks/query/common/useGetSigungu';
-import useGetEmd from '@/app/networks/query/common/useGetEmd';
-import { siDoDtoListToOptionList } from '@/app/networks/dto/common';
+import useGetSigungu from '@/networks/query/common/useGetSigungu';
+import useGetEmd from '@/networks/query/common/useGetEmd';
+import { siDoDtoListToOptionList } from '@/networks/dto/common';
 
 export default function SiGunGuSelect() {
   const { siDo, siGunGu, siGunGuList, emd, emdList } = useTeamEditStore((store) => store.state);

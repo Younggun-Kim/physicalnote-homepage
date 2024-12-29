@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import { AuthNumValue, BirthDateValue, EmailValue, GenderValue, PasswordValue, PhoneValue } from '@/data';
-import UserDetailResponseDto from '@/api/dto/user/detail/userDetailResponseDto';
 import { VisibleValue } from '@/data/visible_type';
 import { WritableDraft } from 'immer';
+import UserDetailResponseDto from '@/networks/dto/user/detail/userDetailResponseDto';
 
 interface ProfileEditState {
   name: string;
