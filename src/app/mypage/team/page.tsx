@@ -1,5 +1,5 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import { getSiDo } from '@/app/utils/query/common/useGetSido';
+import { getSiDo } from '@/app/networks/query/common/useGetSido';
 import MyPageTeamContent from '@/app/mypage/team/components/TeamContent';
 
 export default async function MyPageTeamPage() {

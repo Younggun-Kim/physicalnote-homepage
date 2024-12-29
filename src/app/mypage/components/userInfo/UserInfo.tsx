@@ -10,7 +10,7 @@ import MyPageTeamName from '@/app/mypage/components/userInfo/MyPageTeamName';
 import MyEmail from '@/app/mypage/components/userInfo/MyPageEmail';
 import MyPageUserName from '@/app/mypage/components/userInfo/MyPageUserName';
 import CoachInfoResponseDto from '@/api/dto/coach/info/CoachInfoResponseDto';
-import useGetCoachInfo from '@/app/utils/query/coach/useGetCoachInfo';
+import useGetCoachInfo from '@/app/networks/query/coach/useGetCoachInfo';
 
 export const UserInfo = () => {
   const isMobile = useMediaQuery('(max-width: 425px)');

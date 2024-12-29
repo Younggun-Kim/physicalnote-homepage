@@ -9,11 +9,11 @@ import PaymentPrice from '@/app/payment/components/PaymentPrice';
 import PaymentInfo from '@/app/payment/components/PaymentInfo';
 import CardView from '@/app/mypage/subscribe/components/card/CardView';
 import PaymentBtnGroup from '@/app/payment/components/PaymentBtnGroup';
-import useGetBillingKeys from '@/app/utils/query/payment/useGetBillingKeys';
+import useGetBillingKeys from '@/app/networks/query/payment/useGetBillingKeys';
 import PaymentDivider from '@/app/payment/components/PaymentDivider';
 import useCoachInfoStore from '@/store/coachInfoStore';
-import useGetCoachInfo from '@/app/utils/query/coach/useGetCoachInfo';
-import useGetUserDetail from '@/app/utils/query/user/useGetUserDetail';
+import useGetCoachInfo from '@/app/networks/query/coach/useGetCoachInfo';
+import useGetUserDetail from '@/app/networks/query/user/useGetUserDetail';
 
 export default function PaymentContent() {
   const searchParams = useSearchParams();

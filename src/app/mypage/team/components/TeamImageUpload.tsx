@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { ChangeEvent, useRef } from 'react';
-import { useUploadImage } from '@/app/utils/query/common/useUploadImage';
+import { useUploadImage } from '@/app/networks/query/common/useUploadImage';
 
 interface Props {
   onSuccess: (url: string) => void;

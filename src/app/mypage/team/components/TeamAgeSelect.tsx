@@ -5,7 +5,7 @@ import { canTeamValidCheck, toTeamValidRequestDto, useTeamEditStore } from '@/st
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
 import Dropdown from '@/app/components/dropdown/Dropdown';
-import useTeamValidate from '@/app/utils/query/login/useTeamValidate';
+import useTeamValidate from '@/app/networks/query/login/useTeamValidate';
 import { toast } from 'react-toastify';
 
 export default function TeamAgeSelect() {

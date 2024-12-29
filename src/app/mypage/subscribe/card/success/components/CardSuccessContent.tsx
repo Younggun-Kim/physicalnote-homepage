@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import usePostBillingKey from '@/app/utils/query/payment/usePostBillingKey';
+import usePostBillingKey from '@/app/networks/query/payment/usePostBillingKey';
 import BackSubscribeBtn from '@/app/mypage/components/BackSubscribeBtn';
 
 export default function CardSuccessContent() {

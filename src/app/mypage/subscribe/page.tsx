@@ -1,6 +1,6 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
 import SubscribeContent from '@/app/mypage/subscribe/components/SubscribeContent';
-import { getBillingKeysQuery } from '@/app/utils/query/payment/useGetBillingKeys';
+import { getBillingKeysQuery } from '@/app/networks/query/payment/useGetBillingKeys';
 
 export default async function MyPageSubscribe() {
   const queryClient = new QueryClient();

@@ -1,7 +1,6 @@
 'use client';
-// import usePutBillingKeysDefault from '@/api/query/payment/usePutBillingKeysDefault';
-import GetBillingKeysResponseDto from '@/api/dto/payment/GetBillingKeysResponseDto';
-import usePutBillingKeysDefault from '@/app/utils/query/payment/usePutBillingKeysDefault';
+import usePutBillingKeysDefault from '@/app/networks/query/payment/usePutBillingKeysDefault';
+import GetBillingKeysResponseDto from '@/app/networks/dto/payment/GetBillingKeysResponseDto';
 
 interface Props {
   billingKey: GetBillingKeysResponseDto;

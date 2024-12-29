@@ -2,7 +2,7 @@
 
 // import useDeleteBillingKey from '@/api/query/payment/useDeleteBillingKeys';
 import GetBillingKeysResponseDto from '@/api/dto/payment/GetBillingKeysResponseDto';
-import useDeleteBillingKey from '@/app/utils/query/payment/useDeleteBillingKey';
+import useDeleteBillingKey from '@/app/networks/query/payment/useDeleteBillingKey';
 
 interface Props {
   billingKey: GetBillingKeysResponseDto;

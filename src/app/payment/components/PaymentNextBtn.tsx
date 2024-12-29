@@ -3,7 +3,7 @@
 import { toast } from 'react-toastify';
 import { useBillingKeyStore } from '@/store';
 import { PlanType } from '@/types/planType';
-import usePostSubscription from '@/app/utils/query/usePostSubscription';
+import usePostSubscription from '@/app/networks/query/usePostSubscription';
 import { useRouter } from 'next/navigation';
 
 interface Props {

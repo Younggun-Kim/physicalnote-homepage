@@ -8,7 +8,7 @@ import Affiliation from '@/app/mypage/team/components/Affiliation';
 import TeamAgeSelect from '@/app/mypage/team/components/TeamAgeSelect';
 import TeamSizeSelect from '@/app/mypage/team/components/TeamSizeSelect';
 import StaffPositionSelect from '@/app/mypage/team/components/StaffPositionSelect';
-import usePostSignUp from '@/app/utils/query/login/useSignUp';
+import usePostSignUp from '@/app/networks/query/login/useSignUp';
 import { isTeamEditStateValid, useProfileEditStore, useTeamEditStore } from '@/store';
 import { toast } from 'react-toastify';
 import EntrySourceSelect from '@/app/mypage/team/components/EntrySourceSelect';

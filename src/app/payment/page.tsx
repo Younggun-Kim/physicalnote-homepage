@@ -1,10 +1,10 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import { getBillingKeysQuery } from '@/app/utils/query/payment/useGetBillingKeys';
+import { getBillingKeysQuery } from '@/app/networks/query/payment/useGetBillingKeys';
 import PaymentContent from '@/app/payment/components/PaymentContent';
-import { getSubscriptionPlans } from '@/app/utils/query/payment/useGetSubscriptionPlans';
+import { getSubscriptionPlans } from '@/app/networks/query/payment/useGetSubscriptionPlans';
 import { Suspense } from 'react';
-import { getCoachInfo } from '@/app/utils/query/coach/useGetCoachInfo';
-import { getUserInfo } from '@/app/utils/query/user/useGetUserDetail';
+import { getCoachInfo } from '@/app/networks/query/coach/useGetCoachInfo';
+import { getUserInfo } from '@/app/networks/query/user/useGetUserDetail';
 
 export default async function PaymentPage() {
   const queryClient = new QueryClient();

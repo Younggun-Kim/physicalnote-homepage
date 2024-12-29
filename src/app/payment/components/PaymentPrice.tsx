@@ -4,7 +4,7 @@ import usePlanStore from '@/store/plansStore';
 import { PlanType } from '@/types/planType';
 import { useEffect, useState } from 'react';
 import PaymentField from '@/app/payment/components/PaymentField';
-import useGetSubscriptionPlans from '@/app/utils/query/payment/useGetSubscriptionPlans';
+import useGetSubscriptionPlans from '@/app/networks/query/payment/useGetSubscriptionPlans';
 
 interface Props {
   type: PlanType;

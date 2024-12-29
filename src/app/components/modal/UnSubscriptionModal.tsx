@@ -8,7 +8,7 @@ import useSubscriptionCancelModalStore from '@/store/modal/subscriptionCancelMod
 import CheckWrapper from '@/app/components/modal/CheckWrapper';
 import CheckBox from '../checkbox/CheckBox';
 import CheckDescription from '@/app/components/modal/CheckDescription';
-import useDeleteSubscription from '@/app/utils/query/payment/useDeleteSubscription';
+import useDeleteSubscription from '@/app/networks/query/payment/useDeleteSubscription';
 
 export default function UnSubscriptionModal() {
   const [cancelType, setCancelType] = useState<CancelType | undefined>(undefined);

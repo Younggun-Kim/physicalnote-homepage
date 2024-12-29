@@ -5,7 +5,7 @@ import UserInfo from './components/userInfo/UserInfo';
 import LogoutBtn from '@/app/mypage/components/LogoutBtn';
 import WithoutBtn from '@/app/mypage/components/WithoutBtn';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import { getCoachInfo } from '@/app/utils/query/coach/useGetCoachInfo';
+import { getCoachInfo } from '@/app/networks/query/coach/useGetCoachInfo';
 
 interface Props {
   children: React.ReactNode;
