@@ -7,6 +7,7 @@ import HeaderLoginLink from '@/app/components/header/HeaderLoginLink';
 import HeaderMyPageLink from './HeaderMyPageLink';
 import HeaderMenuBtn from '@/app/components/header/HeaderMenuBtn';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+import HeaderCoachLink from '@/app/components/header/HeaderCoachLink';
 
 export default function Header() {
   const isMobile = useMediaQuery(768);
@@ -17,10 +18,11 @@ export default function Header() {
       <HeaderWrapper>
         <HeaderLogo />
         {!isMobile && <HeaderMenus />}
-        <div className="flex gap-6">
+        <div className="flex gap-6 items-center">
           <HeaderLoginLink />
           <HeaderMyPageLink />
           {/*TODO: 문의하기 버튼 추가*/}
+          {!isMobile && <HeaderCoachLink />}
           {isMobile && <HeaderMenuBtn />}
         </div>
       </HeaderWrapper>

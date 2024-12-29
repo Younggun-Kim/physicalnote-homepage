@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export default function PriceContentTitle() {
   return (
     <StyledH2>
-      피지컬 노트 전문가들과 함께
+      피지컬노트 전문가들과 함께
       <br />
       선수들을 관리해보세요!
     </StyledH2>

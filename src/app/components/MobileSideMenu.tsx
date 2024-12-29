@@ -8,7 +8,7 @@ import HeaderCoachLink from '@/app/components/header/HeaderCoachLink';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 
 export default function MobileSideMenu() {
-  const { isVisibleMenu, isLoggedIn } = useAppStore((store) => store.state);
+  const { isVisibleMenu } = useAppStore((store) => store.state);
   const anim = isVisibleMenu ? 'translate-x-0' : 'translate-x-full';
   const isMobile = useMediaQuery(768);
 
@@ -30,7 +30,7 @@ export default function MobileSideMenu() {
         {/* TODO: 문의하기 */}
         {/*<MoveFaqButton />*/}
       </div>
-      {isLoggedIn && <HeaderCoachLink />}
+      <HeaderCoachLink />
     </div>
   );
 }

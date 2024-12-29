@@ -12,13 +12,13 @@ export default function HeaderCoachLink() {
     closeMenu();
   };
 
-  return isLoggedIn ? (
+  return (
     <Link
-      href={'https://coach.physicalnote.com/login'}
+      href={isLoggedIn ? 'https://coach.physicalnote.com/login' : '/login'}
       className={'rounded-full py-[0.6rem] px-6 bg-white border-secondary border-[1px]'}
       onClick={handleClick}
     >
       내 피지컬노트
     </Link>
-  ) : null;
+  );
 }
