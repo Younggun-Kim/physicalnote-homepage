@@ -6,6 +6,7 @@ export const notoSansKr = Noto_Sans_KR({
   display: 'swap', // 폰트 로딩 전략
   preload: true, // 폰트 미리 로드
   variable: '--font-noto-sans-kr', // CSS 변수명
+  fallback: ['system-ui', 'arial'],
 });
 
 export default notoSansKr;

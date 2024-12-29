@@ -6,6 +6,7 @@ export const poetsenOne = Poetsen_One({
   display: 'swap',
   preload: true,
   variable: '--font-poetsen-one',
+  fallback: ['system-ui', 'arial'],
 });
 
 export default poetsenOne;
