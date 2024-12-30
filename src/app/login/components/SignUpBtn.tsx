@@ -1,5 +1,3 @@
-'use client';
-
 import LoginBtn from '@/app/login/components/LoginBtn';
 import Link from 'next/link';
 

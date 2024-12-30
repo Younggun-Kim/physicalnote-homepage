@@ -4,50 +4,38 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import LoginBtn from '@/app/login/components/LoginBtn';
 import React from 'react';
-import { ApiError, LoginResponse } from '@/app/api/login/route';
+import usePostLogin from '@/networks/query/login/usePostLogin';
+import { AxiosError } from 'axios';
 
 /** 로그인 하기 버튼 */
 export function SubmitBtn() {
   const router = useRouter();
   const validResult = useLoginValidation();
   const { onLogin, onLogout } = useAppStore((store) => store.actions);
+  const loginMutation = usePostLogin();
 
-  const handleSubmit = async (): Promise<void> => {
+  const handleSubmit = async () => {
     try {
       const dto = validResult();
       if (!dto) {
         return;
       }
+      const result = await loginMutation.mutateAsync(dto);
 
-      const loginData = {
-        loginId: dto.loginId,
-        password: dto.password,
-        type: 'IDPW',
-      };
-
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      const data = (await response.json()) as LoginResponse | ApiError;
-
-      if (!response.ok) {
-        throw new Error('error' in data ? data.error : '로그인 중 오류가 발생했습니다.');
-      }
-
-      if ('token' in data && 'name' in data) {
-        onLogin(data.token, data.name);
+      if (result.token) {
+        onLogin(result.token, result.name);
         router.push('/');
       } else {
         onLogout();
       }
     } catch (error) {
-      toast(error instanceof Error ? error.message : '로그인 중 오류가 발생했습니다.');
-    } finally {
+      if (error instanceof AxiosError) {
+        if (error.response?.data?.message) {
+          toast(error.response.data.message);
+          return;
+        }
+      }
+      toast('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
     }
   };
 
