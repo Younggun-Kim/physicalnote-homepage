@@ -1,12 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useAppStore } from '@/store';
+import { useAppStore, useSignupStore } from '@/store';
 
 export const LogoutBtn = () => {
   const router = useRouter();
   const { onLogout } = useAppStore((store) => store.actions);
+  const signUpAction = useSignupStore((store) => store.actions);
   const handleClickLogout = () => {
+    signUpAction.resetState();
     onLogout();
     router.push('/');
   };

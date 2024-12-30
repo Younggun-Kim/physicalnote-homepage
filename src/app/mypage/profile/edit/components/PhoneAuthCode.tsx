@@ -24,16 +24,15 @@ export const PhoneAuthCode = () => {
       return;
     }
 
+    let url = 'https://dev.physicalnote.com/auth/phone/verify';
+    url += `?authCode=${authNum.getValue()}&phoneNumber=${phone.getValue()}`;
+
     try {
-      const response = await fetch('/api/phone/authCode', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          phoneNumber: phone.getValue(),
-          authCode: authNum.getValue(),
-        }),
       });
 
       if (!response.ok) {

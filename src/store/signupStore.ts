@@ -73,6 +73,7 @@ const initialState: SignupState = {
 type SignupStore = {
   state: SignupState;
   actions: {
+    resetState: () => void;
     signUpStoreInit: () => void;
     changeName: (name: string) => void;
     changeBirthDate: (birthDate: string) => void;
@@ -106,6 +107,11 @@ export const useSignupStore = create(
   immer<SignupStore>((set) => ({
     state: initialState,
     actions: {
+      resetState: () => {
+        set((store) => {
+          store.state = initialState;
+        });
+      },
       signUpStoreInit: () => {
         set((store) => {
           store.state = initialState;

@@ -6,6 +6,7 @@ import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from './FieldTitle';
 import { toast } from 'react-toastify';
 import PhoneAuthInput from './PhoneAuthInput';
+import MessageResponseDto, { isMessageResponse } from '@/app/api/dto/MessageResponseDto';
 
 export const PhoneInfo = () => {
   const { phone } = useProfileEditStore((store) => store.state);
@@ -18,20 +19,24 @@ export const PhoneInfo = () => {
     }
 
     try {
-      const response = await fetch('/api/phone/verify', {
+      const response = await fetch(`https://dev.physicalnote.com/auth/phone/send?phoneNumber=${phone.getValue()}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          phoneNumber: phone.getValue(),
-        }),
       });
 
       if (!response.ok) {
         throw new Error('서버 에러');
       }
       onChangeIsRequestAuth(true);
+
+      const data = await response.json();
+
+      // Type guard를 사용하여 응답 타입 확인
+      if (isMessageResponse(data) && data.status) {
+        toast.success(data.message);
+      }
     } catch (error) {
       toast(error instanceof Error ? error.message : '서버 에러');
     }
