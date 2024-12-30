@@ -4,13 +4,13 @@ import { toast } from 'react-toastify';
 import { AxiosInstance } from '@/networks/axiosInstance';
 import PlanResponseDto from '@/networks/dto/payment/PlanResponseDto';
 
-type ResponseType = UseQueryResult<PlanResponseDto>;
+type ResponseType = UseQueryResult<PlanResponseDto[]>;
 
 export const getSubscriptionPlans = async () => {
   try {
-    const url = `admin/v1/subscriptions/plans`;
+    const url = `/subscriptions/plans`;
     const result = await AxiosInstance.get<PlanResponseDto[]>(url);
-    return result.data?.length > 0 ? result.data[0] : undefined;
+    return result.data ?? [];
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response?.data?.message) {

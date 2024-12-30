@@ -6,7 +6,7 @@ import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from './FieldTitle';
 import { toast } from 'react-toastify';
 import PhoneAuthInput from './PhoneAuthInput';
-import MessageResponseDto, { isMessageResponse } from '@/app/api/dto/MessageResponseDto';
+import { isMessageResponse } from '@/app/api/dto/MessageResponseDto';
 
 export const PhoneInfo = () => {
   const { phone } = useProfileEditStore((store) => store.state);

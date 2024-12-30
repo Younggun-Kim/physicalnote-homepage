@@ -8,4 +8,5 @@ export default interface PlanResponseDto {
   yearlyDiscountAmount: number;
   yearlyDiscountedPrice: number;
   yearlyPrice: number;
+  features: string[];
 }
