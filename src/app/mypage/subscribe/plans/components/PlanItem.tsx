@@ -15,7 +15,7 @@ export default function PlanItem({ category, amount, description, onClick }: Pro
         'py-[18.5px] px-3 xs:py-7.5 xs:pr-6 xs:pl-4 md:py-[46px] md:px-[30px]',
         'md:flex-col md:items-center md:justify-start',
         'md:w-[280px] md:h-[360px]',
-        'hover:bg-primary hover:scale-125 hover:cursor-pointer group',
+        'hover:bg-primary hover:scale-110 hover:cursor-pointer group',
       ].join(' ')}
       onClick={onClick}
     >

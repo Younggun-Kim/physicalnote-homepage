@@ -71,7 +71,7 @@ export default {
       },
       fontFamily: {
         sans: ['var(--font-noto-sans-kr)'],
-        poetsen: ['var(--font-poetsen-one),'],
+        poetsen: ['var(--font-poetsen-one)'],
       },
       boxShadow: {
         md: '0px 2px 8px 0px rgba(0, 0, 0, 0.10)',
