@@ -5,12 +5,14 @@ import { useEffect } from 'react';
 import usePlanStore from '@/store/plansStore';
 import { useRouter } from 'next/navigation';
 import useGetSubscriptionPlans from '@/networks/query/payment/useGetSubscriptionPlans';
+import { useAppStore } from '@/store';
 
 export default function PlansContent() {
+  const router = useRouter();
+  const { isLoggedIn } = useAppStore((store) => store.state);
   const { data: planData } = useGetSubscriptionPlans();
   const { setPlans } = usePlanStore((store) => store.actions);
   const { plans } = usePlanStore((store) => store.state);
-  const router = useRouter();
 
   useEffect(() => {
     if (planData == undefined) return;
@@ -32,7 +34,11 @@ export default function PlansContent() {
           amount={plan.monthlyDiscountedPrice}
           description={plan.features}
           onClick={() => {
-            router.push(`/payment?type=MONTHLY&planId=${plan?.id ?? 0}`);
+            if (!isLoggedIn) {
+              router.push('/login');
+              return;
+            }
+            router.push(`/payment?planId=${plan?.id ?? 0}`);
           }}
         />
       ))}

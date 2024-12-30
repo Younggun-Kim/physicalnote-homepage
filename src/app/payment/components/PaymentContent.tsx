@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useBillingKeyStore, useProfileEditStore } from '@/store';
 import { useSearchParams } from 'next/dist/client/components/navigation';
-import { isPlanType, PlanType } from '@/types/planType';
 import PaymentTeamInfo from '@/app/payment/components/PaymentTeamInfo';
 import PaymentPrice from '@/app/payment/components/PaymentPrice';
 import PaymentInfo from '@/app/payment/components/PaymentInfo';
@@ -14,10 +13,13 @@ import PaymentDivider from '@/app/payment/components/PaymentDivider';
 import useCoachInfoStore from '@/store/coachInfoStore';
 import useGetCoachInfo from '@/networks/query/coach/useGetCoachInfo';
 import useGetUserDetail from '@/networks/query/user/useGetUserDetail';
+import usePlanStore from '@/store/plansStore';
+import PlanResponseDto from '@/networks/dto/payment/PlanResponseDto';
 
 export default function PaymentContent() {
   const searchParams = useSearchParams();
-  const [planCategory, setPlanCategory] = useState<PlanType>('MONTHLY');
+
+  const { plans } = usePlanStore((store) => store.state);
 
   const { data: userInfoData } = useGetUserDetail();
   const { setStateFromDto } = useProfileEditStore((store) => store.actions);
@@ -27,7 +29,7 @@ export default function PaymentContent() {
 
   const { data: billingKeysData } = useGetBillingKeys();
   const { setBillingKey } = useBillingKeyStore((store) => store.actions);
-  const [planId, setPlanId] = useState<number | null>(null);
+  const [plan, setPlan] = useState<PlanResponseDto | undefined>();
 
   useEffect(() => {
     if (billingKeysData == undefined) return;
@@ -45,19 +47,16 @@ export default function PaymentContent() {
   }, [userInfoData]);
 
   useEffect(() => {
-    const type = searchParams.get('type');
     const planId = searchParams.get('planId');
-    if (type && isPlanType(type)) {
-      setPlanCategory(type);
-    }
-    setPlanId(parseInt(planId ?? '0'));
+    const findPlan = plans.find((plan) => plan.id == parseInt(planId ?? ''));
+    setPlan(findPlan);
   }, [searchParams]);
 
   return (
     <div className={'w-full max-w-[800px] flex flex-col justify-start items-start py-10 px-7.5 mx-auto sm:mt-12'}>
       <span className={'font-sans font-bold text-black text-base sm:text-xl'}>플랜정보</span>
       <PaymentTeamInfo />
-      <PaymentPrice type={planCategory} />
+      <PaymentPrice plan={plan} />
       <PaymentDivider />
       <span className={'font-sans font-bold text-black text-base sm:text-xl'}>정보</span>
       <PaymentInfo />
@@ -65,10 +64,7 @@ export default function PaymentContent() {
       <div className="w-full flex justify-center">
         <CardView alignCenter={true} />
       </div>
-      <PaymentBtnGroup
-        billingCycle={planCategory}
-        planId={planId ?? undefined}
-      />
+      <PaymentBtnGroup plan={plan} />
     </div>
   );
 }

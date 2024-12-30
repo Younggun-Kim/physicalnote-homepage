@@ -14,6 +14,7 @@ export default function PaymentTeamInfo() {
           alt="로고"
           width={40}
           height={40}
+          style={{ objectFit: 'cover' }}
         />
       )}
       <span className={'font-sans font-normal text-gray1 text-xl leading-relaxed tracking-tighter'}>
