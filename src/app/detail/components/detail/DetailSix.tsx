@@ -1,6 +1,6 @@
 export default function DetailSix() {
   return (
-    <div className="w-full">
+    <div className="w-full max-w-[2560px] mx-auto">
       <picture className="block w-full h-full object-cover">
         <source
           media="(min-width: 1921px)"

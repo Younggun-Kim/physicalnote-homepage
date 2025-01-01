@@ -6,7 +6,7 @@ import { useAppStore } from '@/store';
 export function HomeThirdBtn() {
   const { isLoggedIn } = useAppStore((store) => store.state);
   return (
-    <Link href={isLoggedIn ? '/mypage' : '/login'}>
+    <Link href={isLoggedIn ? '/pricing' : '/login'}>
       <span
         className={[
           'rounded-full hover:cursor-pointer',

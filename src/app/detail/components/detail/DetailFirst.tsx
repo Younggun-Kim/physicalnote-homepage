@@ -1,6 +1,6 @@
 export default function DetailFirst() {
   return (
-    <div className="flex max-w-[2560px] justify-center">
+    <div className="flex max-w-[2560px] mx-auto">
       <picture className="w-full mx-auto block">
         {/* 1921px 이상 - 2560px */}
         <source
