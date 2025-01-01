@@ -17,27 +17,27 @@ export const Footer = () => {
           </span>
           <div className={`flex flex-col sm:flex-row`}>
             <div className={`flex gap-[5px]`}>
-              <div className={`flex flex-col text-gray3 ${textSize} font-bold font-sans mr-1`}>
+              <div className={`flex flex-col text-black ${textSize} font-bold font-sans mr-1`}>
                 <span>대표자명</span>
                 <span>사업자등록번</span>
                 <span>통신판매업신고번호</span>
               </div>
-              <div className={`flex flex-col text-gray3 ${textSize} font-normal font-sans mr-4`}>
+              <div className={`flex flex-col text-black ${textSize} font-normal font-sans mr-4`}>
                 <span>정문호</span>
                 <span>648-19-02442</span>
                 <span>2024-0000-1111</span>
               </div>
             </div>
             <div className="flex gap-[5px]">
-              <div className={`flex flex-col text-gray3 ${textSize} font-bold font-sans mr-1`}>
+              <div className={`flex flex-col text-black ${textSize} font-bold font-sans mr-1`}>
                 <span>전화번호</span>
                 <span>이메일</span>
                 <span>사업장주소</span>
               </div>
-              <div className={`flex flex-col text-gray3 ${textSize} font-normal font-sans`}>
-                <span>070-0000-0000</span>
-                <span>tkdgjs852@naver.com</span>
-                <span>서울특별시 강남구 봉은사로 469, B2층(삼성동, S-TOWER)</span>
+              <div className={`flex flex-col text-black ${textSize} font-normal font-sans`}>
+                <span>010-8201-0919</span>
+                <span>physicalnote.kr@gmail.com</span>
+                <span>서울특별시 중랑구 상봉로7, 지하2층 202호</span>
               </div>
             </div>
           </div>
