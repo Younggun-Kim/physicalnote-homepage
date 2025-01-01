@@ -19,13 +19,13 @@ export const Footer = () => {
             <div className={`flex gap-[5px]`}>
               <div className={`flex flex-col text-black ${textSize} font-bold font-sans mr-1`}>
                 <span>대표자명</span>
-                <span>사업자등록번</span>
+                <span>사업자등록번호</span>
                 <span>통신판매업신고번호</span>
               </div>
               <div className={`flex flex-col text-black ${textSize} font-normal font-sans mr-4`}>
                 <span>정문호</span>
                 <span>648-19-02442</span>
-                <span>2024-0000-1111</span>
+                <span></span>
               </div>
             </div>
             <div className="flex gap-[5px]">
