@@ -22,10 +22,11 @@ export default function PricingPageContent() {
         'pt-[60px] px-[30px] pb-[32px]',
         'xs:pt-[47px] xs:px-[60px] xs:pb-[20px]',
         'sm:pt-[80px] sm:px-[75px] sm:pb-[20px]',
+        'max-w-[2560px] 2xl:mx-auto 2xl:px-[400px]',
       ].join(' ')}
     >
       <PriceContent />
-      <div className="h-[1px] w-full max-w-[1587px] bg-secondary"></div>
+      <div className="h-[1px] w-full bg-secondary"></div>
       <PriceContentRefund />
     </div>
   );

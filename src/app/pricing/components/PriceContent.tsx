@@ -14,9 +14,9 @@ export default function PriceContent() {
       className={[
         'w-full flex flex-col justify-start items-start gap-5 pb-10',
         'sm:items-center',
-        'md:items-start md:pt-20 md:pl-[20%]',
+        'md:items-start md:pt-20 md:pl-0',
         'lg:flex-row lg:justify-between lg:items-center lg:pt-[120px] lg:px-[50px] lg:pb-[111px]',
-        'xl:justify-center',
+        'xl:justify-start',
         '2xl:max-w-[2560px] 2xl:pt-[120px] 2xl:gap-[148px]',
       ].join(' ')}
     >

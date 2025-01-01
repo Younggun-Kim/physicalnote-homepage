@@ -1,9 +1,7 @@
-'use client';
-import styled from 'styled-components';
-
 export default function PriceContentRefundDescriptionFirst() {
+  const pStyle = 'flex flex-col justify-start items-start font-sans font-normal text-gray1 text-xs';
   return (
-    <StyledP>
+    <p className={pStyle}>
       <span className={'font-sans font-normal text-gray1 text-2xs sm:text-base'}>
         1. 서비스에 대한 환불 기준은 다음과 같습니다.
       </span>
@@ -32,37 +30,6 @@ export default function PriceContentRefundDescriptionFirst() {
         &middot; 이용자가 관계법령 및 본 약관의 규정을 위반하여 회사로부터 강제 해지 처리가 되는 경우, 본 조의 환불
         규정은 적용되지 않습니다.
       </span>
-    </StyledP>
+    </p>
   );
 }
-
-const StyledP = styled.p`
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  color: var(--gray1);
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  @media (min-width: 1921px) {
-  }
-
-  @media (min-width: 1441px) and (max-width: 1920px) {
-  }
-
-  @media (min-width: 1025px) and (max-width: 1440px) {
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-  }
-
-  @media (min-width: 426px) and (max-width: 768px) {
-  }
-
-  @media (min-width: 321px) and (max-width: 425px) {
-  }
-`;
