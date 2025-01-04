@@ -14,9 +14,11 @@ export const getUserInfo = async () => {
 };
 
 export const getUserInfoQueryOption = {
-  enabled: hasTokenInCookies(),
+  enabled: await hasTokenInCookies(),
   queryKey: ['getUserInfo'],
   queryFn: getUserInfo,
+  staleTime: 0,
+  structuralSharing: false, // 데이터가 같아도 새 참조 반환
 };
 
 export const useGetUserDetail = () => {

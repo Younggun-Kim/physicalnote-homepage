@@ -20,7 +20,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<LoginResp
   console.log('POST login');
   try {
     const loginData: LoginRequest = await request.json();
-    console.log(loginData);
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/login/admin`, {
       method: 'POST',

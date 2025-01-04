@@ -6,7 +6,6 @@ import { useAppStore } from '@/store';
 import useGetUserDetail from '@/networks/query/user/useGetUserDetail';
 import usePlanStore from '@/store/plansStore';
 import useGetSubscriptionPlans from '@/networks/query/payment/useGetSubscriptionPlans';
-import { QueryClient } from '@tanstack/react-query';
 
 interface Props {
   children: ReactNode;
@@ -28,20 +27,17 @@ const CheckLoginState = ({ children }: Props) => {
         if (response.token) {
           onLogin(response.token);
         }
-
         setReload(response.token.length > 0);
-        const queryClient = new QueryClient();
-        queryClient.invalidateQueries({ queryKey: ['getUserInfo'] });
       })
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
-    if (!reload || !userData) {
+    if (!userData) {
       return;
     }
     setUserInfo(userData);
-  }, [reload, userData]);
+  }, [userData]);
 
   useEffect(() => {
     if (!plansData) {

@@ -7,7 +7,6 @@ interface AppState {
   isVisibleMenu: boolean;
   isLoggedIn: boolean;
   token?: string;
-  username?: string;
   userInfo?: UserDetailResponseDto;
 }
 
@@ -15,7 +14,6 @@ const initialState: AppState = {
   isVisibleMenu: false,
   isLoggedIn: false,
   token: undefined,
-  username: undefined,
   userInfo: undefined,
 };
 
@@ -26,7 +24,7 @@ type AppStore = {
     changeMenuVisible: () => void;
     closeMenu: () => void;
     setUserInfo: (dto: UserDetailResponseDto | undefined) => void;
-    onLogin: (token: string, name?: string) => void;
+    onLogin: (token: string) => void | Promise<void>;
     onLogout: () => void;
   };
 };
@@ -43,7 +41,6 @@ export const useAppStore = create(
           store.state.isVisibleMenu = false;
           store.state.isLoggedIn = false;
           store.state.token = undefined;
-          store.state.username = undefined;
         });
       },
       changeMenuVisible: () => {
@@ -61,20 +58,19 @@ export const useAppStore = create(
           store.state.userInfo = dto;
         });
       },
-      onLogin: (token: string, name?: string) => {
+      onLogin: async (token: string) => {
         set((store) => {
           store.state.isLoggedIn = true;
           store.state.token = token;
-          store.state.username = name;
         });
 
-        setCookie('token', token);
+        await setCookie('token', token);
       },
       onLogout: () => {
         set((store) => {
           store.state.isLoggedIn = false;
           store.state.token = undefined;
-          store.state.username = undefined;
+          store.state.userInfo = undefined;
         });
         deleteCookie('token');
       },

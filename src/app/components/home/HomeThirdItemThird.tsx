@@ -15,7 +15,6 @@ export function HomeThirdItemThird() {
           src="/images/home/home_3_3.png"
           alt=""
           fill
-          objectFit="cover"
           style={{ objectFit: 'cover' }}
         />
       </div>

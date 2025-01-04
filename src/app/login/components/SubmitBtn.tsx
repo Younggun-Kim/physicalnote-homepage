@@ -6,6 +6,7 @@ import LoginBtn from '@/app/login/components/LoginBtn';
 import React from 'react';
 import usePostLogin from '@/networks/query/login/usePostLogin';
 import { AxiosError } from 'axios';
+import { useGetUserDetail } from '@/networks/query/user/useGetUserDetail';
 
 /** 로그인 하기 버튼 */
 export function SubmitBtn() {
@@ -13,30 +14,48 @@ export function SubmitBtn() {
   const validResult = useLoginValidation();
   const { onLogin, onLogout } = useAppStore((store) => store.actions);
   const loginMutation = usePostLogin();
-
+  const { refetch } = useGetUserDetail();
   const handleSubmit = async () => {
     try {
-      const dto = validResult();
-      if (!dto) {
+      // 1. Validation check
+      const loginDto = validResult();
+      if (!loginDto) {
         return;
       }
-      const result = await loginMutation.mutateAsync(dto);
 
-      if (result.token) {
-        onLogin(result.token, result.name);
-        router.push('/');
-      } else {
+      // 2. Login API call
+      const loginResponse = await loginMutation.mutateAsync(loginDto);
+
+      // 3. Check login success
+      if (!loginResponse.token) {
         onLogout();
+        return;
       }
+
+      // 4. Process successful login
+      await processSuccessfulLogin(loginResponse.token);
+
+      // 5. Redirect to home
+      router.push('/');
     } catch (error) {
-      if (error instanceof AxiosError) {
-        if (error.response?.data?.message) {
-          toast(error.response.data.message);
-          return;
-        }
-      }
-      toast('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      handleLoginError(error);
     }
+  };
+
+  const processSuccessfulLogin = async (token: string) => {
+    // Update login state and token
+    await onLogin(token);
+
+    // Fetch user information
+    await refetch();
+  };
+
+  const handleLoginError = (error: unknown) => {
+    if (error instanceof AxiosError && error.response?.data?.message) {
+      toast(error.response.data.message);
+      return;
+    }
+    toast('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.');
   };
 
   return (
