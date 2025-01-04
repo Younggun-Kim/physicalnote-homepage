@@ -4,17 +4,18 @@ import GetBillingKeysResponseDto from '@/networks/dto/payment/GetBillingKeysResp
 
 interface State {
   billingKey: GetBillingKeysResponseDto[];
-  defaultBillingKey: GetBillingKeysResponseDto | null;
+  defaultBillingKey?: GetBillingKeysResponseDto;
 }
 
 const initialState: State = {
   billingKey: [],
-  defaultBillingKey: null,
+  defaultBillingKey: undefined,
 };
 
 type Store = {
   state: State;
   actions: {
+    reset: () => void;
     setBillingKey: (data: GetBillingKeysResponseDto[]) => void;
   };
 };
@@ -26,10 +27,16 @@ export const useBillingKeyStore = create(
   immer<Store>((set) => ({
     state: initialState,
     actions: {
+      reset: () => {
+        set((store) => {
+          store.state.billingKey = [];
+          store.state.defaultBillingKey = undefined;
+        });
+      },
       setBillingKey: (billingKey: GetBillingKeysResponseDto[]) => {
         set((store) => {
           store.state.billingKey = billingKey;
-          store.state.defaultBillingKey = billingKey.find((key) => key.isDefault) || null;
+          store.state.defaultBillingKey = billingKey.find((key) => key.isDefault) || undefined;
         });
       },
     },

@@ -17,7 +17,7 @@ export default function PriceContent() {
         'md:items-start md:pt-20 md:pl-0',
         'lg:flex-row lg:justify-between lg:items-center lg:pt-[120px] lg:px-[50px] lg:pb-[111px]',
         'xl:justify-start',
-        '2xl:max-w-[2560px] 2xl:pt-[120px] 2xl:gap-[148px]',
+        '2xl:max-w-[2560px] 2xl:pt-[120px] 2xl:gap-[120px]',
       ].join(' ')}
     >
       <div className="flex flex-col gap-7.5">

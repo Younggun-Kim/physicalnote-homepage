@@ -13,6 +13,7 @@ const initialState: State = {
 type Store = {
   state: State;
   actions: {
+    resetState: () => void;
     setSubscription: (data: GetStatusResponseDto | undefined) => void;
   };
 };
@@ -24,6 +25,11 @@ export const useSubscriptionStore = create(
   immer<Store>((set) => ({
     state: initialState,
     actions: {
+      resetState: () => {
+        set((store) => {
+          store.state = initialState;
+        });
+      },
       setSubscription: (subscription: GetStatusResponseDto | undefined) => {
         set((store) => {
           store.state.subscription = subscription;

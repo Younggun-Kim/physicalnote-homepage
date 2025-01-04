@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosInstance } from '@/networks/axiosInstance';
 import UserDetailResponseDto from '@/networks/dto/user/detail/userDetailResponseDto';
+import { hasTokenInCookies } from '@/utils/cookieUtils';
 
 export const getUserInfo = async () => {
   try {
@@ -12,11 +13,14 @@ export const getUserInfo = async () => {
   }
 };
 
+export const getUserInfoQueryOption = {
+  enabled: hasTokenInCookies(),
+  queryKey: ['getUserInfo'],
+  queryFn: getUserInfo,
+};
+
 export const useGetUserDetail = () => {
-  return useQuery({
-    queryKey: ['getUserInfo'],
-    queryFn: getUserInfo,
-  });
+  return useQuery(getUserInfoQueryOption);
 };
 
 export default useGetUserDetail;

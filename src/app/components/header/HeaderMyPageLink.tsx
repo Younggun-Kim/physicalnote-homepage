@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export const HeaderMyPageLink = () => {
   const { closeMenu } = useAppStore((store) => store.actions);
-  const { isLoggedIn, username } = useAppStore((store) => store.state);
+  const { isLoggedIn, userInfo } = useAppStore((store) => store.state);
 
   const handleClick = () => {
     closeMenu();
@@ -19,7 +19,7 @@ export const HeaderMyPageLink = () => {
       href={'/mypage/profile'}
     >
       <span className="font-sans font-medium text-[0.75rem] text-gray1 leading-[13px] tracking-tighter">
-        {`${username}님`}
+        {`${userInfo?.name}님`}
       </span>
       <Image
         src="/icons/user.svg"

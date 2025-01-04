@@ -22,11 +22,13 @@ export const getSubscriptionPlans = async () => {
   }
 };
 
+export const getSubscribePlansOption = {
+  queryKey: ['getPlans'],
+  queryFn: getSubscriptionPlans,
+};
+
 export const useGetSubscriptionPlans = (): ResponseType => {
-  return useQuery({
-    queryKey: ['getPlans'],
-    queryFn: getSubscriptionPlans,
-  });
+  return useQuery(getSubscribePlansOption);
 };
 
 export default useGetSubscriptionPlans;

@@ -13,6 +13,7 @@ const initialState: State = {
 type Store = {
   state: State;
   actions: {
+    reset: () => void;
     onSet: (coachInfo: CoachInfoResponseDto) => void;
   };
 };
@@ -24,6 +25,11 @@ export const useCoachInfoStore = create(
   immer<Store>((set) => ({
     state: initialState,
     actions: {
+      reset: () => {
+        set((store) => {
+          store.state.coachInfo = undefined;
+        });
+      },
       onSet: (coachInfo: CoachInfoResponseDto) => {
         set((store) => {
           store.state.coachInfo = coachInfo;
