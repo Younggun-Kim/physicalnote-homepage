@@ -25,7 +25,7 @@ export default function LoginInput({
 }: InputProps) {
   return (
     <Input
-      className={`w-full max-w-[300px] !py-0 h-12 sm:max-w-[400px]`}
+      className={`w-full max-w-[300px] !py-0 h-10 sm:h-12 sm:max-w-[400px]`}
       type={type}
       name={name}
       placeholder={placeholder}

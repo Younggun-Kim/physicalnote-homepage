@@ -11,6 +11,7 @@ import UnSubscriptionModal from '@/app/components/modal/UnSubscriptionModal';
 import notoSansKr from '@/styles/font/notoSans';
 import poetsenOne from '@/styles/font/poetsenOne';
 import CheckLoginWrapper from '@/app/components/checkLogin/CheckLoginWrapper';
+import FindAccountModal from '@/app/components/modal/findAccount/FindAccountModal';
 
 export const metadata: Metadata = {
   title: 'PhysicalNote',
@@ -38,6 +39,7 @@ export default function RootLayout({
               <ToastContainer autoClose={1000} />
               <MobileSideMenu />
               <UnSubscriptionModal />
+              <FindAccountModal />
             </CheckLoginWrapper>
           </ReactQueryProvider>
         </StyledComponentsRegistry>

@@ -10,6 +10,10 @@ const AxiosInstance = axios.create({
 
 AxiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    if (config.url?.includes('login/find_id')) {
+      config.baseURL = process.env.NEXT_PUBLIC_BASE_URL2;
+    }
+
     if (config.url?.includes('api/') || config.url?.includes('admin/')) {
       const token = getCookie('token');
       if (token) {

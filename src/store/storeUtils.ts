@@ -7,6 +7,7 @@ import useLoginStore from '@/store/loginStore';
 import useProfileEditStore from '@/store/profileEditStore';
 import useSignupStore from '@/store/signupStore';
 import useTeamEditStore from '@/store/teamEditStore';
+import useFindAccountModalStore from '@/store/modal/findAccountModalStore';
 
 export const resetStore = () => {
   useAppStore.getState().actions.onLogout();
@@ -19,4 +20,6 @@ export const resetStore = () => {
   useSignupStore.getState().actions.resetState();
   useSubscriptionStore.getState().actions.resetState();
   useTeamEditStore.getState().actions.resetState();
+
+  useFindAccountModalStore.getState().actions.resetState();
 };

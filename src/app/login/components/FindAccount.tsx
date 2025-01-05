@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import useFindAccountModalStore from '@/store/modal/findAccountModalStore';
 
 const FindAccount: React.FC = () => {
+  const { openModal } = useFindAccountModalStore((store) => store.actions);
   return (
-    <Link
-      href="/"
+    <button
+      onClick={openModal}
       className="
         inline-block
         w-full
@@ -24,8 +25,8 @@ const FindAccount: React.FC = () => {
         lg:text-sm
       "
     >
-      <span>아이디/비밀번호찾기</span>
-    </Link>
+      아이디/비밀번호찾기
+    </button>
   );
 };
 
