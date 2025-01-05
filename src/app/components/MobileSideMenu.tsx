@@ -17,7 +17,7 @@ export default function MobileSideMenu() {
   return (
     <div
       className={
-        'min-w-[230px] h-full p-6 fixed top-0 right-0 flex flex-col justify-start items-start bg-white z-50' +
+        'min-w-[230px] h-full p-6 fixed top-0 right-0 flex flex-col justify-start items-start bg-white z-[200]' +
         ` rounded-l-[10px] shadow-md ${anim}`
       }
     >

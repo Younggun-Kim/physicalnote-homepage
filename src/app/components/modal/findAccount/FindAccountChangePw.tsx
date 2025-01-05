@@ -6,7 +6,7 @@ import useFindAccountModalStore, { isValidPw } from '@/store/modal/findAccountMo
 const FindAccountChangePw = () => {
   const { state } = useFindAccountModalStore();
   return (
-    <div className="flex flex-col justify-start items-start px-7.5">
+    <div className="w-full flex flex-col justify-start items-start px-7.5">
       <ChangePwInput />
       <ChangePwVerifyInput />
       <span className={'font-sans font-normal text-sm text-red tracking-tighter leading-relaxed'}>

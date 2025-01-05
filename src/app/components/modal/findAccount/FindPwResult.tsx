@@ -6,7 +6,7 @@ const FindPwResult = () => {
   const { closeModal } = useFindAccountModalStore((store) => store.actions);
 
   return (
-    <div className={'flex flex-col justify-start items-start pt-12 px-7.5'}>
+    <div className={'w-full flex flex-col justify-start items-start pt-12 px-7.5'}>
       <p
         className={
           'flex flex-col justify-start items-start gap-2.5 mb-12 font-sans font-bold text-gray1 text-2xl tracking-tighter'
