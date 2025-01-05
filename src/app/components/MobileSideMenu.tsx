@@ -6,6 +6,7 @@ import HeaderMyPageLink from '@/app/components/header/HeaderMyPageLink';
 import HeaderMenus from '@/app/components/header/HeaderMenus';
 import HeaderCoachLink from '@/app/components/header/HeaderCoachLink';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
+import HeaderContactLink from '@/app/components/header/HeaderContactLink';
 
 export default function MobileSideMenu() {
   const { isVisibleMenu } = useAppStore((store) => store.state);
@@ -30,6 +31,7 @@ export default function MobileSideMenu() {
         {/* TODO: 문의하기 */}
         {/*<MoveFaqButton />*/}
       </div>
+      <HeaderContactLink />
       <HeaderCoachLink />
     </div>
   );

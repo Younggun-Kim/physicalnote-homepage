@@ -8,6 +8,7 @@ import HeaderMyPageLink from './HeaderMyPageLink';
 import HeaderMenuBtn from '@/app/components/header/HeaderMenuBtn';
 import { useMediaQuery } from '@/app/hooks/useMediaQuery';
 import HeaderCoachLink from '@/app/components/header/HeaderCoachLink';
+import HeaderContactLink from '@/app/components/header/HeaderContactLink';
 
 export default function Header() {
   const isMobile = useMediaQuery(768);
@@ -22,6 +23,7 @@ export default function Header() {
           <HeaderLoginLink />
           <HeaderMyPageLink />
           {/*TODO: 문의하기 버튼 추가*/}
+          {!isMobile && <HeaderContactLink />}
           {!isMobile && <HeaderCoachLink />}
           {isMobile && <HeaderMenuBtn />}
         </div>

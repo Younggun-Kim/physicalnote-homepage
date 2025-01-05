@@ -50,6 +50,7 @@ const Input = ({
         value={value}
         maxLength={maxLength}
         onChange={handleChange}
+        multiple={true}
         className="w-full font-sans font-normal text-black text-sm placeholder-gray2 outline-none hover:outline-none hover:border-none disabled:bg-white"
       />
       {children}

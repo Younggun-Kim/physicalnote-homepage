@@ -10,6 +10,10 @@ const AxiosInstance = axios.create({
 
 AxiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    if (config.url?.includes('/api/contact')) {
+      config.baseURL = '';
+    }
+
     const exceptionalUrls = ['login/find_id', 'login/find_pw/step1', 'login/find_pw/step2'];
     if (exceptionalUrls.find((path) => config.url?.includes(path))) {
       config.baseURL = process.env.NEXT_PUBLIC_BASE_URL2;
