@@ -6,6 +6,8 @@ import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
 import useFindAccountModalStore from '@/store/modal/findAccountModalStore';
 import { useAuthCodeVerify } from '@/networks/query/common/useAuthCodeVerify';
 import VisibleValue from '@/data/visible_type';
+import LoginInput from '@/app/login/components/LoginInput';
+import Button from '@/app/components/Button';
 
 export const FindAccountAuthCode = () => {
   const { isRequestAuth, phone, authCode, isPhoneAuth } = useFindAccountModalStore((store) => store.state);
@@ -15,6 +17,7 @@ export const FindAccountAuthCode = () => {
 
   const authCodeVerifyMutation = useAuthCodeVerify();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleAuthNumRightClick = async () => {
     if (isPhoneAuth) {
       return;
@@ -38,16 +41,22 @@ export const FindAccountAuthCode = () => {
       onChangePhoneMsg('서버에러');
     }
   };
+
   return isRequestAuth ? (
     <FindAccountFieldWrapper>
       <FieldTitle text={''} />
-      <AuthNumberInput
+
+      <LoginInput
         className="!py-0 h-12"
+        type="text"
+        name="auth"
         enabled={!isPhoneAuth}
+        placeholder="인증번호를 입력해주세요"
         value={authCode.getValue()}
+        isOnlyNum={true}
+        maxLength={6}
         onChange={onInputAuthCode}
-        onClickRight={handleAuthNumRightClick}
-      />
+      ></LoginInput>
     </FindAccountFieldWrapper>
   ) : null;
 };

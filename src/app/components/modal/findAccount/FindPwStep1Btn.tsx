@@ -1,27 +1,27 @@
 'use cilent';
 
 import useFindAccountModalStore, { isValidFindId } from '@/store/modal/findAccountModalStore';
-import { useFindId } from '@/networks/query/login/findId/useFindId';
+import { useFindPwStep1 } from '@/networks/query/login/findPw/useFindPwStep1';
 import { toast } from 'react-toastify';
 
-const FindIdBtn = () => {
+const FindPwStep1Btn = () => {
   const state = useFindAccountModalStore((store) => store.state);
-  const { onSaveFoundId } = useFindAccountModalStore((store) => store.actions);
+  const { onSaveFoundPwId } = useFindAccountModalStore((store) => store.actions);
   const bgColor = isValidFindId(state) ? 'bg-secondary' : 'bg-gray3';
-  const findIdMutation = useFindId();
+  const findPwStep1Mutation = useFindPwStep1();
 
   const handleClick = async () => {
     if (!isValidFindId(state)) {
       return;
     }
     try {
-      const response = await findIdMutation.mutateAsync({
+      const response = await findPwStep1Mutation.mutateAsync({
         phoneNumber: state.phone.getValue(),
         authCode: state.authCode.getValue(),
       });
 
       if (response.userLoginId) {
-        onSaveFoundId(response.userLoginId);
+        onSaveFoundPwId(response.userLoginId);
       } else {
         toast.error(response.message);
       }
@@ -37,10 +37,11 @@ const FindIdBtn = () => {
         bgColor,
       ].join(' ')}
       onClick={handleClick}
+      // onClick={handleClickTest}
     >
-      아이디찾기
+      비밀번호 변경
     </button>
   );
 };
 
-export default FindIdBtn;
+export default FindPwStep1Btn;

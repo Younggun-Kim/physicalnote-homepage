@@ -8,8 +8,10 @@ const FindIdResult = () => {
 
   return (
     <div className={'flex flex-col justify-start items-start pt-15 px-7.5'}>
-      <span className={'font-sans font-bold text-gray1 text-sm tracking-tighter'}>{`${name}님의 아이디는`}</span>
-      <p className={'flex justify-start items-center gap-2.5 mb-12'}>
+      <span
+        className={'font-sans font-bold text-gray1 text-sm tracking-tighter'}
+      >{`${name ?? '회원'}님의 아이디는`}</span>
+      <p className={'flex flex-col justify-start items-start gap-2.5 mb-12'}>
         <span className={'font-sans font-bold text-primary text-2xl tracking-tighter'}>{foundId}</span>
         <span className={'font-sans font-bold text-gray1 text-sm tracking-tighter'}>입니다.</span>
       </p>
