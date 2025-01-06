@@ -9,7 +9,7 @@ export default async function PricingPage() {
         'pt-[60px] px-[30px] pb-[32px]',
         'xs:pt-[47px] xs:px-[60px] xs:pb-[20px]',
         'sm:pt-[80px] sm:px-[75px] sm:pb-[20px]',
-        'max-w-[2560px] 2xl:mx-auto 2xl:px-[400px]',
+        'max-w-[2560px] 2xl:mx-auto 2xl:pl-[400px] 2xl:pr-25',
       ].join(' ')}
     >
       <PriceContent />

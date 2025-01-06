@@ -20,7 +20,7 @@ export default function PriceContent() {
         '2xl:max-w-[2560px] 2xl:pt-[120px] 2xl:gap-[120px]',
       ].join(' ')}
     >
-      <div className="flex flex-col gap-7.5">
+      <div className="h-full flex flex-col gap-7.5 xl:gap-15">
         <PriceContentTitle />
         <PriceContentDescription />
       </div>
