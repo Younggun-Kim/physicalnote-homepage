@@ -8,7 +8,10 @@ interface Props {
 
 export const FooterLink = ({ href, label }: Props) => {
   return (
-    <Link href={href}>
+    <Link
+      href={href}
+      target={'_blank'}
+    >
       <span className="text-gray2 font-medium font-sans text-2xs">{label}</span>
     </Link>
   );
