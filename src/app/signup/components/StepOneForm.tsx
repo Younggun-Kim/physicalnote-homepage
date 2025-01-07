@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import CheckTerm from './CheckTerm';
 import { SignUpNextBtn } from '@/app/signup/components/SignUpNextBtn';

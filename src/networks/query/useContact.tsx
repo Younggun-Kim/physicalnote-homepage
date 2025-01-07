@@ -3,11 +3,6 @@ import { toast } from 'react-toastify';
 import { AxiosInstance } from '@/networks/axiosInstance';
 import { AxiosError } from 'axios';
 
-interface UseContactMailProps {
-  onSuccess?: () => void;
-  onError?: (error: Error) => void;
-}
-
 export interface ContactForm {
   name: string;
   team: string;

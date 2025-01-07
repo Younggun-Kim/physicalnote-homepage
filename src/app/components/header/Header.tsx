@@ -23,7 +23,7 @@ export default function Header() {
           <HeaderLoginLink />
           <HeaderMyPageLink />
           {/*TODO: 문의하기 버튼 추가*/}
-          {!isMobile && <HeaderContactLink />}
+          {!isMobile && <HeaderContactLink hasIcon={false} />}
           {!isMobile && <HeaderCoachLink />}
           {isMobile && <HeaderMenuBtn />}
         </div>
