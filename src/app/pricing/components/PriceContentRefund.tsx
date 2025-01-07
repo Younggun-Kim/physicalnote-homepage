@@ -7,15 +7,15 @@ export default function PriceContentRefund() {
     <div
       className={[
         'w-full flex flex-col justify-start items-start',
-        'md:w-auto mx-auto',
-        'lg:w-full lg:flex-row lg:gap-20',
+        'lg:w-auto mx-auto',
+        'xl:w-full xl:flex-row xl:gap-20',
       ].join(' ')}
     >
       <h6
         className={[
           'font-sans font-bold text-base text-black mb-10',
-          'md:text-[1.75rem] md:mb-8',
-          'lg:text-[2rem]',
+          'lg:text-[1.75rem] lg:mb-8',
+          'xl:text-[2rem]',
         ].join(' ')}
       >
         환불정책

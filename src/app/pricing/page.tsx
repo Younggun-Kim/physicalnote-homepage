@@ -14,7 +14,6 @@ export default async function PricingPage() {
       ].join(' ')}
     >
       <PriceContent />
-
       <PriceBtnGroup />
       <div className="h-[1px] w-full bg-secondary my-10"></div>
       <PriceContentRefund />
