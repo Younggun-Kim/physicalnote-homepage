@@ -5,11 +5,11 @@ export default async function PricingPage() {
   return (
     <div
       className={[
-        'flex flex-col justify-start items-center',
-        'pt-[60px] px-[30px] pb-[32px]',
-        'xs:pt-[47px] xs:px-[60px] xs:pb-[20px]',
-        'sm:pt-[80px] sm:px-[75px] sm:pb-[20px]',
-        'max-w-[2560px] 2xl:mx-auto 2xl:pl-[400px] 2xl:pr-25',
+        'flex flex-col justify-start items-start',
+        'pt-15 px-7.5 pb-8',
+        'md:px-20 md:pb-10',
+        'lg:pt-35 lg:px-12',
+        'max-w-[1600px] 2xl:mx-auto 2xl:px-0',
       ].join(' ')}
     >
       <PriceContent />

@@ -1,8 +1,8 @@
 export default function PriceContentDescription() {
   return (
     <div className="flex flex-col gap-4">
-      <h6 className="font-sans font-bold text-xl text-black">피지컬 노트 이용시 혜택</h6>
-      <p className="flex flex-col gap-[2.5] font-sans font-medium text-black text-base">
+      <h6 className={['font-sans font-bold text-sm text-black', 'md:text-base'].join(' ')}>피지컬 노트 이용시 혜택</h6>
+      <p className={['flex flex-col gap-2.5 font-sans font-medium text-black text-xs', 'md:text-sm'].join(' ')}>
         <span>
           1. 기간 한정 이용 시(25.00.00 ~ 00.00) <span className="font-bold text-primary">10% 할인</span>
         </span>

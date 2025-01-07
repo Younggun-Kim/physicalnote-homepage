@@ -22,9 +22,9 @@ export default function PlansContent() {
   return (
     <div
       className={[
-        'flex flex-wrap flex-col justify-start items-center gap-7',
-        'mt-15 md:flex-row md:gap-10 md:mt-0',
-        'md:max-w-[920px]',
+        'w-full flex flex-wrap flex-col justify-start items-center gap-5',
+        'lg:flex-row lg:gap-0 lg:justify-between',
+        'lg:max-w-[920px]',
       ].join(' ')}
     >
       {plans.map((plan) => (
