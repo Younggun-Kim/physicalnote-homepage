@@ -12,7 +12,7 @@ interface State {
 }
 
 const initialState: State = {
-  isOpen: true,
+  isOpen: false,
   planId: undefined,
   planType: 'MONTHLY',
   teamName: '',
