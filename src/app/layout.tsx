@@ -12,6 +12,7 @@ import notoSansKr from '@/styles/font/notoSans';
 import poetsenOne from '@/styles/font/poetsenOne';
 import CheckLoginWrapper from '@/app/components/checkLogin/CheckLoginWrapper';
 import FindAccountModal from '@/app/components/modal/findAccount/FindAccountModal';
+import EstimateModal from '@/app/components/modal/estimate/EstimateModal';
 
 export const metadata: Metadata = {
   title: 'PhysicalNote',
@@ -40,6 +41,7 @@ export default function RootLayout({
               <MobileSideMenu />
               <UnSubscriptionModal />
               <FindAccountModal />
+              <EstimateModal />
             </CheckLoginWrapper>
           </ReactQueryProvider>
         </StyledComponentsRegistry>

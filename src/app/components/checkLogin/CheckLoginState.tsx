@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useEffect } from 'react';
 import useReLogin from '@/networks/query/login/useReLogin';
 import { useAppStore } from '@/store';
 import useGetUserDetail from '@/networks/query/user/useGetUserDetail';
@@ -12,7 +12,6 @@ interface Props {
 }
 
 const CheckLoginState = ({ children }: Props) => {
-  const [reload, setReload] = useState<boolean>(false);
   const { data: userData } = useGetUserDetail();
   const { data: plansData } = useGetSubscriptionPlans();
   const reLoginMutation = useReLogin();
@@ -27,7 +26,6 @@ const CheckLoginState = ({ children }: Props) => {
         if (response.token) {
           onLogin(response.token);
         }
-        setReload(response.token.length > 0);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -40,11 +38,12 @@ const CheckLoginState = ({ children }: Props) => {
   }, [userData]);
 
   useEffect(() => {
+    console.log(plansData);
     if (!plansData) {
       return;
     }
     setPlans(plansData);
-  }, [reload, plansData]);
+  }, [plansData]);
 
   return <>{children}</>;
 };
