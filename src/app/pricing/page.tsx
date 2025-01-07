@@ -1,5 +1,6 @@
 import PriceContent from '@/app/pricing/components/PriceContent';
 import PriceContentRefund from '@/app/pricing/components/PriceContentRefund';
+import PriceBtnGroup from '@/app/pricing/components/PriceBtnGroup';
 
 export default async function PricingPage() {
   return (
@@ -13,7 +14,9 @@ export default async function PricingPage() {
       ].join(' ')}
     >
       <PriceContent />
-      <div className="h-[1px] w-full bg-secondary"></div>
+
+      <PriceBtnGroup />
+      <div className="h-[1px] w-full bg-secondary my-10"></div>
       <PriceContentRefund />
     </div>
   );

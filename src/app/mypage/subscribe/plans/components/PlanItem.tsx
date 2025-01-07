@@ -36,7 +36,9 @@ export default function PlanItem({ category, amount, description, onClick }: Pro
       ].join(' ')}
       onClick={onClick}
     >
-      <span className={'font-poetsen font-normal text-xl text-primary whitespace-nowrap px-4 group-hover:text-white'}>
+      <span
+        className={'font-poetsen font-normal text-xl text-primary whitespace-nowrap sm:px-4 group-hover:text-white'}
+      >
         {category}
       </span>
       <Divider />

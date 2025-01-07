@@ -6,9 +6,9 @@ export default function PriceContentRefund() {
   return (
     <div
       className={[
-        'w-full pt-10 flex flex-col justify-start items-start',
-        'md:pt-20 md:w-auto mx-auto',
-        'lg:w-full lg:flex-row lg:pt-20 lg:gap-20',
+        'w-full flex flex-col justify-start items-start',
+        'md:w-auto mx-auto',
+        'lg:w-full lg:flex-row lg:gap-20',
       ].join(' ')}
     >
       <h6

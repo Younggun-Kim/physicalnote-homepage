@@ -28,10 +28,8 @@ export default function MobileSideMenu() {
         <HeaderMenus />
       </div>
       <div className="mb-3">
-        {/* TODO: 문의하기 */}
-        {/*<MoveFaqButton />*/}
+        <HeaderContactLink hasIcon={true} />
       </div>
-      <HeaderContactLink />
       <HeaderCoachLink />
     </div>
   );
