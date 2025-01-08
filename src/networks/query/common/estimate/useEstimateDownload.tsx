@@ -5,7 +5,7 @@ import EstimateDownloadRequestDto from '@/networks/query/common/estimate/estimat
 import { toast } from 'react-toastify';
 
 import fileDownload from 'js-file-download';
-import { RawAxiosResponseHeaders } from 'axios';
+import RegUtils from '@/utils/regUtils';
 
 export const postEstimateDownload = async (dto: EstimateDownloadRequestDto) => {
   try {
@@ -15,13 +15,15 @@ export const postEstimateDownload = async (dto: EstimateDownloadRequestDto) => {
     });
 
     const contentDisposition = response.headers['content-disposition'];
-    const fileName = contentDisposition
-      ? decodeURIComponent(contentDisposition.split('filename=')[1].replace(/['"]/g, ''))
-      : 'download.xlsx';
+    const defaultFilename = '피지컬노트_견적서.xlsx';
+    const encodedFilename = RegUtils.filenameMatch(contentDisposition, defaultFilename);
+    let filename = encodedFilename;
 
-    console.log(response.headers as RawAxiosResponseHeaders);
+    if (encodedFilename != defaultFilename) {
+      filename = decodeURIComponent(encodedFilename);
+    }
 
-    fileDownload(response.data, fileName);
+    fileDownload(response.data, filename);
 
     return response.status == 200;
   } catch (err) {

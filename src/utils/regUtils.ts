@@ -14,7 +14,7 @@ export default class RegUtils {
   };
 
   static passwordMatch = (value: string): boolean => {
-    const passwordRegex = /^(?=.*?[a-z-A-Z-])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$/;
+    const passwordRegex = /^(?=.*?[a-z-A-Z-])(?=.*?[0-9])(?=.*?[!@#$&*~]).{8,}$/;
     return this.match(passwordRegex, value);
   };
 
@@ -31,5 +31,12 @@ export default class RegUtils {
   static authNumMatch = (value: string): boolean => {
     const authNumRegex = /^\d{6}$/;
     return this.match(authNumRegex, value);
+  };
+
+  /** Content-Disposition 헤더에서 파일명 추출하기 */
+  static filenameMatch = (value: string, defaultName: string): string => {
+    const filenameRegex = /filename\*=UTF-8''([\w%\-.]+)(?:; ?|$)/i;
+    const match = filenameRegex.exec(value);
+    return (match && match[1]) ?? defaultName;
   };
 }
