@@ -52,7 +52,9 @@ export const Dropdown = <T,>({
   const icon = isOpen ? '/icons/chevron-up.svg' : '/icons/chevron-down.svg';
 
   return (
-    <div className={`dropdown relative w-full rounded-full shadow-md h-10 py-0 px-5 md:h-12 ${className}`}>
+    <div
+      className={`dropdown relative w-full rounded-full shadow-md h-10 py-0 px-5 md:h-12 hover:cursor-pointer ${className}`}
+    >
       <div className="w-full h-full flex justify-start items-center">
         <div
           className="w-full flex justify-start items-center"

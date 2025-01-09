@@ -1,23 +1,14 @@
 'use client';
 
 import PlanItem from '@/app/mypage/subscribe/plans/components/PlanItem';
-import { useEffect } from 'react';
 import usePlanStore from '@/store/plansStore';
 import { useRouter } from 'next/navigation';
-import useGetSubscriptionPlans from '@/networks/query/payment/useGetSubscriptionPlans';
 import { useAppStore } from '@/store';
 
 export default function PlansContent() {
   const router = useRouter();
   const { isLoggedIn } = useAppStore((store) => store.state);
-  const { data: planData } = useGetSubscriptionPlans();
-  const { setPlans } = usePlanStore((store) => store.actions);
   const { plans } = usePlanStore((store) => store.state);
-
-  useEffect(() => {
-    if (planData == undefined) return;
-    setPlans(planData);
-  }, [planData]);
 
   return (
     <div

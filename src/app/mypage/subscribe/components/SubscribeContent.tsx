@@ -12,7 +12,6 @@ import useGetBillingKeys from '@/networks/query/payment/useGetBillingKeys';
 export default function SubscribeContent() {
   const { refetch: billingKeyRefetch } = useGetBillingKeys();
   const { defaultBillingKey } = useBillingKeyStore((store) => store.state);
-
   const { subscription } = useSubscriptionStore((store) => store.state);
 
   useEffect(() => {
