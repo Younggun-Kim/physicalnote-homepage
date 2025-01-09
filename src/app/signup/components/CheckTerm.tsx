@@ -5,6 +5,7 @@ import Image from 'next/image';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import CheckBox from '@/app/components/checkbox/CheckBox';
+import { TERM_LINKS } from '@/types/nav_types';
 
 export const CheckTerm = () => {
   const router = useRouter();
@@ -14,7 +15,7 @@ export const CheckTerm = () => {
   const handleCheck = () => onToggleTerm();
 
   const handleClick = () => {
-    router.push('/policy/privacy');
+    router.push(TERM_LINKS[1].href);
   };
 
   return (

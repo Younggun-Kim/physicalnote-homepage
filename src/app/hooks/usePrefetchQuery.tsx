@@ -9,6 +9,7 @@ import { postFindPwStep1Opt } from '@/networks/query/login/findPw/useFindPwStep1
 import { postFindPwStep2Opt } from '@/networks/query/login/findPw/useFindPwStep2';
 import { postContactOpt } from '@/networks/query/useContact';
 import { getBillingKeyOpt } from '@/networks/query/payment/useGetBillingKeys';
+import { getSidoOpt } from '@/networks/query/common/useGetSido';
 
 /**
  * React Query Prefetch를 위한 Hook
@@ -18,6 +19,7 @@ const usePrefetchQuery = async () => {
   await customQueryClient.prefetchQuery(getUserInfoQueryOption);
   await customQueryClient.prefetchQuery(getSubscribePlansOption);
   await customQueryClient.prefetchQuery(getBillingKeyOpt);
+  await customQueryClient.prefetchQuery(getSidoOpt);
 
   /** Mutation 등록 */
   customQueryClient.setMutationDefaults(['postRelogin'], postReloginOption);

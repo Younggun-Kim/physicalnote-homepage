@@ -10,6 +10,8 @@ import useGetBillingKeys from '@/networks/query/payment/useGetBillingKeys';
 import useGetCoachInfo from '@/networks/query/coach/useGetCoachInfo';
 import useCoachInfoStore from '@/store/coachInfoStore';
 import useRefetchQuery from '@/app/hooks/useRefetchQuery';
+import useGetSubscriptionStatus from '@/networks/query/payment/useGetSubscriptionStatus';
+import useSubscriptionStore from '@/store/subscriptionStore';
 
 interface Props {
   children: ReactNode;
@@ -21,6 +23,9 @@ const CheckLoginState = ({ children }: Props) => {
   const { data: billingKeyData } = useGetBillingKeys();
   const { data: coachInfoData } = useGetCoachInfo();
 
+  const { defaultBillingKey } = useBillingKeyStore((store) => store.state);
+  const { data: subscriptionData } = useGetSubscriptionStatus(defaultBillingKey?.customerKey);
+
   const reLoginMutation = useReLogin();
 
   const { refetchAll } = useRefetchQuery();
@@ -28,6 +33,7 @@ const CheckLoginState = ({ children }: Props) => {
   const { setPlans } = usePlanStore((state) => state.actions);
   const { setBillingKey } = useBillingKeyStore((store) => store.actions);
   const { onSet: setCoachInfo } = useCoachInfoStore((store) => store.actions);
+  const { setSubscription } = useSubscriptionStore((store) => store.actions);
 
   useEffect(() => {
     reLoginMutation
@@ -51,7 +57,7 @@ const CheckLoginState = ({ children }: Props) => {
   useEffect(() => {
     if (!billingKeyData) return;
     setBillingKey(billingKeyData);
-  }, [billingKeyData]);
+  }, [billingKeyData, userData]);
 
   useEffect(() => {
     if (!coachInfoData) return;
@@ -64,6 +70,11 @@ const CheckLoginState = ({ children }: Props) => {
     }
     setPlans(plansData);
   }, [plansData]);
+
+  useEffect(() => {
+    if (subscriptionData == undefined) return;
+    setSubscription(subscriptionData);
+  }, [subscriptionData, defaultBillingKey, userData]);
 
   return <>{children}</>;
 };

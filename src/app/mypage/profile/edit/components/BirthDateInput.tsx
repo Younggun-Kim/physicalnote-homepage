@@ -17,6 +17,7 @@ export const BirthDateInput = ({ enabled = false }: { enabled?: boolean }) => {
         name="birthDate"
         placeholder="YYYYMMDD"
         enabled={enabled}
+        maxLength={8}
         value={birthDate.getValue()}
         onChange={onChangeBirthDate}
         isOnlyNum={true}

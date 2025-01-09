@@ -7,16 +7,20 @@ import StepOneForm from '@/app/signup/components/StepOneForm';
 import StepTwoForm from '@/app/signup/components/StepTwoForm';
 import StepThreeForm from '@/app/signup/components/StepThreeForm';
 import useProfileEditStore from '../../../store/profileEditStore';
+import { useTeamEditStore } from '@/store';
 
 export default function SignUpContent() {
   const maxStep = 3;
   const [step, setStep] = useState(1);
-  const { resetState } = useProfileEditStore((store) => store.actions);
 
   useEffect(() => {
-    resetState();
+    useProfileEditStore.getState().actions.resetState();
+    useTeamEditStore.getState().actions.resetState();
 
-    return () => resetState();
+    return () => {
+      useProfileEditStore.getState().actions.resetState();
+      useTeamEditStore.getState().actions.resetState();
+    };
   }, []);
 
   const handleStepChange = (currentStep: number) => {
