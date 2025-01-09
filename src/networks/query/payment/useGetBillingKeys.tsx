@@ -1,6 +1,4 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
-import { AxiosError } from 'axios';
+import { UndefinedInitialDataOptions, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { AxiosInstance } from '@/networks/axiosInstance';
 import GetBillingKeysResponseDto from '@/networks/dto/payment/GetBillingKeysResponseDto';
 
@@ -17,21 +15,18 @@ export const getBillingKeysQuery = async () => {
 
     return [];
   } catch (error) {
-    if (error instanceof AxiosError) {
-      if (error.response?.data?.message) {
-        toast(error.response.data.message);
-        return;
-      }
-    }
-    toast('서버에러입니다.\n관리자에게 문의해주세요.');
     return [];
   }
 };
 
+export const getBillingKeyOpt = {
+  queryKey: ['getBillingKeys'],
+  queryFn: getBillingKeysQuery,
+} as UndefinedInitialDataOptions<GetBillingKeysResponseDto[], Error, GetBillingKeysResponseDto[], string[]>;
+
 export const useGetBillingKeys = (): ResponseType => {
   return useQuery({
-    queryKey: ['getBillingKeys'],
-    queryFn: getBillingKeysQuery,
+    ...getBillingKeyOpt,
   });
 };
 

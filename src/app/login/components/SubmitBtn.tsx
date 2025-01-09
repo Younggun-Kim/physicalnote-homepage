@@ -6,7 +6,7 @@ import LoginBtn from '@/app/login/components/LoginBtn';
 import React from 'react';
 import usePostLogin from '@/networks/query/login/usePostLogin';
 import { AxiosError } from 'axios';
-import { useGetUserDetail } from '@/networks/query/user/useGetUserDetail';
+import useRefetchQuery from '@/app/hooks/useRefetchQuery';
 
 /** 로그인 하기 버튼 */
 export function SubmitBtn() {
@@ -14,7 +14,8 @@ export function SubmitBtn() {
   const validResult = useLoginValidation();
   const { onLogin, onLogout } = useAppStore((store) => store.actions);
   const loginMutation = usePostLogin();
-  const { refetch } = useGetUserDetail();
+  const { refetchAll } = useRefetchQuery();
+
   const handleSubmit = async () => {
     try {
       // 1. Validation check
@@ -47,7 +48,7 @@ export function SubmitBtn() {
     await onLogin(token);
 
     // Fetch user information
-    await refetch();
+    await refetchAll();
   };
 
   const handleLoginError = (error: unknown) => {

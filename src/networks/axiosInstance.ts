@@ -1,5 +1,7 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { getCookie } from 'cookies-next';
+import { toast } from 'react-toastify';
+import { ErrorResponseType } from '@/networks/dto/errorResponseDto';
 
 const AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -38,6 +40,13 @@ AxiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    if (error instanceof AxiosError) {
+      const errorResponse = error as ErrorResponseType;
+      if (errorResponse.response?.data) {
+        const { message } = errorResponse.response.data;
+        toast(message, {});
+      }
+    }
     return Promise.reject(error);
   },
 );
