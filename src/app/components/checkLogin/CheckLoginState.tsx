@@ -9,6 +9,7 @@ import useGetSubscriptionPlans from '@/networks/query/payment/useGetSubscription
 import useGetBillingKeys from '@/networks/query/payment/useGetBillingKeys';
 import useGetCoachInfo from '@/networks/query/coach/useGetCoachInfo';
 import useCoachInfoStore from '@/store/coachInfoStore';
+import useRefetchQuery from '@/app/hooks/useRefetchQuery';
 
 interface Props {
   children: ReactNode;
@@ -22,6 +23,7 @@ const CheckLoginState = ({ children }: Props) => {
 
   const reLoginMutation = useReLogin();
 
+  const { refetchAll } = useRefetchQuery();
   const { onLogin, setUserInfo } = useAppStore((state) => state.actions);
   const { setPlans } = usePlanStore((state) => state.actions);
   const { setBillingKey } = useBillingKeyStore((store) => store.actions);
@@ -33,6 +35,7 @@ const CheckLoginState = ({ children }: Props) => {
       .then((response) => {
         if (response.token) {
           onLogin(response.token);
+          refetchAll();
         }
       })
       .catch((error) => console.log(error));
@@ -56,7 +59,6 @@ const CheckLoginState = ({ children }: Props) => {
   }, [coachInfoData]);
 
   useEffect(() => {
-    console.log(plansData);
     if (!plansData) {
       return;
     }

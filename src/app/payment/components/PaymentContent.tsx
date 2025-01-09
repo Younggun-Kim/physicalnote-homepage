@@ -11,12 +11,15 @@ import PlanResponseDto from '@/networks/dto/payment/PlanResponseDto';
 import PaymentPeriodCard from '@/app/payment/components/PaymentPeriodCard';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import PaymentField from '@/app/payment/components/PaymentField';
+import { isPlanTypeMonthly, PlanType } from '@/types/planType';
 
 export default function PaymentContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { plans } = usePlanStore((store) => store.state);
   const [plan, setPlan] = useState<PlanResponseDto | undefined>();
+  const [planType, setPlanType] = useState<PlanType>('MONTHLY');
 
   useEffect(() => {
     const planId = searchParams.get('planId');
@@ -26,23 +29,42 @@ export default function PaymentContent() {
       router.back();
       return;
     }
-    console.log(findPlan);
     setPlan(findPlan);
   }, [searchParams]);
 
   return (
     <div className={'w-full max-w-[800px] flex flex-col justify-start items-start py-10 px-7.5 mx-auto sm:mt-12'}>
-      <div className="w-full flex flex-col gap-5">
+      <div className={['w-full flex flex-col gap-5 md:flex-row md:gap-6', 'mb-12'].join(' ')}>
         <PaymentPeriodCard
           type={'MONTHLY'}
           price={(plan?.monthlyDiscountedPrice ?? 0) / 10000}
           originPrice={(plan?.monthlyDiscountedPrice ?? 0) / 10000}
+          isSelected={isPlanTypeMonthly(planType)}
+          onClick={() => setPlanType('MONTHLY')}
         />
         <PaymentPeriodCard
           type={'YEARLY'}
           price={(plan?.yearlyDiscountedPrice ?? 0) / 10000}
           originPrice={(plan?.yearlyPrice ?? 0) / 10000}
+          isSelected={!isPlanTypeMonthly(planType)}
+          onClick={() => setPlanType('YEARLY')}
         />
+      </div>
+
+      <div>
+        <PaymentField className="inline-block min-w-20">구독정보</PaymentField>
+        <div className={'inline-flex flex-col justify-center items-start group-hover:scale-90'}>
+          {plan?.features.map((item, idx) => (
+            <span
+              key={idx}
+              className={['font-sans font-normal text-black text-base leading-relaxed tracking-tighter'].join(' ')}
+            >
+              {idx > 1 ? '+ ' : ''}
+              {item}
+            </span>
+          ))}
+        </div>
+        <div className={'flex flex-col justify-center items-start group-hover:scale-90'}></div>
       </div>
       <PaymentDivider />
       <span className={'font-sans font-bold text-black text-base sm:text-xl'}>정보</span>
@@ -51,7 +73,10 @@ export default function PaymentContent() {
       <div className="w-full flex justify-center">
         <CardView alignCenter={true} />
       </div>
-      <PaymentBtnGroup plan={plan} />
+      <PaymentBtnGroup
+        plan={plan}
+        planType={planType}
+      />
     </div>
   );
 }

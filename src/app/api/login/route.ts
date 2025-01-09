@@ -30,7 +30,6 @@ export async function POST(request: NextRequest): Promise<NextResponse<LoginResp
     });
 
     const data = await response.json();
-    console.log('API response', data);
 
     if (!response.ok) {
       if (response.status === 401) {

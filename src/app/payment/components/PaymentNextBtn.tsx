@@ -8,16 +8,16 @@ import { useRouter } from 'next/navigation';
 
 interface Props {
   planId?: number;
-  billingCycle?: PlanType;
+  planType?: PlanType;
 }
 
-export default function PaymentNextBtn({ planId, billingCycle }: Props) {
+export default function PaymentNextBtn({ planId, planType }: Props) {
   const router = useRouter();
   const { defaultBillingKey } = useBillingKeyStore((store) => store.state);
   const postMutation = usePostSubscription();
 
   const handleClick = async () => {
-    if (!planId || planId == 0 || !billingCycle) {
+    if (!planId || planId == 0 || !planType) {
       toast('구독 플랜이 유효하지 않습니다. 관리자에게 문의해주세요.');
       return;
     }
@@ -27,7 +27,7 @@ export default function PaymentNextBtn({ planId, billingCycle }: Props) {
       return;
     }
     const response = await postMutation.mutateAsync({
-      billingCycle,
+      billingCycle: planType,
       customerKey: defaultBillingKey.customerKey,
       planId,
     });
