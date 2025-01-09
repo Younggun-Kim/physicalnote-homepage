@@ -15,6 +15,7 @@ import { postContactOpt } from '@/networks/query/useContact';
 const usePrefetchQuery = async () => {
   await customQueryClient.prefetchQuery(getSubscribePlansOption);
   await customQueryClient.prefetchQuery(getUserInfoQueryOption);
+  await customQueryClient.prefetchQuery(getSubscribePlansOption);
 
   /** Mutation 등록 */
   customQueryClient.setMutationDefaults(['postRelogin'], postReloginOption);

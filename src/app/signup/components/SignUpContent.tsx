@@ -1,20 +1,22 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useSignupStore } from '@/store';
 import { clamp } from '@/utils';
 import SignUpSteps from '@/app/signup/components/SignUpSteps';
 import StepOneForm from '@/app/signup/components/StepOneForm';
 import StepTwoForm from '@/app/signup/components/StepTwoForm';
 import StepThreeForm from '@/app/signup/components/StepThreeForm';
+import useProfileEditStore from '../../../store/profileEditStore';
 
 export default function SignUpContent() {
   const maxStep = 3;
   const [step, setStep] = useState(1);
-  const { signUpStoreInit } = useSignupStore((store) => store.actions);
+  const { resetState } = useProfileEditStore((store) => store.actions);
 
   useEffect(() => {
-    signUpStoreInit();
+    resetState();
+
+    return () => resetState();
   }, []);
 
   const handleStepChange = (currentStep: number) => {
