@@ -2,33 +2,48 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/dist/client/components/navigation';
-import PaymentTeamInfo from '@/app/payment/components/PaymentTeamInfo';
-import PaymentPrice from '@/app/payment/components/PaymentPrice';
 import PaymentInfo from '@/app/payment/components/PaymentInfo';
 import CardView from '@/app/mypage/subscribe/components/card/CardView';
 import PaymentBtnGroup from '@/app/payment/components/PaymentBtnGroup';
 import PaymentDivider from '@/app/payment/components/PaymentDivider';
 import usePlanStore from '@/store/plansStore';
 import PlanResponseDto from '@/networks/dto/payment/PlanResponseDto';
+import PaymentPeriodCard from '@/app/payment/components/PaymentPeriodCard';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 export default function PaymentContent() {
   const searchParams = useSearchParams();
-
+  const router = useRouter();
   const { plans } = usePlanStore((store) => store.state);
-
   const [plan, setPlan] = useState<PlanResponseDto | undefined>();
 
   useEffect(() => {
     const planId = searchParams.get('planId');
     const findPlan = plans.find((plan) => plan.id == parseInt(planId ?? ''));
+    if (!findPlan) {
+      toast.error('유효하지 않은 구독 플랜입니다.');
+      router.back();
+      return;
+    }
+    console.log(findPlan);
     setPlan(findPlan);
   }, [searchParams]);
 
   return (
     <div className={'w-full max-w-[800px] flex flex-col justify-start items-start py-10 px-7.5 mx-auto sm:mt-12'}>
-      <span className={'font-sans font-bold text-black text-base sm:text-xl'}>플랜정보</span>
-      <PaymentTeamInfo />
-      <PaymentPrice plan={plan} />
+      <div className="w-full flex flex-col gap-5">
+        <PaymentPeriodCard
+          type={'MONTHLY'}
+          price={(plan?.monthlyDiscountedPrice ?? 0) / 10000}
+          originPrice={(plan?.monthlyDiscountedPrice ?? 0) / 10000}
+        />
+        <PaymentPeriodCard
+          type={'YEARLY'}
+          price={(plan?.yearlyDiscountedPrice ?? 0) / 10000}
+          originPrice={(plan?.yearlyPrice ?? 0) / 10000}
+        />
+      </div>
       <PaymentDivider />
       <span className={'font-sans font-bold text-black text-base sm:text-xl'}>정보</span>
       <PaymentInfo />

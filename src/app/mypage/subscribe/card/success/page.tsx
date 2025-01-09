@@ -3,7 +3,7 @@ import CardSuccessContent from './components/CardSuccessContent';
 
 export default function CardSuccessPage() {
   return (
-    <Suspense>
+    <Suspense fallback={null}>
       <CardSuccessContent />
     </Suspense>
   );

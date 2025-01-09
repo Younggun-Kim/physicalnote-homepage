@@ -12,7 +12,6 @@ export default function CardItemChangeBtn({ billingKey }: Props) {
   const handleClick = async () => {
     if (!confirm('결제 수단을 변경하시겠습니까?')) return;
     try {
-      console.log(billingKey);
       await defaultMutation.mutateAsync(billingKey.customerKey);
     } catch (e) {}
   };

@@ -13,8 +13,6 @@ export const getSigungu = async (siDoCode?: string) => {
   try {
     const url = `sgg?sidoCode=${siDoCode}`;
     const response = await AxiosInstance.get<AddressHierarchyResponseDto[]>(url);
-
-    console.log(response.data);
     return response.data ?? [];
   } catch (err) {
     return Promise.reject(err);
