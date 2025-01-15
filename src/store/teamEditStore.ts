@@ -1,10 +1,19 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 import VisibleValue from '@/data/visible_type';
-import { AgeEnum, EntrySourceEnum, StaffPositionEnum, TeamSizeEnum } from '@/types';
+import {
+  AgeEnum,
+  EntrySourceEnum,
+  findAgeKeyByValue,
+  findStaffKeyByValue,
+  findTeamSizeByKey,
+  StaffPositionEnum,
+  TeamSizeEnum,
+} from '@/types';
 import { DropDownOption } from '@/app/components/dropdown/Dropdown';
 import { TeamValidateRequestDto } from '@/networks/dto/common';
-import CoachPutRequestDto from '@/networks/dto/coach/put/CoachPutRequestDto';
+import PutCoachInfoRequestDto from '@/networks/query/coach/put/putCoachInfoRequestDto';
+import CoachInfoResponseDto from '@/networks/dto/coach/info/CoachInfoResponseDto';
 
 interface TeamEditState {
   siDoList: DropDownOption<string>[];
@@ -48,12 +57,16 @@ type TeamEditStore = {
   state: TeamEditState;
   actions: {
     resetState: () => void;
+    onSetFromDto: (dto: CoachInfoResponseDto) => void;
     onChangeSiDoList: (value: DropDownOption<string>[]) => void;
     onChangeSiGunGuList: (value: DropDownOption<string>[]) => void;
     onChangeEmdList: (value: DropDownOption<string>[]) => void;
     onChangeSiDo: (value: DropDownOption<string> | undefined) => void;
+    onChangeSiDoByLabel: (label: string) => void;
     onChangeSiGunGu: (value: DropDownOption<string> | undefined) => void;
+    onChangeSiGunGuByLabel: (label: string) => void;
     onChangeEmd: (value: DropDownOption<string> | undefined) => void;
+    onChangeEmdByLabel: (label: string) => void;
     onChangeTeamName: (value: string) => void;
     onChangeTeamImage: (value: string) => void;
     onChangeTeamImageError: (value: boolean) => void;
@@ -88,17 +101,17 @@ export const toTeamValidRequestDto = (state: TeamEditState): TeamValidateRequest
   } as TeamValidateRequestDto;
 };
 
-export const toPutRequestDto = (state: TeamEditState): CoachPutRequestDto => {
+export const toPutRequestDto = (state: TeamEditState): PutCoachInfoRequestDto => {
   return {
-    si: state.siDo?.value ?? '',
-    gu: state.siGunGu?.value ?? '',
-    dong: state.emd?.value ?? '',
+    si: state.siDo?.label ?? '',
+    gu: state.siGunGu?.label ?? '',
+    dong: state.emd?.label ?? '',
     staffPosition: state.staffPosition?.value ?? '',
     teamAgeGroup: state.teamAge?.value ?? '',
     teamName: state.teamName,
     teamProfile: state.teamImage,
     teamSize: state.teamSize?.value ?? '',
-  } as CoachPutRequestDto;
+  } as PutCoachInfoRequestDto;
 };
 
 export const isTeamEditStateValid = (state: TeamEditState): boolean => {
@@ -121,6 +134,21 @@ export const isTeamEditStateValid = (state: TeamEditState): boolean => {
   );
 };
 
+export const findSido = (label: string) => {
+  const state = useTeamEditStore.getState().state;
+  return state.siDoList.find((item) => item.label == label);
+};
+
+export const findSgg = (label: string) => {
+  const state = useTeamEditStore.getState().state;
+  return state.siGunGuList.find((item) => item.label == label);
+};
+
+export const findEmd = (label: string) => {
+  const state = useTeamEditStore.getState().state;
+  return state.emdList.find((item) => item.label == label);
+};
+
 /**
  * 소속관리 수정 Store
  */
@@ -132,6 +160,23 @@ export const useTeamEditStore = create(
         resetState: () => {
           set((store) => {
             store.state = initialState;
+          });
+        },
+        onSetFromDto: (dto: CoachInfoResponseDto) => {
+          set((store) => {
+            store.state = {
+              ...store.state,
+              siDo: findSido(dto.si),
+              teamName: dto.teamName,
+              teamImage: dto.teamProfile,
+              isTeamImageError: false,
+              teamAge: findAgeKeyByValue(dto.teamAgeGroup),
+              isTeamValidate: true,
+              teamValidateErrorVisible: VisibleValue.none(),
+              teamValidateErrorMsg: '',
+              teamSize: findTeamSizeByKey(dto.teamSize),
+              staffPosition: findStaffKeyByValue(dto.staffPosition),
+            };
           });
         },
         onChangeSiDoList: (value: DropDownOption<string>[]) => {
@@ -156,17 +201,32 @@ export const useTeamEditStore = create(
             store.state.emd = undefined;
           });
         },
-
+        onChangeSiDoByLabel: (label: string) => {
+          set((store) => {
+            console.log(findSido(label));
+            store.state.siDo = findSido(label);
+          });
+        },
         onChangeSiGunGu: (value: DropDownOption<string> | undefined) => {
           set((store) => {
             store.state.siGunGu = value;
             store.state.emd = undefined;
           });
         },
+        onChangeSiGunGuByLabel: (label: string) => {
+          set((store) => {
+            store.state.siGunGu = findSgg(label);
+          });
+        },
 
         onChangeEmd: (value: DropDownOption<string> | undefined) => {
           set((store) => {
             store.state.emd = value;
+          });
+        },
+        onChangeEmdByLabel: (label: string) => {
+          set((store) => {
+            store.state.emd = findEmd(label);
           });
         },
 

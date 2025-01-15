@@ -19,8 +19,8 @@ export const teamSizeDropDownOptions: DropDownOption<TeamSizeEnum>[] = Object.en
   },
 );
 
-export const findTeamSizeKeyByValue = (value: string): DropDownOption<TeamSizeEnum> | undefined => {
-  const entry = Object.entries(TeamSizeMap).find(([_, val]) => val === value);
+export const findTeamSizeByKey = (key: string): DropDownOption<TeamSizeEnum> | undefined => {
+  const entry = Object.entries(TeamSizeMap).find(([k, _]) => k === key);
   return entry
     ? ({
         value: entry[0],

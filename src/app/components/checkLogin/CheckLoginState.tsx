@@ -18,7 +18,6 @@ interface Props {
 }
 
 const CheckLoginState = ({ children }: Props) => {
-  console.log('CheckLoginState');
   const { data: userData } = useGetUserDetail();
   const { data: plansData } = useGetSubscriptionPlans();
   const { data: billingKeyData } = useGetBillingKeys();

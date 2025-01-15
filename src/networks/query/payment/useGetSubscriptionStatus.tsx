@@ -5,7 +5,6 @@ import GetStatusResponseDto from '@/networks/dto/status/GetStatusResponseDto';
 type ResponseType = UseQueryResult<GetStatusResponseDto | undefined>;
 
 export const getSubscriptionStatus = async (customerKey: string) => {
-  console.log(`getSubscriptionStatus: ${customerKey}`);
   try {
     const url = `admin/v1/subscriptions/status?customerKey=${customerKey}`;
     const response = await AxiosInstance.get<GetStatusResponseDto>(url);

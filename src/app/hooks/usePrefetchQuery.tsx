@@ -12,6 +12,7 @@ import { getBillingKeyOpt } from '@/networks/query/payment/useGetBillingKeys';
 import { getSidoOpt } from '@/networks/query/common/useGetSido';
 import { postCoachVerifyOpt } from '@/networks/query/coach/verify/usePostCoachVerify';
 import { putUserInfoOpt } from '@/networks/query/user/putUserInfo/usePutUserInfo';
+import { putCoachInfoOpt } from '@/networks/query/coach/put/usePutCoachInfo';
 
 /**
  * React Query Prefetch를 위한 Hook
@@ -33,6 +34,7 @@ const usePrefetchQuery = async () => {
   customQueryClient.setMutationDefaults(['postContact'], postContactOpt);
   customQueryClient.setMutationDefaults(['postCoachVerify'], postCoachVerifyOpt);
   customQueryClient.setMutationDefaults(['putUserInfo'], putUserInfoOpt);
+  customQueryClient.setMutationDefaults(['putCoachInfo'], putCoachInfoOpt);
 };
 
 export default usePrefetchQuery;

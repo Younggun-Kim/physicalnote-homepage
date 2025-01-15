@@ -1,34 +1,33 @@
 'use client';
 
 import styled from 'styled-components';
-import { isTeamEditStateValid, useTeamEditStore } from '@/store';
+import { toast } from 'react-toastify';
+import { isTeamEditStateValid, toPutRequestDto, useTeamEditStore } from '@/store';
 import { EnabledBtn } from '@/app/components/EnabledBtn';
+import useCoachInfoStore from '@/store/coachInfoStore';
+import usePutCoachInfo from '@/networks/query/coach/put/usePutCoachInfo';
 
 export default function TeamEditSubmit() {
   const state = useTeamEditStore((store) => store.state);
-  // const { onSet } = useCoachInfoStore((store) => store.actions);
-  //
-  // const coachInfoMutation = usePutCoachInfo();
-  //
-  // const handleClick = async () => {
-  //   try {
-  //     const result = await coachInfoMutation.mutateAsync(toPutRequestDto(state));
-  //
-  //     if (result.data) {
-  //       onSet(result.data);
-  //     }
-  //   } catch (e) {
-  //     toast('서버에러입니다.\n관리자에게 문의해주세요.');
-  //   }
-  // };
+  const { onSet } = useCoachInfoStore((store) => store.actions);
+
+  const coachInfoMutation = usePutCoachInfo();
+
+  const handleClick = async () => {
+    try {
+      const response = await coachInfoMutation.mutateAsync(toPutRequestDto(state));
+      onSet(response);
+      toast('수정이 완료되었습니다.');
+    } catch (e) {}
+  };
   return (
     <StyledDiv>
       <EnabledBtn
         containerClassName="w-full"
+        className="w-full h-full"
         text="수정"
         isEnabled={isTeamEditStateValid(state)}
-        onClick={() => {}}
-        // onClick={handleClick}
+        onClick={handleClick}
       />
     </StyledDiv>
   );

@@ -9,6 +9,7 @@ export interface CoachInfoResponseDto {
   teamAgeGroup: string;
   teamName: string;
   teamProfile: string;
+  teamSize: string;
 }
 
 export default CoachInfoResponseDto;

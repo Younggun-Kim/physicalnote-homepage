@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTeamEditStore } from '@/store';
 import FieldWrapper from '@/app/mypage/profile/edit/components/FieldWrapper';
 import FieldTitle from '@/app/mypage/profile/edit/components/FieldTitle';
@@ -8,14 +8,23 @@ import Dropdown from '@/app/components/dropdown/Dropdown';
 import useGetSigungu from '@/networks/query/common/useGetSigungu';
 import useGetEmd from '@/networks/query/common/useGetEmd';
 import { siDoDtoListToOptionList } from '@/networks/dto/common';
+import useCoachInfoStore from '@/store/coachInfoStore';
 
 export default function SiGunGuSelect() {
   const { siDo, siGunGu, siGunGuList, emd, emdList } = useTeamEditStore((store) => store.state);
-  const { onChangeSiGunGu, onChangeEmd, onChangeSiGunGuList, onChangeEmdList } = useTeamEditStore(
-    (store) => store.actions,
-  );
+  const {
+    onChangeSiGunGu,
+    onChangeEmd,
+    onChangeSiGunGuList,
+    onChangeEmdList,
+    onChangeSiGunGuByLabel,
+    onChangeEmdByLabel,
+  } = useTeamEditStore((store) => store.actions);
   const { data: sggData = [] } = useGetSigungu(siDo?.value);
   const { data: emdData = [] } = useGetEmd(siGunGu?.value);
+  const [isSggLoading, setIsSggLoading] = useState(true);
+  const [isEmdLoading, setIsEmdLoading] = useState(true);
+  const { coachInfo } = useCoachInfoStore((store) => store.state);
 
   useEffect(() => {
     if (!siDo?.value) return;
@@ -30,6 +39,20 @@ export default function SiGunGuSelect() {
 
     onChangeEmdList(siDoDtoListToOptionList(emdData));
   }, [siGunGu, emdData]);
+
+  useEffect(() => {
+    if (isSggLoading && siGunGuList.length > 0 && coachInfo?.gu != undefined) {
+      onChangeSiGunGuByLabel(coachInfo.gu);
+      setIsSggLoading(false);
+    }
+  }, [siGunGuList, coachInfo]);
+
+  useEffect(() => {
+    if (isEmdLoading && emdList.length > 0 && coachInfo?.dong != undefined) {
+      onChangeEmdByLabel(coachInfo.dong);
+      setIsEmdLoading(false);
+    }
+  }, [emdList, coachInfo]);
 
   return (
     <FieldWrapper>

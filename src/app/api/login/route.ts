@@ -17,7 +17,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { deleteCookie, setCookie } from 'cookies-next';
 
 export async function POST(request: NextRequest): Promise<NextResponse<LoginResponse | ApiError>> {
-  console.log('POST login');
   try {
     const loginData: LoginRequest = await request.json();
 
