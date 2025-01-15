@@ -10,6 +10,8 @@ import { postFindPwStep2Opt } from '@/networks/query/login/findPw/useFindPwStep2
 import { postContactOpt } from '@/networks/query/useContact';
 import { getBillingKeyOpt } from '@/networks/query/payment/useGetBillingKeys';
 import { getSidoOpt } from '@/networks/query/common/useGetSido';
+import { postCoachVerifyOpt } from '@/networks/query/coach/verify/usePostCoachVerify';
+import { putUserInfoOpt } from '@/networks/query/user/putUserInfo/usePutUserInfo';
 
 /**
  * React Query Prefetch를 위한 Hook
@@ -29,6 +31,8 @@ const usePrefetchQuery = async () => {
   customQueryClient.setMutationDefaults(['postFindPwStep1'], postFindPwStep1Opt);
   customQueryClient.setMutationDefaults(['postFindPwStep2'], postFindPwStep2Opt);
   customQueryClient.setMutationDefaults(['postContact'], postContactOpt);
+  customQueryClient.setMutationDefaults(['postCoachVerify'], postCoachVerifyOpt);
+  customQueryClient.setMutationDefaults(['putUserInfo'], putUserInfoOpt);
 };
 
 export default usePrefetchQuery;

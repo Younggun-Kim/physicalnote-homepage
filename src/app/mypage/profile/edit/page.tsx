@@ -10,32 +10,21 @@ import AuthCodeMsg from './components/AuthCodeMsg';
 import { PasswordInput } from './components/PasswordInput';
 import PasswordMsg from './components/PasswordMsg';
 import { ProfileSubmit } from './components/ProfileSubmit';
-import { useProfileEditStore } from '@/store';
+import { useAppStore, useProfileEditStore } from '@/store';
 import { useEffect } from 'react';
 import { PasswordVerifyInput } from '@/app/mypage/profile/edit/components/PasswordVerifyInput';
 
 export default function MyPageProfileEditPage() {
   const { setStateFromDto } = useProfileEditStore((store) => store.actions);
+  const { userInfo } = useAppStore((store) => store.state);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch('/api/user');
+    if (!userInfo) {
+      return;
+    }
 
-        if (!response.ok) {
-          throw new Error('유저 정보를 불러오는데 실패했습니다.');
-        }
-
-        const data = await response.json();
-        setStateFromDto(data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-      }
-    };
-
-    fetchUser();
-  }, [setStateFromDto]);
+    setStateFromDto(userInfo);
+  }, [userInfo]);
 
   return (
     <div

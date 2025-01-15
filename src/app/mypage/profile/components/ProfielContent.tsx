@@ -8,12 +8,12 @@ import { useState } from 'react';
 import { PasswordValue } from '@/data';
 import { EnabledBtn } from '@/app/components/EnabledBtn';
 import { useRouter } from 'next/navigation';
-import useCoachVerify from '@/networks/query/coach/verify/useCoachVerify';
+import usePostCoachVerify from '@/networks/query/coach/verify/usePostCoachVerify';
 import { toast } from 'react-toastify';
 
 export default function ProfileCotent() {
   const router = useRouter();
-  const coachVerifyMutation = useCoachVerify();
+  const coachVerifyMutation = usePostCoachVerify();
   const [password, setPassword] = useState<PasswordValue>(PasswordValue.empty);
 
   const handlePassword = (value: string) => {

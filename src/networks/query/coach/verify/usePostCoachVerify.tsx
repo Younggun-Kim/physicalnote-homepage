@@ -17,17 +17,17 @@ export const postCoachVerify = async (requestDto: CoachVerifyRequestDto) => {
   }
 };
 
-export const usePostCoachVerifyOpt = {
+export const postCoachVerifyOpt = {
   mutationFn: postCoachVerify,
 } as UseMutationOptions<CoachVerifyPwResponseDto, ErrorResponseType, CoachVerifyRequestDto, unknown>;
 
 /**
  * 코치 계정 비밀번호 확인 Mutation
  * */
-export const useCoachVerify = () => {
+export const usePostCoachVerify = () => {
   return useMutation<CoachVerifyPwResponseDto, ErrorResponseType, CoachVerifyRequestDto>({
-    ...usePostCoachVerifyOpt,
+    ...postCoachVerifyOpt,
   });
 };
 
-export default useCoachVerify;
+export default usePostCoachVerify;

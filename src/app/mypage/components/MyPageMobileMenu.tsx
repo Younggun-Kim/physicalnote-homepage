@@ -24,7 +24,7 @@ export default function MyPageMobileMenu() {
   const router = useRouter();
   const handleSelect = (selected: DropDownOption<string>) => {
     setSelectedOption(selected);
-    router.push(selected.value);
+    router.push(`/mypage/${selected.value}`);
   };
 
   return (
