@@ -1,7 +1,7 @@
 import { UndefinedInitialDataOptions, useQuery, UseQueryResult } from '@tanstack/react-query';
 import { AxiosInstance } from '@/networks/axiosInstance';
-import { CoachInfoResponseDto } from '@/app/api/coach/route';
 import { hasTokenInCookies } from '@/utils/cookieUtils';
+import CoachInfoResponseDto from '@/networks/dto/coach/info/CoachInfoResponseDto';
 
 type ResponseType = UseQueryResult<CoachInfoResponseDto>;
 

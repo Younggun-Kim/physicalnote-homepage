@@ -11,7 +11,7 @@ import usePutCoachEmail from '@/networks/query/coach/putEmail/usePutCoachEmail';
 interface Props {
   planId?: number;
   planType?: PlanType;
-  email: EmailValue;
+  email?: EmailValue;
 }
 
 export default function PaymentNextBtn({ planId, planType, email }: Props) {
@@ -33,7 +33,7 @@ export default function PaymentNextBtn({ planId, planType, email }: Props) {
     }
 
     let receiptEmail = email;
-    if (receiptEmail.isEmpty()) {
+    if (!receiptEmail || receiptEmail.isEmpty()) {
       receiptEmail = new EmailValue(userInfo?.loginId);
     }
 
