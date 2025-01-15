@@ -18,6 +18,7 @@ interface Props {
 }
 
 const CheckLoginState = ({ children }: Props) => {
+  console.log('CheckLoginState');
   const { data: userData } = useGetUserDetail();
   const { data: plansData } = useGetSubscriptionPlans();
   const { data: billingKeyData } = useGetBillingKeys();
@@ -72,10 +73,9 @@ const CheckLoginState = ({ children }: Props) => {
   }, [plansData]);
 
   useEffect(() => {
-    if (defaultBillingKey?.customerKey == undefined) return;
     if (subscriptionData == undefined) return;
     setSubscription(subscriptionData);
-  }, [subscriptionData, defaultBillingKey]);
+  }, [subscriptionData]);
 
   return <>{children}</>;
 };

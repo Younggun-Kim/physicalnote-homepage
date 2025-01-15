@@ -1,4 +1,5 @@
 'use client';
+
 import MyPageContentWrapper from '@/app/mypage/components/MyPageContentWrapper';
 import MyPageContentTitle from '@/app/mypage/components/MyPageContentTitle';
 import ProfileDescription from '@/app/mypage/profile/components/ProfileDescription';
@@ -6,12 +7,13 @@ import LoginInput from '@/app/login/components/LoginInput';
 import { useState } from 'react';
 import { PasswordValue } from '@/data';
 import { EnabledBtn } from '@/app/components/EnabledBtn';
-import { toast } from 'react-toastify';
-import { CoachVerifyPwRequestDto } from '@/app/api/coach/verify/route';
 import { useRouter } from 'next/navigation';
+import useCoachVerify from '@/networks/query/coach/verify/useCoachVerify';
+import { toast } from 'react-toastify';
 
 export default function ProfileCotent() {
   const router = useRouter();
+  const coachVerifyMutation = useCoachVerify();
   const [password, setPassword] = useState<PasswordValue>(PasswordValue.empty);
 
   const handlePassword = (value: string) => {
@@ -21,32 +23,22 @@ export default function ProfileCotent() {
   const handleClick = async () => {
     try {
       if (!password.isValid()) {
-        throw new Error('비밀번호를 확인해주세요.');
+        toast('비밀번호를 확인해주세요.');
+        return;
       }
 
-      const requestData = {
+      const response = await coachVerifyMutation.mutateAsync({
         password: password.getValue(),
-      } as CoachVerifyPwRequestDto;
-
-      const response = await fetch('/api/coach/verify', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestData),
       });
 
-      if (!response.ok) {
-        throw new Error('서버 에러입니다.');
+      if (!response.status) {
+        toast('유효하지 않은 비밀번호입니다.');
+        return;
       }
 
       router.push('/mypage/profile/edit');
-    } catch (error) {
-      if (error instanceof Error) {
-        toast(error.message);
-      } else {
-        toast('서버 에러입니다.');
-      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -65,8 +57,8 @@ export default function ProfileCotent() {
             onChange={handlePassword}
           />
           <EnabledBtn
-            containerClassName="h-10 md:h-12 px-6"
-            className="p-0 !text-sm"
+            containerClassName="h-10 md:h-12"
+            className="px-6 !text-sm !w-full h-full"
             isEnabled={password.isValid()}
             text={'확인'}
             onClick={handleClick}
