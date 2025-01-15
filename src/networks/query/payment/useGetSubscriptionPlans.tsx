@@ -1,6 +1,4 @@
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { toast } from 'react-toastify';
 import { AxiosInstance } from '@/networks/axiosInstance';
 import PlanResponseDto from '@/networks/dto/payment/PlanResponseDto';
 
@@ -11,15 +9,7 @@ export const getSubscriptionPlans = async () => {
     const url = `/subscriptions/plans`;
     const result = await AxiosInstance.get<PlanResponseDto[]>(url);
     return result.data ?? [];
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      if (error.response?.data?.message) {
-        toast(error.response.data.message);
-        return;
-      }
-    }
-    toast('서버에러');
-  }
+  } catch (error) {}
 };
 
 export const getSubscribePlansOption = {

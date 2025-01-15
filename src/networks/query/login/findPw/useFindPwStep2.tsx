@@ -1,5 +1,4 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import { ErrorResponseType } from '@/networks/dto/errorResponseDto';
 import { AxiosInstance } from '@/networks/axiosInstance';
 import { FindPwStep2ResponseDto } from '@/networks/query/login/findPw/findPwStep2ResponseDto';
@@ -20,9 +19,6 @@ export const postFindPwStep2 = async (dto: FindPwStep2RequestDto) => {
 
 export const postFindPwStep2Opt = {
   mutationFn: postFindPwStep2,
-  onError: (error: ErrorResponseType) => {
-    toast(error.response?.data?.message ?? '서버에러');
-  },
 } as UseMutationOptions<FindPwStep2ResponseDto, ErrorResponseType, FindPwStep2RequestDto>;
 
 export const useFindPwStep2 = () => {

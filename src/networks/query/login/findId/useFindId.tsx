@@ -1,5 +1,4 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import { ErrorResponseType } from '@/networks/dto/errorResponseDto';
 import { PhoneVerifyRequestDto } from '@/networks/dto/common';
 import { FindIdResponseDto } from '@/networks/query/login/findId/findIdResponseDto';
@@ -20,9 +19,6 @@ export const postFindId = async ({ phoneNumber, authCode }: PhoneVerifyRequestDt
 
 export const postFindIdOpt = {
   mutationFn: postFindId,
-  onError: (error: ErrorResponseType) => {
-    toast(error.response?.data?.message ?? '서버에러');
-  },
 } as UseMutationOptions<FindIdResponseDto, ErrorResponseType, PhoneVerifyRequestDto>;
 
 export const useFindId = () => {

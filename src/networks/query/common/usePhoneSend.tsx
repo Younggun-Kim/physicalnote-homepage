@@ -1,5 +1,4 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import MessageResponseDto from '@/app/api/dto/MessageResponseDto';
 import { ErrorResponseType } from '@/networks/dto/errorResponseDto';
@@ -25,9 +24,6 @@ export const postPhoneSend = async ({ phoneNumber }: PhoneSendRequestDto) => {
 
 export const postPhoneSendOpt = {
   mutationFn: postPhoneSend,
-  onError: (error: ErrorResponseType) => {
-    toast(error.response?.data?.message ?? '서버에러');
-  },
 } as UseMutationOptions<MessageResponseDto, ErrorResponseType, PhoneSendRequestDto>;
 
 export const usePhoneSend = () => {

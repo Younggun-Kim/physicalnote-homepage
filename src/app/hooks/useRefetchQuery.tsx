@@ -13,7 +13,12 @@ const useRefetchQuery = () => {
 
   const refetchAll = useCallback(async () => {
     try {
-      await Promise.all([userRefetch(), billingRefetch(), coachRefetch()]);
+      const results = await Promise.all([
+        userRefetch().catch((e) => ({ error: e, type: 'user' })),
+        billingRefetch().catch((e) => ({ error: e, type: 'billing' })),
+        coachRefetch().catch((e) => ({ error: e, type: 'coach' })),
+      ]);
+      console.log('Refetch results:', results);
     } catch (error) {
       console.error('Error during multi-refetch:', error);
       throw error;

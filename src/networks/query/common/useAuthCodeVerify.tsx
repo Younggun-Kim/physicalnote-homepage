@@ -1,5 +1,4 @@
 import { useMutation, UseMutationOptions } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import axios from 'axios';
 import { ErrorResponseType } from '@/networks/dto/errorResponseDto';
 import { PhoneVerifyResponseDto, PhoneVerifyRequestDto } from '@/networks/dto/common';
@@ -21,9 +20,6 @@ export const postAuthCode = async ({ phoneNumber, authCode }: PhoneVerifyRequest
 
 export const postAuthCodeOpt = {
   mutationFn: postAuthCode,
-  onError: (error: ErrorResponseType) => {
-    toast(error.response?.data?.message ?? '서버에러');
-  },
 } as UseMutationOptions<PhoneVerifyResponseDto, ErrorResponseType, PhoneVerifyRequestDto>;
 
 export const useAuthCodeVerify = () => {

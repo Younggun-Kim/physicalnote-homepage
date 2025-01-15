@@ -40,6 +40,11 @@ AxiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
+    // 로그 안 나와야 하는 api
+    if (error.path.contains('relogin')) {
+      return;
+    }
+
     if (error instanceof AxiosError) {
       const errorResponse = error as ErrorResponseType;
       if (errorResponse.response?.data) {

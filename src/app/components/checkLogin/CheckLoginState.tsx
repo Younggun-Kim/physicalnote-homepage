@@ -24,7 +24,7 @@ const CheckLoginState = ({ children }: Props) => {
   const { data: coachInfoData } = useGetCoachInfo();
 
   const { defaultBillingKey } = useBillingKeyStore((store) => store.state);
-  const { data: subscriptionData } = useGetSubscriptionStatus(defaultBillingKey?.customerKey);
+  const { data: subscriptionData } = useGetSubscriptionStatus(defaultBillingKey?.customerKey ?? '');
 
   const reLoginMutation = useReLogin();
 
@@ -72,9 +72,10 @@ const CheckLoginState = ({ children }: Props) => {
   }, [plansData]);
 
   useEffect(() => {
+    if (defaultBillingKey?.customerKey == undefined) return;
     if (subscriptionData == undefined) return;
     setSubscription(subscriptionData);
-  }, [subscriptionData, defaultBillingKey, userData]);
+  }, [subscriptionData, defaultBillingKey]);
 
   return <>{children}</>;
 };
