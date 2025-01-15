@@ -16,11 +16,6 @@ AxiosInstance.interceptors.request.use(
       config.baseURL = '';
     }
 
-    const exceptionalUrls = ['login/find_id', 'login/find_pw/step1', 'login/find_pw/step2'];
-    if (exceptionalUrls.find((path) => config.url?.includes(path))) {
-      config.baseURL = process.env.NEXT_PUBLIC_BASE_URL2;
-    }
-
     if (config.url?.includes('api/') || config.url?.includes('admin/')) {
       const token = getCookie('token');
       if (token) {
@@ -40,12 +35,13 @@ AxiosInstance.interceptors.response.use(
     return response;
   },
   async (error) => {
-    // 로그 안 나와야 하는 api
-    if (error.path.contains('relogin')) {
-      return;
-    }
-
     if (error instanceof AxiosError) {
+      // 로깅 안 하는 apis
+      const paths = ['relogin'];
+      if (paths.some((path) => error.config?.url?.includes(path))) {
+        return;
+      }
+
       const errorResponse = error as ErrorResponseType;
       if (errorResponse.response?.data) {
         const { message } = errorResponse.response.data;
