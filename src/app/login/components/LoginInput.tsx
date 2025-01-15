@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from '@/app/components/input/Input';
+import { className } from 'postcss-selector-parser';
 
 type PickInputAttribute = Pick<HTMLInputElement, 'name' | 'type' | 'placeholder' | 'value'>;
 
@@ -25,7 +26,7 @@ export default function LoginInput({
 }: InputProps) {
   return (
     <Input
-      className={`w-full max-w-[300px] !py-0 h-10 sm:h-12 sm:max-w-[400px]`}
+      className={`${className} w-full max-w-[300px] !py-0 h-10 sm:h-12 sm:max-w-[400px]`}
       type={type}
       name={name}
       placeholder={placeholder}

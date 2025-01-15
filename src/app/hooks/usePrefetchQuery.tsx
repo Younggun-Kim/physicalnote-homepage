@@ -13,6 +13,7 @@ import { getSidoOpt } from '@/networks/query/common/useGetSido';
 import { postCoachVerifyOpt } from '@/networks/query/coach/verify/usePostCoachVerify';
 import { putUserInfoOpt } from '@/networks/query/user/putUserInfo/usePutUserInfo';
 import { putCoachInfoOpt } from '@/networks/query/coach/put/usePutCoachInfo';
+import { putCoachEmailOpt } from '@/networks/query/coach/putEmail/usePutCoachEmail';
 
 /**
  * React Query Prefetch를 위한 Hook
@@ -35,6 +36,7 @@ const usePrefetchQuery = async () => {
   customQueryClient.setMutationDefaults(['postCoachVerify'], postCoachVerifyOpt);
   customQueryClient.setMutationDefaults(['putUserInfo'], putUserInfoOpt);
   customQueryClient.setMutationDefaults(['putCoachInfo'], putCoachInfoOpt);
+  customQueryClient.setMutationDefaults(['putCoachEmail'], putCoachEmailOpt);
 };
 
 export default usePrefetchQuery;

@@ -18,6 +18,10 @@ export class EmailValue {
   public isValid = (): boolean => {
     return RegUtils.emailMatch(this.value);
   };
+
+  public isEmpty = (): boolean => {
+    return this.value == '';
+  };
 }
 
 export default EmailValue;

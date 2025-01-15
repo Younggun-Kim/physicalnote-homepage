@@ -13,6 +13,8 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import PaymentField from '@/app/payment/components/PaymentField';
 import { isPlanTypeMonthly, PlanType } from '@/types/planType';
+import PaymentEmail from '@/app/payment/components/PaymentEmail';
+import { EmailValue } from '@/data';
 
 export default function PaymentContent() {
   const searchParams = useSearchParams();
@@ -20,6 +22,7 @@ export default function PaymentContent() {
   const { plans } = usePlanStore((store) => store.state);
   const [plan, setPlan] = useState<PlanResponseDto | undefined>();
   const [planType, setPlanType] = useState<PlanType>('MONTHLY');
+  const [receiptEmail, setReceiptEmail] = useState<EmailValue>(EmailValue.empty);
 
   useEffect(() => {
     const planId = searchParams.get('planId');
@@ -67,15 +70,23 @@ export default function PaymentContent() {
         <div className={'flex flex-col justify-center items-start group-hover:scale-90'}></div>
       </div>
       <PaymentDivider />
-      <span className={'font-sans font-bold text-black text-base sm:text-xl'}>정보</span>
+      <span className={'font-sans font-bold text-gray1 text-base sm:text-lg'}>정보</span>
       <PaymentInfo />
       <PaymentDivider />
       <div className="w-full flex justify-center">
         <CardView alignCenter={true} />
       </div>
+      <div className="mt-9 flex flex-col gap-5">
+        <span className={'font-sans font-bold text-gray1 text-base sm:text-lg'}>영수증 받을 이메일(선택)</span>
+        <PaymentEmail
+          email={receiptEmail.getValue()}
+          setEmail={(text: string) => setReceiptEmail(new EmailValue(text))}
+        />
+      </div>
       <PaymentBtnGroup
         plan={plan}
         planType={planType}
+        email={receiptEmail}
       />
     </div>
   );

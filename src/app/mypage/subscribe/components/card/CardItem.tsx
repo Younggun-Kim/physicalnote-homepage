@@ -7,10 +7,13 @@ interface Props {
 }
 
 export default function CardItem({ billingKey }: Props) {
+  const isDefault = billingKey.isDefault == 'YES';
+  const border = isDefault ? 'border-primary border-[2px]' : 'border-secondary border-[0.5px]';
   return (
     <div
       className={[
-        'rounded-[10px] p-6 border-secondary border-[0.5px]',
+        'rounded-[10px] p-6',
+        border,
         'w-full flex flex-col gap-5',
         'sm:max-w-[400px]',
         'md:max-w-[500px] md:flex-row md:justify-between',

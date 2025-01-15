@@ -1,19 +1,24 @@
 'use client';
 
 import { toast } from 'react-toastify';
-import { useBillingKeyStore } from '@/store';
+import { useAppStore, useBillingKeyStore } from '@/store';
 import { PlanType } from '@/types/planType';
 import usePostSubscription from '@/networks/query/usePostSubscription';
 import { useRouter } from 'next/navigation';
+import { EmailValue } from '@/data';
+import usePutCoachEmail from '@/networks/query/coach/putEmail/usePutCoachEmail';
 
 interface Props {
   planId?: number;
   planType?: PlanType;
+  email: EmailValue;
 }
 
-export default function PaymentNextBtn({ planId, planType }: Props) {
+export default function PaymentNextBtn({ planId, planType, email }: Props) {
   const router = useRouter();
+  const { userInfo } = useAppStore((store) => store.state);
   const { defaultBillingKey } = useBillingKeyStore((store) => store.state);
+  const putEmail = usePutCoachEmail();
   const postMutation = usePostSubscription();
 
   const handleClick = async () => {
@@ -26,6 +31,26 @@ export default function PaymentNextBtn({ planId, planType }: Props) {
       toast('결제수단을 설정해주세요.');
       return;
     }
+
+    let receiptEmail = email;
+    if (receiptEmail.isEmpty()) {
+      receiptEmail = new EmailValue(userInfo?.loginId);
+    }
+
+    if (!receiptEmail.isValid()) {
+      toast('이메일을 확인해주세요.');
+      return;
+    }
+
+    const emailResponse = await putEmail.mutateAsync({
+      email: receiptEmail.getValue(),
+    });
+
+    if (!emailResponse.state) {
+      toast(emailResponse.message);
+      return;
+    }
+
     const response = await postMutation.mutateAsync({
       billingCycle: planType,
       customerKey: defaultBillingKey.customerKey,
