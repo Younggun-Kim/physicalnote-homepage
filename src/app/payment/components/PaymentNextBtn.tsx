@@ -46,7 +46,7 @@ export default function PaymentNextBtn({ planId, planType, email }: Props) {
       email: receiptEmail.getValue(),
     });
 
-    if (!emailResponse.state) {
+    if (!emailResponse.status) {
       toast(emailResponse.message);
       return;
     }
