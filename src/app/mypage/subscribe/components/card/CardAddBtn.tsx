@@ -5,8 +5,10 @@ import uuid from 'react-uuid';
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import useCoachInfoStore from '@/store/coachInfoStore';
+import { useSearchParams } from 'next/navigation';
 
 export default function CardAddBtn() {
+  const searchParams = useSearchParams();
   const { coachInfo } = useCoachInfoStore((store) => store.state); //useCoachInfo
 
   const handleClick = async () => {
@@ -16,6 +18,7 @@ export default function CardAddBtn() {
       toast('토스 클라이언트키가 없습니다.');
       return;
     }
+    const params = `?planId=${searchParams.get('planId') ?? 0}`;
     // ------ 클라이언트 키로 객체 초기화 ------
     loadTossPayments(clientKey).then((tossPayments) => {
       // ------ 카드 등록창 호출 ------
@@ -23,8 +26,8 @@ export default function CardAddBtn() {
         .payment({ customerKey: uuid() })
         .requestBillingAuth({
           method: 'CARD',
-          successUrl: `${window.location.origin}/mypage/subscribe/card/success`,
-          failUrl: `${window.location.origin}/mypage/subscribe/card/failure`,
+          successUrl: `${window.location.origin}/mypage/subscribe/card/success${params}`,
+          failUrl: `${window.location.origin}/mypage/subscribe/card/failure${params}`,
           customerName: coachInfo?.name,
           customerEmail: coachInfo?.loginId,
           windowTarget: 'iframe',
